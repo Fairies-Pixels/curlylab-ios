@@ -22,6 +22,13 @@
 		EB4694DA306FDB7D00510940 /* FavoriteProductEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4694D9306FDB7D00510940 /* FavoriteProductEntity.swift */; };
 		EB4694DC306FDC8600510940 /* ReviewRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4694DB306FDC8600510940 /* ReviewRequest.swift */; };
 		EB4694DE306FDCF600510940 /* ReviewEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4694DD306FDCF600510940 /* ReviewEntity.swift */; };
+		EB4694E0306FDE8100510940 /* RegisterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4694DF306FDE8100510940 /* RegisterRequest.swift */; };
+		EB4694E2306FDEC600510940 /* UserProfileEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4694E1306FDEC600510940 /* UserProfileEntity.swift */; };
+		EB4694E5306FDF3000510940 /* TokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4694E4306FDF3000510940 /* TokenStorage.swift */; };
+		EB4694E7306FDF8100510940 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4694E6306FDF8100510940 /* LoginRequest.swift */; };
+		EB4694E9306FE04500510940 /* LogoutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4694E8306FE04500510940 /* LogoutRequest.swift */; };
+		EB4694EC306FE09F00510940 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4694EB306FE09F00510940 /* KeychainManager.swift */; };
+		EB4694EE306FE16D00510940 /* GoogleRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4694ED306FE16D00510940 /* GoogleRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +67,13 @@
 		EB4694D9306FDB7D00510940 /* FavoriteProductEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteProductEntity.swift; sourceTree = "<group>"; };
 		EB4694DB306FDC8600510940 /* ReviewRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRequest.swift; sourceTree = "<group>"; };
 		EB4694DD306FDCF600510940 /* ReviewEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewEntity.swift; sourceTree = "<group>"; };
+		EB4694DF306FDE8100510940 /* RegisterRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterRequest.swift; sourceTree = "<group>"; };
+		EB4694E1306FDEC600510940 /* UserProfileEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileEntity.swift; sourceTree = "<group>"; };
+		EB4694E4306FDF3000510940 /* TokenStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStorage.swift; sourceTree = "<group>"; };
+		EB4694E6306FDF8100510940 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
+		EB4694E8306FE04500510940 /* LogoutRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutRequest.swift; sourceTree = "<group>"; };
+		EB4694EB306FE09F00510940 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		EB4694ED306FE16D00510940 /* GoogleRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +162,7 @@
 		EB4694C8306FCCBA00510940 /* data */ = {
 			isa = PBXGroup;
 			children = (
+				EB4694EA306FE09100510940 /* Local */,
 				EB4694CA306FCCFC00510940 /* remote */,
 			);
 			path = data;
@@ -164,6 +179,7 @@
 		EB4694CB306FCD0D00510940 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				EB4694E3306FDF1E00510940 /* Storage */,
 				EB4694D4306FD09800510940 /* Entity */,
 				EB4694CC306FCE4C00510940 /* request */,
 			);
@@ -183,6 +199,10 @@
 		EB4694CD306FCE6500510940 /* auth */ = {
 			isa = PBXGroup;
 			children = (
+				EB4694DF306FDE8100510940 /* RegisterRequest.swift */,
+				EB4694ED306FE16D00510940 /* GoogleRequest.swift */,
+				EB4694E8306FE04500510940 /* LogoutRequest.swift */,
+				EB4694E6306FDF8100510940 /* LoginRequest.swift */,
 			);
 			path = auth;
 			sourceTree = "<group>";
@@ -211,8 +231,25 @@
 				EB4694D5306FD0C500510940 /* HairTypeEntity.swift */,
 				EB4694DD306FDCF600510940 /* ReviewEntity.swift */,
 				EB4694D9306FDB7D00510940 /* FavoriteProductEntity.swift */,
+				EB4694E1306FDEC600510940 /* UserProfileEntity.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		EB4694E3306FDF1E00510940 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				EB4694E4306FDF3000510940 /* TokenStorage.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		EB4694EA306FE09100510940 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				EB4694EB306FE09F00510940 /* KeychainManager.swift */,
+			);
+			path = Local;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -346,15 +383,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB4694D1306FCEBB00510940 /* UserRequest.swift in Sources */,
+				EB4694E5306FDF3000510940 /* TokenStorage.swift in Sources */,
+				EB4694E0306FDE8100510940 /* RegisterRequest.swift in Sources */,
 				EB46949F306FC93900510940 /* ContentView.swift in Sources */,
 				EB4694D6306FD0C500510940 /* HairTypeEntity.swift in Sources */,
+				EB4694E7306FDF8100510940 /* LoginRequest.swift in Sources */,
 				EB4694A1306FC93900510940 /* Item.swift in Sources */,
+				EB4694EC306FE09F00510940 /* KeychainManager.swift in Sources */,
 				EB4694DA306FDB7D00510940 /* FavoriteProductEntity.swift in Sources */,
 				EB4694DC306FDC8600510940 /* ReviewRequest.swift in Sources */,
 				EB4694D3306FCFC400510940 /* HairTypeRequest.swift in Sources */,
+				EB4694EE306FE16D00510940 /* GoogleRequest.swift in Sources */,
+				EB4694E9306FE04500510940 /* LogoutRequest.swift in Sources */,
 				EB4694D8306FDAC700510940 /* Favoritereguest.swift in Sources */,
 				EB4694DE306FDCF600510940 /* ReviewEntity.swift in Sources */,
 				EB46949D306FC93900510940 /* curl_iosApp.swift in Sources */,
+				EB4694E2306FDEC600510940 /* UserProfileEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
