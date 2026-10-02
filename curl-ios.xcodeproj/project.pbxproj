@@ -15,6 +15,13 @@
 		EB4694B0306FC93C00510940 /* curl_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4694AF306FC93C00510940 /* curl_iosTests.swift */; };
 		EB4694BA306FC93C00510940 /* curl_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4694B9306FC93C00510940 /* curl_iosUITests.swift */; };
 		EB4694BC306FC93C00510940 /* curl_iosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4694BB306FC93C00510940 /* curl_iosUITestsLaunchTests.swift */; };
+		EB4694D1306FCEBB00510940 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4694D0306FCEBB00510940 /* UserRequest.swift */; };
+		EB4694D3306FCFC400510940 /* HairTypeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4694D2306FCFC400510940 /* HairTypeRequest.swift */; };
+		EB4694D6306FD0C500510940 /* HairTypeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4694D5306FD0C500510940 /* HairTypeEntity.swift */; };
+		EB4694D8306FDAC700510940 /* Favoritereguest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4694D7306FDAC700510940 /* Favoritereguest.swift */; };
+		EB4694DA306FDB7D00510940 /* FavoriteProductEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4694D9306FDB7D00510940 /* FavoriteProductEntity.swift */; };
+		EB4694DC306FDC8600510940 /* ReviewRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4694DB306FDC8600510940 /* ReviewRequest.swift */; };
+		EB4694DE306FDCF600510940 /* ReviewEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4694DD306FDCF600510940 /* ReviewEntity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +53,13 @@
 		EB4694B5306FC93C00510940 /* curl-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "curl-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB4694B9306FC93C00510940 /* curl_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = curl_iosUITests.swift; sourceTree = "<group>"; };
 		EB4694BB306FC93C00510940 /* curl_iosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = curl_iosUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		EB4694D0306FCEBB00510940 /* UserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
+		EB4694D2306FCFC400510940 /* HairTypeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HairTypeRequest.swift; sourceTree = "<group>"; };
+		EB4694D5306FD0C500510940 /* HairTypeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HairTypeEntity.swift; sourceTree = "<group>"; };
+		EB4694D7306FDAC700510940 /* Favoritereguest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favoritereguest.swift; sourceTree = "<group>"; };
+		EB4694D9306FDB7D00510940 /* FavoriteProductEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteProductEntity.swift; sourceTree = "<group>"; };
+		EB4694DB306FDC8600510940 /* ReviewRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRequest.swift; sourceTree = "<group>"; };
+		EB4694DD306FDCF600510940 /* ReviewEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewEntity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +110,7 @@
 		EB46949B306FC93900510940 /* curl-ios */ = {
 			isa = PBXGroup;
 			children = (
+				EB4694C8306FCCBA00510940 /* data */,
 				EB46949C306FC93900510940 /* curl_iosApp.swift */,
 				EB46949E306FC93900510940 /* ContentView.swift */,
 				EB4694A0306FC93900510940 /* Item.swift */,
@@ -128,6 +143,76 @@
 				EB4694BB306FC93C00510940 /* curl_iosUITestsLaunchTests.swift */,
 			);
 			path = "curl-iosUITests";
+			sourceTree = "<group>";
+		};
+		EB4694C8306FCCBA00510940 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				EB4694CA306FCCFC00510940 /* remote */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
+		EB4694CA306FCCFC00510940 /* remote */ = {
+			isa = PBXGroup;
+			children = (
+				EB4694CB306FCD0D00510940 /* model */,
+			);
+			path = remote;
+			sourceTree = "<group>";
+		};
+		EB4694CB306FCD0D00510940 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				EB4694D4306FD09800510940 /* Entity */,
+				EB4694CC306FCE4C00510940 /* request */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		EB4694CC306FCE4C00510940 /* request */ = {
+			isa = PBXGroup;
+			children = (
+				EB4694CF306FCE8C00510940 /* profile */,
+				EB4694CE306FCE7700510940 /* products */,
+				EB4694CD306FCE6500510940 /* auth */,
+			);
+			path = request;
+			sourceTree = "<group>";
+		};
+		EB4694CD306FCE6500510940 /* auth */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = auth;
+			sourceTree = "<group>";
+		};
+		EB4694CE306FCE7700510940 /* products */ = {
+			isa = PBXGroup;
+			children = (
+				EB4694D7306FDAC700510940 /* Favoritereguest.swift */,
+				EB4694DB306FDC8600510940 /* ReviewRequest.swift */,
+			);
+			path = products;
+			sourceTree = "<group>";
+		};
+		EB4694CF306FCE8C00510940 /* profile */ = {
+			isa = PBXGroup;
+			children = (
+				EB4694D0306FCEBB00510940 /* UserRequest.swift */,
+				EB4694D2306FCFC400510940 /* HairTypeRequest.swift */,
+			);
+			path = profile;
+			sourceTree = "<group>";
+		};
+		EB4694D4306FD09800510940 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				EB4694D5306FD0C500510940 /* HairTypeEntity.swift */,
+				EB4694DD306FDCF600510940 /* ReviewEntity.swift */,
+				EB4694D9306FDB7D00510940 /* FavoriteProductEntity.swift */,
+			);
+			path = Entity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,8 +345,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB4694D1306FCEBB00510940 /* UserRequest.swift in Sources */,
 				EB46949F306FC93900510940 /* ContentView.swift in Sources */,
+				EB4694D6306FD0C500510940 /* HairTypeEntity.swift in Sources */,
 				EB4694A1306FC93900510940 /* Item.swift in Sources */,
+				EB4694DA306FDB7D00510940 /* FavoriteProductEntity.swift in Sources */,
+				EB4694DC306FDC8600510940 /* ReviewRequest.swift in Sources */,
+				EB4694D3306FCFC400510940 /* HairTypeRequest.swift in Sources */,
+				EB4694D8306FDAC700510940 /* Favoritereguest.swift in Sources */,
+				EB4694DE306FDCF600510940 /* ReviewEntity.swift in Sources */,
 				EB46949D306FC93900510940 /* curl_iosApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
