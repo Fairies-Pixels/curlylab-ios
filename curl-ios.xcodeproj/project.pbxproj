@@ -44,6 +44,11 @@
 		EBB2B5063073D39B00BF34DB /* ReviewResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2B5053073D39B00BF34DB /* ReviewResponse.swift */; };
 		EBB2B5083073D3CC00BF34DB /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2B5073073D3CC00BF34DB /* Review.swift */; };
 		EBB2B50A3073D42000BF34DB /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2B5093073D42000BF34DB /* DateParser.swift */; };
+		EBB2B50D3073D5C300BF34DB /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2B50C3073D5C300BF34DB /* UserResponse.swift */; };
+		EBB2B50F3073D62100BF34DB /* LocalDateTimeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2B50E3073D62100BF34DB /* LocalDateTimeParser.swift */; };
+		EBB2B5113073D65A00BF34DB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2B5103073D65A00BF34DB /* User.swift */; };
+		EBB2B5133073D74F00BF34DB /* HairTypeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2B5123073D74F00BF34DB /* HairTypeResponse.swift */; };
+		EBB2B5153073D78900BF34DB /* HairType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2B5143073D78900BF34DB /* HairType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +109,11 @@
 		EBB2B5053073D39B00BF34DB /* ReviewResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewResponse.swift; sourceTree = "<group>"; };
 		EBB2B5073073D3CC00BF34DB /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		EBB2B5093073D42000BF34DB /* DateParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateParser.swift; sourceTree = "<group>"; };
+		EBB2B50C3073D5C300BF34DB /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
+		EBB2B50E3073D62100BF34DB /* LocalDateTimeParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDateTimeParser.swift; sourceTree = "<group>"; };
+		EBB2B5103073D65A00BF34DB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		EBB2B5123073D74F00BF34DB /* HairTypeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HairTypeResponse.swift; sourceTree = "<group>"; };
+		EBB2B5143073D78900BF34DB /* HairType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HairType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,6 +300,7 @@
 		EBB2B4E63073C0A500BF34DB /* response */ = {
 			isa = PBXGroup;
 			children = (
+				EBB2B50B3073D5AB00BF34DB /* profile */,
 				EBB2B4F83073D0EA00BF34DB /* products */,
 				EBB2B4ED3073C6FA00BF34DB /* composition */,
 				EBB2B4EA3073C34700BF34DB /* auth */,
@@ -335,6 +346,18 @@
 				EBB2B5093073D42000BF34DB /* DateParser.swift */,
 			);
 			path = products;
+			sourceTree = "<group>";
+		};
+		EBB2B50B3073D5AB00BF34DB /* profile */ = {
+			isa = PBXGroup;
+			children = (
+				EBB2B50C3073D5C300BF34DB /* UserResponse.swift */,
+				EBB2B5103073D65A00BF34DB /* User.swift */,
+				EBB2B50E3073D62100BF34DB /* LocalDateTimeParser.swift */,
+				EBB2B5123073D74F00BF34DB /* HairTypeResponse.swift */,
+				EBB2B5143073D78900BF34DB /* HairType.swift */,
+			);
+			path = profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -472,18 +495,22 @@
 				EBB2B4E93073C0F900BF34DB /* AnalysisRepository.swift in Sources */,
 				EB4694E5306FDF3000510940 /* TokenStorage.swift in Sources */,
 				EBB2B4FE3073D22F00BF34DB /* FavoriteEntity.swift in Sources */,
+				EBB2B50F3073D62100BF34DB /* LocalDateTimeParser.swift in Sources */,
 				EBB2B4F13073CCAC00BF34DB /* AnalysisIssue.swift in Sources */,
 				EBB2B5063073D39B00BF34DB /* ReviewResponse.swift in Sources */,
 				EBB2B4F73073CE3B00BF34DB /* CompositionIssueEntity.swift in Sources */,
 				EB4694E0306FDE8100510940 /* RegisterRequest.swift in Sources */,
+				EBB2B5133073D74F00BF34DB /* HairTypeResponse.swift in Sources */,
 				EB46949F306FC93900510940 /* ContentView.swift in Sources */,
 				EB4694D6306FD0C500510940 /* HairTypeEntity.swift in Sources */,
 				EB4694E7306FDF8100510940 /* LoginRequest.swift in Sources */,
+				EBB2B5113073D65A00BF34DB /* User.swift in Sources */,
 				EB4694A1306FC93900510940 /* Item.swift in Sources */,
 				EB4694EC306FE09F00510940 /* KeychainManager.swift in Sources */,
 				EBB2B5043073D33100BF34DB /* ProductEntity.swift in Sources */,
 				EBB2B5023073D2D500BF34DB /* Product.swift in Sources */,
 				EB4694DA306FDB7D00510940 /* FavoriteProductEntity.swift in Sources */,
+				EBB2B5153073D78900BF34DB /* HairType.swift in Sources */,
 				EBB2B4EF3073C72300BF34DB /* AnalysisResult.swift in Sources */,
 				EBB2B5003073D29F00BF34DB /* ProductResponse.swift in Sources */,
 				EBB2B4EC3073C36800BF34DB /* AuthResponse.swift in Sources */,
@@ -499,6 +526,7 @@
 				EB4694DE306FDCF600510940 /* ReviewEntity.swift in Sources */,
 				EB46949D306FC93900510940 /* curl_iosApp.swift in Sources */,
 				EB4694E2306FDEC600510940 /* UserProfileEntity.swift in Sources */,
+				EBB2B50D3073D5C300BF34DB /* UserResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
