@@ -35,6 +35,15 @@
 		EBB2B4F13073CCAC00BF34DB /* AnalysisIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2B4F03073CCAC00BF34DB /* AnalysisIssue.swift */; };
 		EBB2B4F53073CDFC00BF34DB /* CompositionAnalysisEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2B4F43073CDFC00BF34DB /* CompositionAnalysisEntity.swift */; };
 		EBB2B4F73073CE3B00BF34DB /* CompositionIssueEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2B4F63073CE3B00BF34DB /* CompositionIssueEntity.swift */; };
+		EBB2B4FA3073D11000BF34DB /* FavoriteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2B4F93073D11000BF34DB /* FavoriteResponse.swift */; };
+		EBB2B4FC3073D1A300BF34DB /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2B4FB3073D1A300BF34DB /* Favorite.swift */; };
+		EBB2B4FE3073D22F00BF34DB /* FavoriteEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2B4FD3073D22F00BF34DB /* FavoriteEntity.swift */; };
+		EBB2B5003073D29F00BF34DB /* ProductResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2B4FF3073D29F00BF34DB /* ProductResponse.swift */; };
+		EBB2B5023073D2D500BF34DB /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2B5013073D2D500BF34DB /* Product.swift */; };
+		EBB2B5043073D33100BF34DB /* ProductEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2B5033073D33100BF34DB /* ProductEntity.swift */; };
+		EBB2B5063073D39B00BF34DB /* ReviewResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2B5053073D39B00BF34DB /* ReviewResponse.swift */; };
+		EBB2B5083073D3CC00BF34DB /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2B5073073D3CC00BF34DB /* Review.swift */; };
+		EBB2B50A3073D42000BF34DB /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2B5093073D42000BF34DB /* DateParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +95,15 @@
 		EBB2B4F03073CCAC00BF34DB /* AnalysisIssue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisIssue.swift; sourceTree = "<group>"; };
 		EBB2B4F43073CDFC00BF34DB /* CompositionAnalysisEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionAnalysisEntity.swift; sourceTree = "<group>"; };
 		EBB2B4F63073CE3B00BF34DB /* CompositionIssueEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionIssueEntity.swift; sourceTree = "<group>"; };
+		EBB2B4F93073D11000BF34DB /* FavoriteResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteResponse.swift; sourceTree = "<group>"; };
+		EBB2B4FB3073D1A300BF34DB /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
+		EBB2B4FD3073D22F00BF34DB /* FavoriteEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteEntity.swift; sourceTree = "<group>"; };
+		EBB2B4FF3073D29F00BF34DB /* ProductResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductResponse.swift; sourceTree = "<group>"; };
+		EBB2B5013073D2D500BF34DB /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		EBB2B5033073D33100BF34DB /* ProductEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductEntity.swift; sourceTree = "<group>"; };
+		EBB2B5053073D39B00BF34DB /* ReviewResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewResponse.swift; sourceTree = "<group>"; };
+		EBB2B5073073D3CC00BF34DB /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		EBB2B5093073D42000BF34DB /* DateParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,11 +260,13 @@
 			isa = PBXGroup;
 			children = (
 				EB4694D5306FD0C500510940 /* HairTypeEntity.swift */,
+				EBB2B4FD3073D22F00BF34DB /* FavoriteEntity.swift */,
 				EB4694DD306FDCF600510940 /* ReviewEntity.swift */,
 				EB4694D9306FDB7D00510940 /* FavoriteProductEntity.swift */,
 				EB4694E1306FDEC600510940 /* UserProfileEntity.swift */,
 				EBB2B4F63073CE3B00BF34DB /* CompositionIssueEntity.swift */,
 				EBB2B4F43073CDFC00BF34DB /* CompositionAnalysisEntity.swift */,
+				EBB2B5033073D33100BF34DB /* ProductEntity.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -270,6 +290,7 @@
 		EBB2B4E63073C0A500BF34DB /* response */ = {
 			isa = PBXGroup;
 			children = (
+				EBB2B4F83073D0EA00BF34DB /* products */,
 				EBB2B4ED3073C6FA00BF34DB /* composition */,
 				EBB2B4EA3073C34700BF34DB /* auth */,
 				EBB2B4E73073C0BA00BF34DB /* analisysis */,
@@ -300,6 +321,20 @@
 				EBB2B4F03073CCAC00BF34DB /* AnalysisIssue.swift */,
 			);
 			path = composition;
+			sourceTree = "<group>";
+		};
+		EBB2B4F83073D0EA00BF34DB /* products */ = {
+			isa = PBXGroup;
+			children = (
+				EBB2B4F93073D11000BF34DB /* FavoriteResponse.swift */,
+				EBB2B4FB3073D1A300BF34DB /* Favorite.swift */,
+				EBB2B4FF3073D29F00BF34DB /* ProductResponse.swift */,
+				EBB2B5013073D2D500BF34DB /* Product.swift */,
+				EBB2B5053073D39B00BF34DB /* ReviewResponse.swift */,
+				EBB2B5073073D3CC00BF34DB /* Review.swift */,
+				EBB2B5093073D42000BF34DB /* DateParser.swift */,
+			);
+			path = products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -436,7 +471,9 @@
 				EBB2B4F53073CDFC00BF34DB /* CompositionAnalysisEntity.swift in Sources */,
 				EBB2B4E93073C0F900BF34DB /* AnalysisRepository.swift in Sources */,
 				EB4694E5306FDF3000510940 /* TokenStorage.swift in Sources */,
+				EBB2B4FE3073D22F00BF34DB /* FavoriteEntity.swift in Sources */,
 				EBB2B4F13073CCAC00BF34DB /* AnalysisIssue.swift in Sources */,
+				EBB2B5063073D39B00BF34DB /* ReviewResponse.swift in Sources */,
 				EBB2B4F73073CE3B00BF34DB /* CompositionIssueEntity.swift in Sources */,
 				EB4694E0306FDE8100510940 /* RegisterRequest.swift in Sources */,
 				EB46949F306FC93900510940 /* ContentView.swift in Sources */,
@@ -444,13 +481,20 @@
 				EB4694E7306FDF8100510940 /* LoginRequest.swift in Sources */,
 				EB4694A1306FC93900510940 /* Item.swift in Sources */,
 				EB4694EC306FE09F00510940 /* KeychainManager.swift in Sources */,
+				EBB2B5043073D33100BF34DB /* ProductEntity.swift in Sources */,
+				EBB2B5023073D2D500BF34DB /* Product.swift in Sources */,
 				EB4694DA306FDB7D00510940 /* FavoriteProductEntity.swift in Sources */,
 				EBB2B4EF3073C72300BF34DB /* AnalysisResult.swift in Sources */,
+				EBB2B5003073D29F00BF34DB /* ProductResponse.swift in Sources */,
 				EBB2B4EC3073C36800BF34DB /* AuthResponse.swift in Sources */,
 				EB4694DC306FDC8600510940 /* ReviewRequest.swift in Sources */,
+				EBB2B4FA3073D11000BF34DB /* FavoriteResponse.swift in Sources */,
+				EBB2B50A3073D42000BF34DB /* DateParser.swift in Sources */,
 				EB4694D3306FCFC400510940 /* HairTypeRequest.swift in Sources */,
 				EB4694EE306FE16D00510940 /* GoogleRequest.swift in Sources */,
 				EB4694E9306FE04500510940 /* LogoutRequest.swift in Sources */,
+				EBB2B5083073D3CC00BF34DB /* Review.swift in Sources */,
+				EBB2B4FC3073D1A300BF34DB /* Favorite.swift in Sources */,
 				EB4694D8306FDAC700510940 /* Favoritereguest.swift in Sources */,
 				EB4694DE306FDCF600510940 /* ReviewEntity.swift in Sources */,
 				EB46949D306FC93900510940 /* curl_iosApp.swift in Sources */,
