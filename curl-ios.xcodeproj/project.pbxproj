@@ -18,6 +18,13 @@
 		3E48FFB73077D617008C7914 /* OrDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E48FFB63077D617008C7914 /* OrDivider.swift */; };
 		3E48FFBA3077D865008C7914 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E48FFB93077D865008C7914 /* Color.swift */; };
 		3E48FFBC3077DB04008C7914 /* .gitignore in Sources */ = {isa = PBXBuildFile; fileRef = 3E48FFBB3077DB03008C7914 /* .gitignore */; };
+		EB39FFDC307CEF0100284C6E /* GuideParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB39FFDB307CEF0100284C6E /* GuideParser.swift */; };
+		EB39FFDF307CEF6100284C6E /* GuideViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB39FFDE307CEF6100284C6E /* GuideViewModel.swift */; };
+		EB39FFE2307CEFA400284C6E /* GuideScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB39FFE1307CEFA400284C6E /* GuideScreen.swift */; };
+		EB39FFE9307CF26600284C6E /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB39FFE8307CF26600284C6E /* Word.swift */; };
+		EB39FFEB307CF2A200284C6E /* DictionaryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB39FFEA307CF2A200284C6E /* DictionaryData.swift */; };
+		EB39FFEE307CF2DF00284C6E /* DictionaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB39FFED307CF2DF00284C6E /* DictionaryViewModel.swift */; };
+		EB39FFF1307CF32400284C6E /* DictionaryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB39FFF0307CF32400284C6E /* DictionaryScreen.swift */; };
 		EB46949D306FC93900510940 /* curl_iosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB46949C306FC93900510940 /* curl_iosApp.swift */; };
 		EB46949F306FC93900510940 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB46949E306FC93900510940 /* ContentView.swift */; };
 		EB4694A1306FC93900510940 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4694A0306FC93900510940 /* Item.swift */; };
@@ -90,6 +97,13 @@
 		3E48FFB63077D617008C7914 /* OrDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrDivider.swift; sourceTree = "<group>"; };
 		3E48FFB93077D865008C7914 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		3E48FFBB3077DB03008C7914 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		EB39FFDB307CEF0100284C6E /* GuideParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideParser.swift; sourceTree = "<group>"; };
+		EB39FFDE307CEF6100284C6E /* GuideViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideViewModel.swift; sourceTree = "<group>"; };
+		EB39FFE1307CEFA400284C6E /* GuideScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideScreen.swift; sourceTree = "<group>"; };
+		EB39FFE8307CF26600284C6E /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
+		EB39FFEA307CF2A200284C6E /* DictionaryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryData.swift; sourceTree = "<group>"; };
+		EB39FFED307CF2DF00284C6E /* DictionaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryViewModel.swift; sourceTree = "<group>"; };
+		EB39FFF0307CF32400284C6E /* DictionaryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryScreen.swift; sourceTree = "<group>"; };
 		EB469499306FC93900510940 /* curl-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "curl-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB46949C306FC93900510940 /* curl_iosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = curl_iosApp.swift; sourceTree = "<group>"; };
 		EB46949E306FC93900510940 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -164,6 +178,8 @@
 		3E48FF9D3077C041008C7914 /* presentation */ = {
 			isa = PBXGroup;
 			children = (
+				EB39FFE4307CF21100284C6E /* dictionary */,
+				EB39FFD9307CEED100284C6E /* guide */,
 				3E48FFA93077C6A5008C7914 /* home */,
 				3E48FFA13077C1C6008C7914 /* auth */,
 				3E48FF9E3077C10D008C7914 /* navigation */,
@@ -215,6 +231,75 @@
 				3E48FFB23077D5B4008C7914 /* FeatureCard.swift */,
 			);
 			path = components;
+			sourceTree = "<group>";
+		};
+		EB39FFD9307CEED100284C6E /* guide */ = {
+			isa = PBXGroup;
+			children = (
+				EB39FFE0307CEF9200284C6E /* screen */,
+				EB39FFDD307CEF3B00284C6E /* viewModel */,
+				EB39FFDA307CEEED00284C6E /* parser */,
+			);
+			path = guide;
+			sourceTree = "<group>";
+		};
+		EB39FFDA307CEEED00284C6E /* parser */ = {
+			isa = PBXGroup;
+			children = (
+				EB39FFDB307CEF0100284C6E /* GuideParser.swift */,
+			);
+			path = parser;
+			sourceTree = "<group>";
+		};
+		EB39FFDD307CEF3B00284C6E /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EB39FFDE307CEF6100284C6E /* GuideViewModel.swift */,
+			);
+			path = viewModel;
+			sourceTree = "<group>";
+		};
+		EB39FFE0307CEF9200284C6E /* screen */ = {
+			isa = PBXGroup;
+			children = (
+				EB39FFE1307CEFA400284C6E /* GuideScreen.swift */,
+			);
+			path = screen;
+			sourceTree = "<group>";
+		};
+		EB39FFE4307CF21100284C6E /* dictionary */ = {
+			isa = PBXGroup;
+			children = (
+				EB39FFEC307CF2C900284C6E /* viewmodel */,
+				EB39FFE5307CF22900284C6E /* model */,
+			);
+			path = dictionary;
+			sourceTree = "<group>";
+		};
+		EB39FFE5307CF22900284C6E /* model */ = {
+			isa = PBXGroup;
+			children = (
+				EB39FFE8307CF26600284C6E /* Word.swift */,
+				EB39FFEA307CF2A200284C6E /* DictionaryData.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		EB39FFEC307CF2C900284C6E /* viewmodel */ = {
+			isa = PBXGroup;
+			children = (
+				EB39FFEF307CF31200284C6E /* screen */,
+				EB39FFED307CF2DF00284C6E /* DictionaryViewModel.swift */,
+			);
+			path = viewmodel;
+			sourceTree = "<group>";
+		};
+		EB39FFEF307CF31200284C6E /* screen */ = {
+			isa = PBXGroup;
+			children = (
+				EB39FFF0307CF32400284C6E /* DictionaryScreen.swift */,
+			);
+			path = screen;
 			sourceTree = "<group>";
 		};
 		EB469490306FC93900510940 = {
@@ -577,7 +662,9 @@
 				EBB2B50F3073D62100BF34DB /* LocalDateTimeParser.swift in Sources */,
 				EBB2B4F13073CCAC00BF34DB /* AnalysisIssue.swift in Sources */,
 				3E48FFB73077D617008C7914 /* OrDivider.swift in Sources */,
+				EB39FFDF307CEF6100284C6E /* GuideViewModel.swift in Sources */,
 				EBB2B5063073D39B00BF34DB /* ReviewResponse.swift in Sources */,
+				EB39FFEB307CF2A200284C6E /* DictionaryData.swift in Sources */,
 				EBB2B4F73073CE3B00BF34DB /* CompositionIssueEntity.swift in Sources */,
 				EB4694E0306FDE8100510940 /* RegisterRequest.swift in Sources */,
 				EBB2B5133073D74F00BF34DB /* HairTypeResponse.swift in Sources */,
@@ -585,6 +672,7 @@
 				3E48FFB33077D5B4008C7914 /* FeatureCard.swift in Sources */,
 				EB4694D6306FD0C500510940 /* HairTypeEntity.swift in Sources */,
 				EB4694E7306FDF8100510940 /* LoginRequest.swift in Sources */,
+				EB39FFE2307CEFA400284C6E /* GuideScreen.swift in Sources */,
 				EBB2B5113073D65A00BF34DB /* User.swift in Sources */,
 				3E48FFB53077D5CD008C7914 /* PasswordField.swift in Sources */,
 				EB4694A1306FC93900510940 /* Item.swift in Sources */,
@@ -595,6 +683,8 @@
 				3E48FFBC3077DB04008C7914 /* .gitignore in Sources */,
 				EBB2B5153073D78900BF34DB /* HairType.swift in Sources */,
 				EBB2B4EF3073C72300BF34DB /* AnalysisResult.swift in Sources */,
+				EB39FFEE307CF2DF00284C6E /* DictionaryViewModel.swift in Sources */,
+				EB39FFF1307CF32400284C6E /* DictionaryScreen.swift in Sources */,
 				EBB2B5003073D29F00BF34DB /* ProductResponse.swift in Sources */,
 				3E48FFA33077C1D5008C7914 /* SignInScreen.swift in Sources */,
 				EBB2B4EC3073C36800BF34DB /* AuthResponse.swift in Sources */,
@@ -604,9 +694,11 @@
 				EBB2B50A3073D42000BF34DB /* DateParser.swift in Sources */,
 				3E48FFA03077C126008C7914 /* Screen.swift in Sources */,
 				EB4694D3306FCFC400510940 /* HairTypeRequest.swift in Sources */,
+				EB39FFE9307CF26600284C6E /* Word.swift in Sources */,
 				EB4694EE306FE16D00510940 /* GoogleRequest.swift in Sources */,
 				EB4694E9306FE04500510940 /* LogoutRequest.swift in Sources */,
 				EBB2B5083073D3CC00BF34DB /* Review.swift in Sources */,
+				EB39FFDC307CEF0100284C6E /* GuideParser.swift in Sources */,
 				EBB2B4FC3073D1A300BF34DB /* Favorite.swift in Sources */,
 				EB4694D8306FDAC700510940 /* Favoritereguest.swift in Sources */,
 				3E48FFA83077C63E008C7914 /* OutlinedField.swift in Sources */,

@@ -28,11 +28,15 @@ struct ContentView: View {
                 case .home:
                     HomeScreen(
                         onOpenComposition: { /* TODO */ },
-                        onOpenGuide: { /* TODO */ },
-                        onOpenDictionary: { /* TODO */ },
+                        onOpenGuide: { path.append(Route.guide) },
+                        onOpenDictionary: { path.append(Route.dictionary)},
                         onOpenHairTyping: { /* TODO */ },
                         onOpenProducts: { /* TODO */ }
                     )
+                case .guide:
+                    GuideScreen()
+                case .dictionary:
+                    DictionaryScreen()
                 }
             }
         }
