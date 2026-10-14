@@ -1,11 +1,3 @@
-//
-//  ProductsScreen.swift
-//  curl-ios
-//
-//  Created by lina on 15.10.2026.
-//
-
-
 import SwiftUI
 
 struct ProductsScreen: View {

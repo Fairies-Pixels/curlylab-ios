@@ -1,11 +1,3 @@
-//
-//  ProductsViewModel.swift
-//  curl-ios
-//
-//  Created by lina on 15.10.2026.
-//
-
-
 import Foundation
 import Combine
 
@@ -24,6 +16,9 @@ final class ProductsViewModel: ObservableObject {
 
     private let getProductsUseCase: GetProductsUseCase
     private let getReviewsUseCase: GetReviewsUseCase
+
+    private let currentUserId: UUID = UUID()
+    private let currentUsername: String = "user"
 
     init(
         getProductsUseCase: GetProductsUseCase,
@@ -80,8 +75,56 @@ final class ProductsViewModel: ObservableObject {
         if isCurrentlyFavorite {
             favorites = favorites.filter { $0.productId != productId }
         } else {
-            favorites.append(Favorite(userId: UUID(), productId: productId))
+            let product = products.first { $0.id == productId }
+            favorites.append(
+                Favorite(
+                    userId: currentUserId,
+                    productId: productId,
+                    product: product
+                )
+            )
         }
+    }
+
+    func getCurrentUserId() -> UUID? {
+        currentUserId
+    }
+
+    func getCurrentUsername() -> String? {
+        currentUsername
+    }
+
+    func submitReview(productId: UUID, mark: Int, reviewText: String) async {
+        let newReview = Review(
+            id: UUID(),
+            productId: productId,
+            userId: currentUserId,
+            userName: currentUsername,
+            rating: mark,
+            comment: reviewText,
+            createdAt: Date()
+        )
+        reviews.insert(newReview, at: 0)
+    }
+
+    func updateReview(productId: UUID, reviewId: UUID, mark: Int, reviewText: String) async {
+        guard let index = reviews.firstIndex(where: { $0.id == reviewId }) else { return }
+        let old = reviews[index]
+
+        let updated = Review(
+            id: old.id,
+            productId: old.productId,
+            userId: old.userId,
+            userName: old.userName,
+            rating: mark,
+            comment: reviewText,
+            createdAt: old.createdAt
+        )
+        reviews[index] = updated
+    }
+
+    func deleteReview(_ productId: UUID, _ reviewId: UUID) async {
+        reviews.removeAll { $0.id == reviewId }
     }
 
     func toggleTag(category: String, tag: String) {
