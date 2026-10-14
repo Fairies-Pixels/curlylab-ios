@@ -1,6 +1,6 @@
 import Foundation
 
-enum APIError: LocalizedError {
+enum ApiError: LocalizedError {
     case invalidURL
     case network(Error)
     case decoding(Error)

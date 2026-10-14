@@ -1,5 +1,6 @@
 import Foundation
 
+@MainActor
 enum ProductsViewModelFactory {
     static func make() -> ProductsViewModel {
         let repository: ProductRepository = ProductRepositoryImpl()
