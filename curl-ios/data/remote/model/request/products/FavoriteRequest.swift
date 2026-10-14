@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct Favoritereguest: Codable{
+struct FavoriteRequest: Codable{
     let productId: UUID
 }
