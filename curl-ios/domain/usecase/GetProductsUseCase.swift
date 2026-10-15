@@ -1,13 +1,13 @@
 import Foundation
 
 final class GetProductsUseCase {
-    private let repository: ProductRepository
+    private let repository: ProductsRepository
 
-    init(repository: ProductRepository) {
+    init(repository: ProductsRepository) {
         self.repository = repository
     }
 
     func execute() async throws -> [Product] {
-        try await repository.fetchProducts()
+        try await repository.getProducts()
     }
 }

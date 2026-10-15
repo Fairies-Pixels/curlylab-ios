@@ -1,13 +1,13 @@
 import Foundation
 
 final class GetReviewsUseCase {
-    private let repository: ProductRepository
+    private let repository: ProductsRepository
 
-    init(repository: ProductRepository) {
+    init(repository: ProductsRepository) {
         self.repository = repository
     }
 
     func execute(productId: UUID) async throws -> [Review] {
-        try await repository.fetchReviews(productId: productId)
+        try await repository.getReviews(productId: productId)
     }
 }

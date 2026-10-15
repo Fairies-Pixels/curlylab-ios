@@ -10,7 +10,10 @@ final class ApiService {
         self.session = session
     }
 
-    func get<T: Decodable>(_ path: String, queryItems: [URLQueryItem]? = nil) async throws -> T {
+    func get<T: Decodable>(
+        _ path: String,
+        queryItems: [URLQueryItem]? = nil
+    ) async throws -> T {
         guard var components = URLComponents(string: baseURL + path) else {
             throw ApiError.invalidURL
         }
@@ -24,6 +27,32 @@ final class ApiService {
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Accept")
 
+        return try await perform(request)
+    }
+
+    func post<T: Decodable, U: Encodable>(
+        _ path: String,
+        body: U
+    ) async throws -> T {
+        guard let url = URL(string: baseURL + path) else {
+            throw ApiError.invalidURL
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+
+        do {
+            request.httpBody = try JSONEncoder().encode(body)
+        } catch {
+            throw ApiError.decoding(error)
+        }
+
+        return try await perform(request)
+    }
+
+    private func perform<T: Decodable>(_ request: URLRequest) async throws -> T {
         do {
             let (data, response) = try await session.data(for: request)
 

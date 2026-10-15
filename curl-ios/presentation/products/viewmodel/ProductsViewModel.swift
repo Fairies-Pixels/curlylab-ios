@@ -15,19 +15,34 @@ final class ProductsViewModel: ObservableObject {
     @Published private(set) var thicknessTag: String?
 
     private let getProductsUseCase: GetProductsUseCase
+    private let getUserFavoritesUseCase: GetUserFavoritesUseCase
+    private let toggleFavoriteUseCase: ToggleFavoriteUseCase
     private let getReviewsUseCase: GetReviewsUseCase
+    private let addReviewUseCase: AddReviewUseCase
+    private let updateReviewUseCase: UpdateReviewUseCase
+    private let deleteReviewUseCase: DeleteReviewUseCase
 
     private let currentUserId: UUID = UUID()
     private let currentUsername: String = "user"
 
     init(
         getProductsUseCase: GetProductsUseCase,
-        getReviewsUseCase: GetReviewsUseCase
+        getUserFavoritesUseCase: GetUserFavoritesUseCase,
+        toggleFavoriteUseCase: ToggleFavoriteUseCase,
+        getReviewsUseCase: GetReviewsUseCase,
+        addReviewUseCase: AddReviewUseCase,
+        updateReviewUseCase: UpdateReviewUseCase,
+        deleteReviewUseCase: DeleteReviewUseCase
     ) {
         self.getProductsUseCase = getProductsUseCase
+        self.getUserFavoritesUseCase = getUserFavoritesUseCase
+        self.toggleFavoriteUseCase = toggleFavoriteUseCase
         self.getReviewsUseCase = getReviewsUseCase
+        self.addReviewUseCase = addReviewUseCase
+        self.updateReviewUseCase = updateReviewUseCase
+        self.deleteReviewUseCase = deleteReviewUseCase
 
-        Task { await loadProducts() }
+        Task { await loadInitialData() }
     }
 
     var filteredProducts: [Product] {
@@ -46,6 +61,11 @@ final class ProductsViewModel: ObservableObject {
         }
     }
 
+    private func loadInitialData() async {
+        await loadProducts()
+        await loadFavorites()
+    }
+
     private func loadProducts() async {
         isLoading = true
         defer { isLoading = false }
@@ -53,6 +73,14 @@ final class ProductsViewModel: ObservableObject {
         do {
             products = try await getProductsUseCase.execute()
             error = nil
+        } catch {
+            self.error = error.localizedDescription
+        }
+    }
+
+    private func loadFavorites() async {
+        do {
+            favorites = try await getUserFavoritesUseCase.execute(userId: currentUserId) ?? []
         } catch {
             self.error = error.localizedDescription
         }
@@ -71,18 +99,18 @@ final class ProductsViewModel: ObservableObject {
     }
 
     func toggleFavorite(productId: UUID) async {
-        let isCurrentlyFavorite = favorites.contains { $0.productId == productId }
-        if isCurrentlyFavorite {
-            favorites = favorites.filter { $0.productId != productId }
-        } else {
-            let product = products.first { $0.id == productId }
-            favorites.append(
-                Favorite(
-                    userId: currentUserId,
-                    productId: productId,
-                    product: product
+        do {
+            try await toggleFavoriteUseCase.execute(userId: currentUserId, productId: productId)
+
+            if let index = favorites.firstIndex(where: { $0.productId == productId }) {
+                favorites.remove(at: index)
+            } else if let product = products.first(where: { $0.id == productId }) {
+                favorites.append(
+                    Favorite(userId: currentUserId, productId: productId, product: product)
                 )
-            )
+            }
+        } catch {
+            self.error = error.localizedDescription
         }
     }
 
@@ -95,36 +123,41 @@ final class ProductsViewModel: ObservableObject {
     }
 
     func submitReview(productId: UUID, mark: Int, reviewText: String) async {
-        let newReview = Review(
-            id: UUID(),
-            productId: productId,
-            userId: currentUserId,
-            userName: currentUsername,
-            rating: mark,
-            comment: reviewText,
-            createdAt: Date()
-        )
-        reviews.insert(newReview, at: 0)
+        do {
+            try await addReviewUseCase.execute(
+                userId: currentUserId,
+                productId: productId,
+                mark: mark,
+                review: reviewText
+            )
+            await loadReviews(productId)
+        } catch {
+            self.error = error.localizedDescription
+        }
     }
 
     func updateReview(productId: UUID, reviewId: UUID, mark: Int, reviewText: String) async {
-        guard let index = reviews.firstIndex(where: { $0.id == reviewId }) else { return }
-        let old = reviews[index]
-
-        let updated = Review(
-            id: old.id,
-            productId: old.productId,
-            userId: old.userId,
-            userName: old.userName,
-            rating: mark,
-            comment: reviewText,
-            createdAt: old.createdAt
-        )
-        reviews[index] = updated
+        do {
+            try await updateReviewUseCase.execute(
+                userId: currentUserId,
+                productId: productId,
+                reviewId: reviewId,
+                mark: mark,
+                review: reviewText
+            )
+            await loadReviews(productId)
+        } catch {
+            self.error = error.localizedDescription
+        }
     }
 
     func deleteReview(_ productId: UUID, _ reviewId: UUID) async {
-        reviews.removeAll { $0.id == reviewId }
+        do {
+            try await deleteReviewUseCase.execute(productId: productId, reviewId: reviewId)
+            reviews.removeAll { $0.id == reviewId }
+        } catch {
+            self.error = error.localizedDescription
+        }
     }
 
     func toggleTag(category: String, tag: String) {
