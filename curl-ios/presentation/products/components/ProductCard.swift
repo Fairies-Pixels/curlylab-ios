@@ -6,27 +6,31 @@ struct ProductCard: View {
     let onFavoriteClick: () -> Void
     var onProductClick: () -> Void = {}
 
+    @StateObject private var imageLoader = ImageLoader()
+
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack(alignment: .top, spacing: 12) {
                 ZStack {
                     Color.lightPink
-                    AsyncImage(url: product.imageUrl) { phase in
-                        switch phase {
-                        case .success(let image):
-                            image
-                                .resizable()
-                                .scaledToFill()
-                        default:
-                            Image("curly_wave")
-                                .resizable()
-                                .scaledToFit()
-                        }
+
+                    if let image = imageLoader.image {
+                        Image(uiImage: image)
+                            .resizable()
+                            .scaledToFill()
+                    } else {
+                        Image("curly_wave")
+                            .resizable()
+                            .scaledToFit()
                     }
                 }
                 .frame(width: 80, height: 80)
                 .cornerRadius(12)
                 .clipped()
+                .task(id: product.imageUrl) {
+                    guard let url = product.imageUrl else { return }
+                    await imageLoader.load(url)
+                }
 
                 VStack(alignment: .leading, spacing: 4) {
                     HStack(alignment: .top) {
