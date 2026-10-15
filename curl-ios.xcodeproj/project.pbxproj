@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C217E423080CAF9006CE50B /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C217E413080CAF9006CE50B /* SidebarView.swift */; };
+		3C217E463080D244006CE50B /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C217E453080D23F006CE50B /* Font.swift */; };
 		3E48FFA03077C126008C7914 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E48FF9F3077C126008C7914 /* Screen.swift */; };
 		3E48FFA33077C1D5008C7914 /* SignInScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E48FFA23077C1D5008C7914 /* SignInScreen.swift */; };
 		3E48FFA53077C5FF008C7914 /* SignUpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E48FFA43077C5FF008C7914 /* SignUpScreen.swift */; };
@@ -85,6 +87,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3C217E413080CAF9006CE50B /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
+		3C217E453080D23F006CE50B /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		3E48FF9F3077C126008C7914 /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 		3E48FFA23077C1D5008C7914 /* SignInScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInScreen.swift; sourceTree = "<group>"; };
 		3E48FFA43077C5FF008C7914 /* SignUpScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScreen.swift; sourceTree = "<group>"; };
@@ -184,6 +188,7 @@
 		3E48FF9D3077C041008C7914 /* presentation */ = {
 			isa = PBXGroup;
 			children = (
+				3C217E453080D23F006CE50B /* Font.swift */,
 				3E7636DA30801D73004CAD5E /* products */,
 				EB39FFE4307CF21100284C6E /* dictionary */,
 				EB39FFD9307CEED100284C6E /* guide */,
@@ -235,6 +240,7 @@
 		3E48FFB83077D65A008C7914 /* components */ = {
 			isa = PBXGroup;
 			children = (
+				3C217E413080CAF9006CE50B /* SidebarView.swift */,
 				3E48FFB23077D5B4008C7914 /* FeatureCard.swift */,
 			);
 			path = components;
@@ -691,7 +697,9 @@
 				EB4694D6306FD0C500510940 /* HairTypeEntity.swift in Sources */,
 				EB4694E7306FDF8100510940 /* LoginRequest.swift in Sources */,
 				EB39FFE2307CEFA400284C6E /* GuideScreen.swift in Sources */,
+				3C217E423080CAF9006CE50B /* SidebarView.swift in Sources */,
 				EBB2B5113073D65A00BF34DB /* User.swift in Sources */,
+				3C217E463080D244006CE50B /* Font.swift in Sources */,
 				3E48FFB53077D5CD008C7914 /* PasswordField.swift in Sources */,
 				EB4694A1306FC93900510940 /* Item.swift in Sources */,
 				EB4694EC306FE09F00510940 /* KeychainManager.swift in Sources */,

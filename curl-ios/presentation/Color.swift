@@ -8,4 +8,3 @@ extension Color {
     static let accentPink = Color(red: 0.95, green: 0.65, blue: 0.75)
     static let brightPink = Color(red: 0.93, green: 0.45, blue: 0.62)
 }
-

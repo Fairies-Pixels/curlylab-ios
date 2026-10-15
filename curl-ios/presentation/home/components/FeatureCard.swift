@@ -13,7 +13,7 @@ struct FeatureCard: View {
                     .fill(color)
 
                 Text(title)
-                    .font(.title2)
+                    .font(.subTitleSerif)
                     .fontWeight(.semibold)
                     .foregroundStyle(.white)
                     .padding(16)
