@@ -66,6 +66,13 @@
 		EBB2B5113073D65A00BF34DB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2B5103073D65A00BF34DB /* User.swift */; };
 		EBB2B5133073D74F00BF34DB /* HairTypeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2B5123073D74F00BF34DB /* HairTypeResponse.swift */; };
 		EBB2B5153073D78900BF34DB /* HairType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2B5143073D78900BF34DB /* HairType.swift */; };
+		EBB2DCDA30863FB00053D6AA /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2DCD930863FB00053D6AA /* Answer.swift */; };
+		EBB2DCDC30863FE40053D6AA /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2DCDB30863FE40053D6AA /* Question.swift */; };
+		EBB2DCDE308640BE0053D6AA /* TypingComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2DCDD308640BE0053D6AA /* TypingComponents.swift */; };
+		EBB2DCE23086413A0053D6AA /* IsColoredTypingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2DCE13086413A0053D6AA /* IsColoredTypingViewModel.swift */; };
+		EBB2DCE4308642100053D6AA /* IsColoredTypingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2DCE3308642100053D6AA /* IsColoredTypingScreen.swift */; };
+		EBB2DCE63086438E0053D6AA /* PorosityTypingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2DCE53086438E0053D6AA /* PorosityTypingViewModel.swift */; };
+		EBB2DCE8308644120053D6AA /* PorosityTypingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2DCE7308644110053D6AA /* PorosityTypingScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +155,13 @@
 		EBB2B5103073D65A00BF34DB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EBB2B5123073D74F00BF34DB /* HairTypeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HairTypeResponse.swift; sourceTree = "<group>"; };
 		EBB2B5143073D78900BF34DB /* HairType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HairType.swift; sourceTree = "<group>"; };
+		EBB2DCD930863FB00053D6AA /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
+		EBB2DCDB30863FE40053D6AA /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		EBB2DCDD308640BE0053D6AA /* TypingComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingComponents.swift; sourceTree = "<group>"; };
+		EBB2DCE13086413A0053D6AA /* IsColoredTypingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsColoredTypingViewModel.swift; sourceTree = "<group>"; };
+		EBB2DCE3308642100053D6AA /* IsColoredTypingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsColoredTypingScreen.swift; sourceTree = "<group>"; };
+		EBB2DCE53086438E0053D6AA /* PorosityTypingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PorosityTypingViewModel.swift; sourceTree = "<group>"; };
+		EBB2DCE7308644110053D6AA /* PorosityTypingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PorosityTypingScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +192,7 @@
 		3E48FF9D3077C041008C7914 /* presentation */ = {
 			isa = PBXGroup;
 			children = (
+				EBB2DCD830863E5D0053D6AA /* hairTyping */,
 				EB39FFE4307CF21100284C6E /* dictionary */,
 				EB39FFD9307CEED100284C6E /* guide */,
 				3E48FFA93077C6A5008C7914 /* home */,
@@ -523,6 +538,36 @@
 			path = profile;
 			sourceTree = "<group>";
 		};
+		EBB2DCD830863E5D0053D6AA /* hairTyping */ = {
+			isa = PBXGroup;
+			children = (
+				EBB2DCE03086412A0053D6AA /* screen */,
+				EBB2DCDF308641170053D6AA /* viewmodel */,
+				EBB2DCD930863FB00053D6AA /* Answer.swift */,
+				EBB2DCDB30863FE40053D6AA /* Question.swift */,
+				EBB2DCDD308640BE0053D6AA /* TypingComponents.swift */,
+			);
+			path = hairTyping;
+			sourceTree = "<group>";
+		};
+		EBB2DCDF308641170053D6AA /* viewmodel */ = {
+			isa = PBXGroup;
+			children = (
+				EBB2DCE13086413A0053D6AA /* IsColoredTypingViewModel.swift */,
+				EBB2DCE53086438E0053D6AA /* PorosityTypingViewModel.swift */,
+			);
+			path = viewmodel;
+			sourceTree = "<group>";
+		};
+		EBB2DCE03086412A0053D6AA /* screen */ = {
+			isa = PBXGroup;
+			children = (
+				EBB2DCE3308642100053D6AA /* IsColoredTypingScreen.swift */,
+				EBB2DCE7308644110053D6AA /* PorosityTypingScreen.swift */,
+			);
+			path = screen;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -666,8 +711,10 @@
 				EBB2B5063073D39B00BF34DB /* ReviewResponse.swift in Sources */,
 				EB39FFEB307CF2A200284C6E /* DictionaryData.swift in Sources */,
 				EBB2B4F73073CE3B00BF34DB /* CompositionIssueEntity.swift in Sources */,
+				EBB2DCE8308644120053D6AA /* PorosityTypingScreen.swift in Sources */,
 				EB4694E0306FDE8100510940 /* RegisterRequest.swift in Sources */,
 				EBB2B5133073D74F00BF34DB /* HairTypeResponse.swift in Sources */,
+				EBB2DCE4308642100053D6AA /* IsColoredTypingScreen.swift in Sources */,
 				EB46949F306FC93900510940 /* ContentView.swift in Sources */,
 				3E48FFB33077D5B4008C7914 /* FeatureCard.swift in Sources */,
 				EB4694D6306FD0C500510940 /* HairTypeEntity.swift in Sources */,
@@ -679,12 +726,17 @@
 				EB4694EC306FE09F00510940 /* KeychainManager.swift in Sources */,
 				EBB2B5043073D33100BF34DB /* ProductEntity.swift in Sources */,
 				EBB2B5023073D2D500BF34DB /* Product.swift in Sources */,
+				EBB2DCE23086413A0053D6AA /* IsColoredTypingViewModel.swift in Sources */,
+				EBB2DCE63086438E0053D6AA /* PorosityTypingViewModel.swift in Sources */,
 				EB4694DA306FDB7D00510940 /* FavoriteProductEntity.swift in Sources */,
+				EBB2DCDA30863FB00053D6AA /* Answer.swift in Sources */,
 				3E48FFBC3077DB04008C7914 /* .gitignore in Sources */,
 				EBB2B5153073D78900BF34DB /* HairType.swift in Sources */,
 				EBB2B4EF3073C72300BF34DB /* AnalysisResult.swift in Sources */,
 				EB39FFEE307CF2DF00284C6E /* DictionaryViewModel.swift in Sources */,
+				EBB2DCDE308640BE0053D6AA /* TypingComponents.swift in Sources */,
 				EB39FFF1307CF32400284C6E /* DictionaryScreen.swift in Sources */,
+				EBB2DCDC30863FE40053D6AA /* Question.swift in Sources */,
 				EBB2B5003073D29F00BF34DB /* ProductResponse.swift in Sources */,
 				3E48FFA33077C1D5008C7914 /* SignInScreen.swift in Sources */,
 				EBB2B4EC3073C36800BF34DB /* AuthResponse.swift in Sources */,
