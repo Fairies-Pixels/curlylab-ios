@@ -12,22 +12,23 @@ struct HomeScreen: View {
         ZStack(alignment: .leading) {
             mainContent
                 .disabled(viewModel.isSidebarOpen)
-
+            
             if viewModel.isSidebarOpen {
                 Color.black.opacity(0.4)
                     .ignoresSafeArea()
                     .onTapGesture { viewModel.closeSidebar() }
-                    .offset(x: viewModel.isSidebarOpen ? 280 : 0)
                     .transition(.opacity)
             }
-
+            
             SidebarView(viewModel: viewModel)
                 .frame(width: 280)
                 .offset(x: viewModel.isSidebarOpen ? 0 : -280)
                 .animation(.easeInOut(duration: 0.25), value: viewModel.isSidebarOpen)
         }
         .navigationBarBackButtonHidden(true)
-        .onAppear(perform: viewModel.onAppear)
+        .sheet(isPresented: $viewModel.isEditProfilePresented) {
+            EditProfileView(viewModel: viewModel)
+        }
     }
 
     private var mainContent: some View {
@@ -99,14 +100,15 @@ struct HomeScreen: View {
             }
             .padding(24)
         }
-        .background(Color("CurlySurface"))
+        .background(Color(.curlySurface))
         .animation(.easeInOut(duration: 0.25), value: viewModel.isSidebarOpen)
     }
 
     private var avatarView: some View {
-        Image(systemName: "person.crop.circle")
+        Image(systemName: viewModel.avatar)
             .resizable()
             .scaledToFit()
+            .padding(20)
             .foregroundStyle(Color(.curlySurface))
             .frame(width: 130, height: 130)
             .background(Color(.curlyDarkGreen))

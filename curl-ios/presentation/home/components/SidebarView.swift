@@ -1,18 +1,18 @@
 import SwiftUI
 
 struct SidebarView: View {
-
+    
     @ObservedObject var viewModel: HomeViewModel
-
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-
+            
             profileHeader
-
+            
             Divider()
                 .overlay(Color(.curlySurface))
                 .padding(.vertical, 10)
-
+            
             hairTypeCard(
                 title: "Пористость",
                 value: viewModel.hairPorosity,
@@ -20,7 +20,7 @@ struct SidebarView: View {
                 options: UserDefaultsService.Options.porosity,
                 onSelect: viewModel.setHairPorosity
             )
-
+            
             hairTypeCard(
                 title: "Толщина",
                 value: viewModel.hairThickness,
@@ -28,7 +28,7 @@ struct SidebarView: View {
                 options: UserDefaultsService.Options.thickness,
                 onSelect: viewModel.setHairThickness
             )
-
+            
             hairTypeCard(
                 title: "Окрашенность",
                 value: viewModel.hairColoring,
@@ -37,11 +37,11 @@ struct SidebarView: View {
                 options: UserDefaultsService.Options.coloring,
                 onSelect: viewModel.setHairColoring
             )
-
+            
             Divider()
                 .overlay(Color(.curlySurface))
                 .padding(.vertical, 10)
-
+            
             Button(action: viewModel.didTapSignOut) {
                 Label("Выйти", systemImage: "rectangle.portrait.and.arrow.right")
                     .font(.bodySerif)
@@ -50,7 +50,7 @@ struct SidebarView: View {
                     .padding(.horizontal, 10)
                     .padding(.vertical, 10)
             }
-
+            
             Spacer()
         }
         .frame(maxHeight: .infinity)
@@ -59,7 +59,7 @@ struct SidebarView: View {
         .ignoresSafeArea(edges: .bottom)
         .shadow(color: .black.opacity(0.15), radius: 8, x: 2, y: 0)
     }
-
+    
     private func hairTypeCard(
         title: String,
         value: String,
@@ -76,7 +76,7 @@ struct SidebarView: View {
                 .fixedSize()
                 .rotationEffect(.degrees(-90))
                 .frame(width: 22, height: 100)
-
+            
             Menu {
                 ForEach(options, id: \.self) { option in
                     Button(option) { onSelect(option) }
@@ -95,38 +95,28 @@ struct SidebarView: View {
         }
         .padding(.bottom, 10)
     }
-
+    
     private var profileHeader: some View {
         VStack(spacing: 8) {
-            ZStack(alignment: .bottomTrailing) {
-                Image(systemName: "person.crop.circle")
-                    .resizable()
-                    .scaledToFit()
-                    .foregroundStyle(Color(.curlyDarkGreen))
-                    .frame(width: 130, height: 130)
-                    .background(Color(.curlySurface))
-                    .clipShape(Circle())
-
-                Button(action: viewModel.didTapPickPhoto) {
-                    Image(systemName: "plus")
-                        .font(.bodySerif)
-                        .foregroundStyle(Color(.curlySurface))
-                        .frame(width: 34, height: 34)
-                        .background(Color(.curlyGreen))
-                        .clipShape(Circle())
-                }
-                .buttonStyle(.plain)
-            }
-
+            Image(systemName: viewModel.avatar)
+                .resizable()
+                .scaledToFit()
+                .padding(20)
+                .foregroundStyle(Color(.curlyDarkGreen))
+                .frame(width: 130, height: 130)
+                .background(Color(.curlySurface))
+                .clipShape(Circle())
+            
+            
             Text(viewModel.userName)
                 .font(.titleSerif)
                 .foregroundStyle(Color(.curlySurface))
-
+            
             Text(verbatim: viewModel.email.uppercased())
                 .font(.captionSerif)
                 .tracking(1)
                 .foregroundStyle(Color(.curlySurface))
-
+            
             Button(action: viewModel.didTapEditProfile) {
                 Text("Редактировать")
                     .font(.bodySerif)

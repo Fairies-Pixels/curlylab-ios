@@ -4,16 +4,20 @@ import Combine
 @MainActor
 final class HomeViewModel: ObservableObject {
 
-    // MARK: - Sidebar / main state
-
     @Published var isSidebarOpen: Bool = false
     @Published var isLoading: Bool = false
     @Published private(set) var userName: String = ""
-
     @Published private(set) var email: String = ""
+    @Published private(set) var avatar: String = ""
+
     @Published private(set) var hairPorosity: String = ""
     @Published private(set) var hairThickness: String = ""
     @Published private(set) var hairColoring: String = ""
+
+    @Published var isEditProfilePresented: Bool = false
+    @Published var draftName: String = ""
+    @Published var draftEmail: String = ""
+    @Published var draftAvatar: String = ""
 
     private let profileService: UserDefaultsService
     private let router: HomeRouter
@@ -32,6 +36,7 @@ final class HomeViewModel: ObservableObject {
     private func refreshFromProfile() {
         userName      = Self.displayName(from: profileService.name)
         email         = profileService.email
+        avatar        = profileService.avatar
         hairPorosity  = profileService.hairPorosity
         hairThickness = profileService.hairThickness
         hairColoring  = profileService.hairColoring
@@ -52,10 +57,6 @@ final class HomeViewModel: ObservableObject {
     func setHairColoring(_ value: String)  { profileService.hairColoring = value }
 
     func onAppear() {
-        loadProfile()
-    }
-
-    private func loadProfile() {
         isLoading = true
         defer { isLoading = false }
         refreshFromProfile()
@@ -66,6 +67,51 @@ final class HomeViewModel: ObservableObject {
         return trimmed.isEmpty ? "Имя" : trimmed
     }
 
+    func didTapEditProfile() {
+        draftName = profileService.name
+        draftEmail = profileService.email
+        draftAvatar = profileService.avatar
+        isEditProfilePresented = true
+    }
+
+    func didTapCancelEditProfile() {
+        isEditProfilePresented = false
+    }
+
+    func didSelectDraftAvatar(_ avatar: String) {
+        draftAvatar = avatar
+    }
+
+    func didTapSaveProfile() {
+        let name = draftName.trimmingCharacters(in: .whitespacesAndNewlines)
+        let email = draftEmail.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        guard !name.isEmpty,
+              isValidEmail(email) else { return }
+
+        profileService.name = name
+        profileService.email = email
+        profileService.avatar = draftAvatar
+
+        isEditProfilePresented = false
+    }
+
+    var isDraftValid: Bool {
+        !draftName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        && isValidEmail(draftEmail.trimmingCharacters(in: .whitespacesAndNewlines))
+    }
+
+    private func isValidEmail(_ email: String) -> Bool {
+        // минимальная проверка; при желании замените на regex
+        let parts = email.split(separator: "@")
+        guard parts.count == 2,
+              let domain = parts.last,
+              domain.contains("."),
+              !parts[0].isEmpty else { return false }
+        return true
+    }
+
+    // MARK: - Sidebar
     func openSidebar() {
         withAnimation(.easeInOut(duration: 0.25)) { isSidebarOpen = true }
     }
@@ -78,17 +124,7 @@ final class HomeViewModel: ObservableObject {
         isSidebarOpen ? closeSidebar() : openSidebar()
     }
 
-    func didTapPickPhoto() {
-        // логику выбора фото
-    }
-
-    func didTapEditProfile() {
-        // открыть экран редактирования профиля
-    }
-
-    func didTapSignOut() {
-        // логика выхода
-    }
+    func didTapSignOut() { /* логика выхода */ }
 
     func didTapComposition() { router.openComposition() }
     func didTapGuide()       { router.openGuide() }
