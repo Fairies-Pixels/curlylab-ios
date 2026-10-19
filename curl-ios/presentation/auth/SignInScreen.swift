@@ -47,7 +47,7 @@ struct SignInScreen: View {
                         .background(canSignIn ? Color.lightGreen : Color.lightGreen.opacity(0.5))
                         .foregroundStyle(.white)
                         .clipShape(RoundedRectangle(cornerRadius: 8))
-                        .disabled(!canSignIn)
+                        //.disabled(!canSignIn)
 
                         OrDivider()
 

@@ -25,18 +25,26 @@ struct ContentView: View {
 
                 case .home:
                     HomeScreen(
-                        onOpenComposition: { /* TODO */ },
-                        onOpenGuide: { path.append(Route.guide) },
-                        onOpenDictionary: { path.append(Route.dictionary) },
-                        onOpenHairTyping: { /* TODO */ },
-                        onOpenProducts: { path.append(Route.products) }
+                        router: HomeScreenRouterAdapter(
+                            onComposition: { path.append(Route.composition) },
+                            onGuide:       { path.append(Route.guide) },
+                            onDictionary:  { path.append(Route.dictionary) },
+                            onHairTyping:  { path.append(Route.hairTyping) },
+                            onProducts:    { path.append(Route.products) }
+                        )
                     )
+
+                case .composition:
+                    GuideScreen()// TODO(поменять)
 
                 case .guide:
                     GuideScreen()
 
                 case .dictionary:
                     DictionaryScreen()
+
+                case .hairTyping:
+                    GuideScreen()// TODO(поменять)
 
                 case .products:
                     ProductsScreen(viewModel: ProductsViewModelFactory.make())

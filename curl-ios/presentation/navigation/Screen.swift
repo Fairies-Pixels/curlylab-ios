@@ -7,4 +7,6 @@ enum Route: Hashable {
     case products
     case guide
     case dictionary
+    case composition
+    case hairTyping
 }
