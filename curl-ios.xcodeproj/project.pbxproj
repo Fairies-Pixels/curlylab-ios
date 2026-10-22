@@ -9,11 +9,13 @@
 /* Begin PBXBuildFile section */
 		3C217E423080CAF9006CE50B /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C217E413080CAF9006CE50B /* SidebarView.swift */; };
 		3C217E463080D244006CE50B /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C217E453080D23F006CE50B /* Font.swift */; };
+		3C75F9113086510E00F101AB /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C75F910308650EF00F101AB /* UserDefaultsService.swift */; };
+		3C75F95C3086626F00F101AB /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C75F95B3086626F00F101AB /* EditProfileView.swift */; };
+		3C75F95E3086645600F101AB /* AvatarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C75F95D3086645600F101AB /* AvatarCell.swift */; };
 		3E48FFA03077C126008C7914 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E48FF9F3077C126008C7914 /* Screen.swift */; };
 		3E48FFA33077C1D5008C7914 /* SignInScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E48FFA23077C1D5008C7914 /* SignInScreen.swift */; };
 		3E48FFA53077C5FF008C7914 /* SignUpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E48FFA43077C5FF008C7914 /* SignUpScreen.swift */; };
 		3E48FFA83077C63E008C7914 /* OutlinedField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E48FFA73077C63E008C7914 /* OutlinedField.swift */; };
-		3E48FFAB3077C6AC008C7914 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E48FFAA3077C6AC008C7914 /* HomeScreen.swift */; };
 		3E48FFAF3077CF02008C7914 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E48FFAE3077CF02008C7914 /* Assets.xcassets */; };
 		3E48FFB33077D5B4008C7914 /* FeatureCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E48FFB23077D5B4008C7914 /* FeatureCard.swift */; };
 		3E48FFB53077D5CD008C7914 /* PasswordField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E48FFB43077D5CD008C7914 /* PasswordField.swift */; };
@@ -89,11 +91,13 @@
 /* Begin PBXFileReference section */
 		3C217E413080CAF9006CE50B /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		3C217E453080D23F006CE50B /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		3C75F910308650EF00F101AB /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
+		3C75F95B3086626F00F101AB /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		3C75F95D3086645600F101AB /* AvatarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCell.swift; sourceTree = "<group>"; };
 		3E48FF9F3077C126008C7914 /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 		3E48FFA23077C1D5008C7914 /* SignInScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInScreen.swift; sourceTree = "<group>"; };
 		3E48FFA43077C5FF008C7914 /* SignUpScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScreen.swift; sourceTree = "<group>"; };
 		3E48FFA73077C63E008C7914 /* OutlinedField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinedField.swift; sourceTree = "<group>"; };
-		3E48FFAA3077C6AC008C7914 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		3E48FFAE3077CF02008C7914 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E48FFB23077D5B4008C7914 /* FeatureCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureCard.swift; sourceTree = "<group>"; };
 		3E48FFB43077D5CD008C7914 /* PasswordField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordField.swift; sourceTree = "<group>"; };
@@ -153,6 +157,9 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		3C75F912308654C800F101AB /* screen */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = screen; sourceTree = "<group>"; };
+		3C75F913308654D600F101AB /* viewModel */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = viewModel; sourceTree = "<group>"; };
+		3C75F9183086559600F101AB /* router */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = router; sourceTree = "<group>"; };
 		3E7636DA30801D73004CAD5E /* products */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = products; sourceTree = "<group>"; };
 		3E7636F030802227004CAD5E /* api */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = api; sourceTree = "<group>"; };
 		3E7636F630802309004CAD5E /* repository */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = repository; sourceTree = "<group>"; };
@@ -231,8 +238,10 @@
 		3E48FFA93077C6A5008C7914 /* home */ = {
 			isa = PBXGroup;
 			children = (
+				3C75F9183086559600F101AB /* router */,
+				3C75F913308654D600F101AB /* viewModel */,
+				3C75F912308654C800F101AB /* screen */,
 				3E48FFB83077D65A008C7914 /* components */,
-				3E48FFAA3077C6AC008C7914 /* HomeScreen.swift */,
 			);
 			path = home;
 			sourceTree = "<group>";
@@ -240,6 +249,8 @@
 		3E48FFB83077D65A008C7914 /* components */ = {
 			isa = PBXGroup;
 			children = (
+				3C75F95D3086645600F101AB /* AvatarCell.swift */,
+				3C75F95B3086626F00F101AB /* EditProfileView.swift */,
 				3C217E413080CAF9006CE50B /* SidebarView.swift */,
 				3E48FFB23077D5B4008C7914 /* FeatureCard.swift */,
 			);
@@ -381,7 +392,7 @@
 			isa = PBXGroup;
 			children = (
 				3E7636F630802309004CAD5E /* repository */,
-				EB4694EA306FE09100510940 /* Local */,
+				EB4694EA306FE09100510940 /* local */,
 				EB4694CA306FCCFC00510940 /* remote */,
 			);
 			path = data;
@@ -470,12 +481,13 @@
 			path = Storage;
 			sourceTree = "<group>";
 		};
-		EB4694EA306FE09100510940 /* Local */ = {
+		EB4694EA306FE09100510940 /* local */ = {
 			isa = PBXGroup;
 			children = (
+				3C75F910308650EF00F101AB /* UserDefaultsService.swift */,
 				EB4694EB306FE09F00510940 /* KeychainManager.swift */,
 			);
-			path = Local;
+			path = local;
 			sourceTree = "<group>";
 		};
 		EBB2B4E63073C0A500BF34DB /* response */ = {
@@ -555,6 +567,9 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				3C75F912308654C800F101AB /* screen */,
+				3C75F913308654D600F101AB /* viewModel */,
+				3C75F9183086559600F101AB /* router */,
 				3E7636DA30801D73004CAD5E /* products */,
 				3E7636F030802227004CAD5E /* api */,
 				3E7636F630802309004CAD5E /* repository */,
@@ -610,7 +625,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 2700;
 				TargetAttributes = {
 					EB469498306FC93900510940 = {
 						CreatedOnToolsVersion = 15.0.1;
@@ -678,7 +693,6 @@
 			files = (
 				EB4694D1306FCEBB00510940 /* UserRequest.swift in Sources */,
 				EBB2B4F53073CDFC00BF34DB /* CompositionAnalysisEntity.swift in Sources */,
-				3E48FFAB3077C6AC008C7914 /* HomeScreen.swift in Sources */,
 				EBB2B4E93073C0F900BF34DB /* AnalysisRepository.swift in Sources */,
 				EB4694E5306FDF3000510940 /* TokenStorage.swift in Sources */,
 				EBB2B4FE3073D22F00BF34DB /* FavoriteEntity.swift in Sources */,
@@ -688,6 +702,7 @@
 				EB39FFDF307CEF6100284C6E /* GuideViewModel.swift in Sources */,
 				EBB2B5063073D39B00BF34DB /* ReviewResponse.swift in Sources */,
 				EB39FFEB307CF2A200284C6E /* DictionaryData.swift in Sources */,
+				3C75F9113086510E00F101AB /* UserDefaultsService.swift in Sources */,
 				EBB2B4F73073CE3B00BF34DB /* CompositionIssueEntity.swift in Sources */,
 				EB4694E0306FDE8100510940 /* RegisterRequest.swift in Sources */,
 				EBB2B5133073D74F00BF34DB /* HairTypeResponse.swift in Sources */,
@@ -718,6 +733,7 @@
 				EB4694DC306FDC8600510940 /* ReviewRequest.swift in Sources */,
 				EBB2B4FA3073D11000BF34DB /* FavoriteResponse.swift in Sources */,
 				EBB2B50A3073D42000BF34DB /* DateParser.swift in Sources */,
+				3C75F95C3086626F00F101AB /* EditProfileView.swift in Sources */,
 				3E48FFA03077C126008C7914 /* Screen.swift in Sources */,
 				EB4694D3306FCFC400510940 /* HairTypeRequest.swift in Sources */,
 				EB39FFE9307CF26600284C6E /* Word.swift in Sources */,
@@ -726,6 +742,7 @@
 				EB39FFDC307CEF0100284C6E /* GuideParser.swift in Sources */,
 				EB4694D8306FDAC700510940 /* FavoriteRequest.swift in Sources */,
 				3E48FFA83077C63E008C7914 /* OutlinedField.swift in Sources */,
+				3C75F95E3086645600F101AB /* AvatarCell.swift in Sources */,
 				3E48FFA53077C5FF008C7914 /* SignUpScreen.swift in Sources */,
 				EB4694DE306FDCF600510940 /* ReviewEntity.swift in Sources */,
 				EB46949D306FC93900510940 /* curl_iosApp.swift in Sources */,
@@ -825,6 +842,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -881,6 +899,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -945,7 +964,6 @@
 		EB4694C3306FC93C00510940 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -964,7 +982,6 @@
 		EB4694C4306FC93C00510940 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -983,7 +1000,6 @@
 		EB4694C6306FC93C00510940 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1000,7 +1016,6 @@
 		EB4694C7306FC93C00510940 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;

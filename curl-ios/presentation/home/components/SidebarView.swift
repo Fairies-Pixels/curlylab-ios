@@ -1,15 +1,8 @@
 import SwiftUI
 
 struct SidebarView: View {
-    let onOpenComposition: () -> Void
-    let onOpenGuide: () -> Void
-    let onOpenDictionary: () -> Void
-    let onOpenHairTyping: () -> Void
-    let onOpenProducts: () -> Void
     
-    @State private var hairPorosity = "Средне-пористые"
-    @State private var hairThickness = "Тонкие"
-    @State private var hairColoring = "Неокрашенные"
+    @ObservedObject var viewModel: HomeViewModel
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -17,53 +10,42 @@ struct SidebarView: View {
             profileHeader
             
             Divider()
-                .overlay(Color("CurlySurface"))
+                .overlay(Color(.curlySurface))
                 .padding(.vertical, 10)
             
             hairTypeCard(
                 title: "Пористость",
-                value: hairPorosity,
-                color: Color("CurlyOrange"),
-                options: [
-                    "Низко-пористые",
-                    "Средне-пористые",
-                    "Высоко-пористые"
-                ]
-            ) { hairPorosity = $0 }
+                value: viewModel.hairPorosity,
+                color: Color(.curlyOrange),
+                options: UserDefaultsService.Options.porosity,
+                onSelect: viewModel.setHairPorosity
+            )
             
             hairTypeCard(
                 title: "Толщина",
-                value: hairThickness,
-                color: Color("CurlyBlue"),
-                options: [
-                    "Тонкие",
-                    "Средние",
-                    "Толстые"
-                ]
-            ) { hairThickness = $0 }
+                value: viewModel.hairThickness,
+                color: Color(.curlyBlue),
+                options: UserDefaultsService.Options.thickness,
+                onSelect: viewModel.setHairThickness
+            )
             
             hairTypeCard(
                 title: "Окрашенность",
-                value: hairColoring,
-                color: Color("CurlyOrangeNeg"),
-                textColor: Color("CurlyGreen"),
-                options: [
-                    "Неокрашенные",
-                    "Окрашенные",
-                    "Осветлённые"
-                ]
-            ) { hairColoring = $0 }
+                value: viewModel.hairColoring,
+                color: Color(.curlyOrangeNeg),
+                textColor: Color(.curlyGreen),
+                options: UserDefaultsService.Options.coloring,
+                onSelect: viewModel.setHairColoring
+            )
             
             Divider()
-                .overlay(Color("CurlySurface"))
+                .overlay(Color(.curlySurface))
                 .padding(.vertical, 10)
             
-            Button {
-                // логика выхода
-            } label: {
+            Button(action: viewModel.didTapSignOut) {
                 Label("Выйти", systemImage: "rectangle.portrait.and.arrow.right")
                     .font(.bodySerif)
-                    .foregroundStyle(Color("CurlySurface"))
+                    .foregroundStyle(Color(.curlySurface))
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal, 10)
                     .padding(.vertical, 10)
@@ -73,7 +55,7 @@ struct SidebarView: View {
         }
         .frame(maxHeight: .infinity)
         .padding(16)
-        .background(Color("CurlyDarkGreen"))
+        .background(Color(.curlyDarkGreen))
         .ignoresSafeArea(edges: .bottom)
         .shadow(color: .black.opacity(0.15), radius: 8, x: 2, y: 0)
     }
@@ -82,7 +64,7 @@ struct SidebarView: View {
         title: String,
         value: String,
         color: Color,
-        textColor: Color = Color("CurlySurface"),
+        textColor: Color = Color(.curlySurface),
         options: [String],
         onSelect: @escaping (String) -> Void
     ) -> some View {
@@ -90,16 +72,14 @@ struct SidebarView: View {
             Text(title)
                 .font(.captionSerif)
                 .tracking(0.5)
-                .foregroundStyle(Color("CurlySurface"))
+                .foregroundStyle(Color(.curlySurface))
                 .fixedSize()
                 .rotationEffect(.degrees(-90))
                 .frame(width: 22, height: 100)
             
             Menu {
                 ForEach(options, id: \.self) { option in
-                    Button(option) {
-                        onSelect(option)
-                    }
+                    Button(option) { onSelect(option) }
                 }
             } label: {
                 Text(value)
@@ -118,47 +98,33 @@ struct SidebarView: View {
     
     private var profileHeader: some View {
         VStack(spacing: 8) {
-            ZStack(alignment: .bottomTrailing) {
-                Image(systemName: "person.crop.circle")
-                    .resizable()
-                    .scaledToFit()
-                    .foregroundStyle(Color("CurlyDarkGreen"))
-                    .frame(width: 130, height: 130)
-                    .background(Color("CurlySurface"))
-                    .clipShape(Circle())
-                
-                Button {
-                    // выбор фото
-                } label: {
-                    Image(systemName: "plus")
-                        .font(.bodySerif)
-                        .foregroundStyle(Color("CurlySurface"))
-                        .frame(width: 34, height: 34)
-                        .background(Color("CurlyGreen"))
-                        .clipShape(Circle())
-                }
-                .buttonStyle(.plain)
-            }
+            Image(systemName: viewModel.avatar)
+                .resizable()
+                .scaledToFit()
+                .padding(20)
+                .foregroundStyle(Color(.curlyDarkGreen))
+                .frame(width: 130, height: 130)
+                .background(Color(.curlySurface))
+                .clipShape(Circle())
             
-            Text("Имя")
+            
+            Text(viewModel.userName)
                 .font(.titleSerif)
-                .foregroundStyle(Color("CurlySurface"))
+                .foregroundStyle(Color(.curlySurface))
             
-            Text(verbatim: "EMAIL@MAIL.COM")
+            Text(verbatim: viewModel.email.uppercased())
                 .font(.captionSerif)
                 .tracking(1)
-                .foregroundStyle(Color("CurlySurface"))
+                .foregroundStyle(Color(.curlySurface))
             
-            Button {
-                // экран редактирования профиля
-            } label: {
+            Button(action: viewModel.didTapEditProfile) {
                 Text("Редактировать")
                     .font(.bodySerif)
                     .tracking(0.6)
-                    .foregroundStyle(Color("CurlySurface"))
+                    .foregroundStyle(Color(.curlySurface))
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 12)
-                    .background(Color("CurlyGreen"))
+                    .background(Color(.curlyGreen))
                     .clipShape(Capsule())
             }
             .buttonStyle(.plain)
