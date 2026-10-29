@@ -52,6 +52,14 @@
 		EB4694E9306FE04500510940 /* LogoutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4694E8306FE04500510940 /* LogoutRequest.swift */; };
 		EB4694EC306FE09F00510940 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4694EB306FE09F00510940 /* KeychainManager.swift */; };
 		EB4694EE306FE16D00510940 /* GoogleRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4694ED306FE16D00510940 /* GoogleRequest.swift */; };
+		EBAB29DA30933ED100BC1FD8 /* PorosityTypingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAB29D130933ED100BC1FD8 /* PorosityTypingScreen.swift */; };
+		EBAB29DB30933ED100BC1FD8 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAB29D730933ED100BC1FD8 /* Question.swift */; };
+		EBAB29DC30933ED100BC1FD8 /* IsColoredTypingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAB29D030933ED100BC1FD8 /* IsColoredTypingScreen.swift */; };
+		EBAB29DD30933ED100BC1FD8 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAB29D630933ED100BC1FD8 /* Answer.swift */; };
+		EBAB29DE30933ED100BC1FD8 /* IsColoredTypingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAB29D330933ED100BC1FD8 /* IsColoredTypingViewModel.swift */; };
+		EBAB29DF30933ED100BC1FD8 /* PorosityTypingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAB29D430933ED100BC1FD8 /* PorosityTypingViewModel.swift */; };
+		EBAB29E030933ED100BC1FD8 /* TypingComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAB29D830933ED100BC1FD8 /* TypingComponents.swift */; };
+		EBAB29E230933F5500BC1FD8 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAB29E130933F5500BC1FD8 /* AuthManager.swift */; };
 		EBB2B4E93073C0F900BF34DB /* AnalysisRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2B4E83073C0F900BF34DB /* AnalysisRepository.swift */; };
 		EBB2B4EC3073C36800BF34DB /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2B4EB3073C36800BF34DB /* AuthResponse.swift */; };
 		EBB2B4EF3073C72300BF34DB /* AnalysisResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2B4EE3073C72300BF34DB /* AnalysisResult.swift */; };
@@ -137,6 +145,14 @@
 		EB4694E8306FE04500510940 /* LogoutRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutRequest.swift; sourceTree = "<group>"; };
 		EB4694EB306FE09F00510940 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		EB4694ED306FE16D00510940 /* GoogleRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleRequest.swift; sourceTree = "<group>"; };
+		EBAB29D030933ED100BC1FD8 /* IsColoredTypingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsColoredTypingScreen.swift; sourceTree = "<group>"; };
+		EBAB29D130933ED100BC1FD8 /* PorosityTypingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PorosityTypingScreen.swift; sourceTree = "<group>"; };
+		EBAB29D330933ED100BC1FD8 /* IsColoredTypingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsColoredTypingViewModel.swift; sourceTree = "<group>"; };
+		EBAB29D430933ED100BC1FD8 /* PorosityTypingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PorosityTypingViewModel.swift; sourceTree = "<group>"; };
+		EBAB29D630933ED100BC1FD8 /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
+		EBAB29D730933ED100BC1FD8 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		EBAB29D830933ED100BC1FD8 /* TypingComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingComponents.swift; sourceTree = "<group>"; };
+		EBAB29E130933F5500BC1FD8 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		EBB2B4E83073C0F900BF34DB /* AnalysisRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisRepository.swift; sourceTree = "<group>"; };
 		EBB2B4EB3073C36800BF34DB /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		EBB2B4EE3073C72300BF34DB /* AnalysisResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisResult.swift; sourceTree = "<group>"; };
@@ -203,6 +219,7 @@
 				3E48FFA13077C1C6008C7914 /* auth */,
 				3E48FF9E3077C10D008C7914 /* navigation */,
 				3E48FFB93077D865008C7914 /* Color.swift */,
+				EBAB29D930933ED100BC1FD8 /* hairTyping */,
 			);
 			path = presentation;
 			sourceTree = "<group>";
@@ -484,10 +501,41 @@
 		EB4694EA306FE09100510940 /* local */ = {
 			isa = PBXGroup;
 			children = (
+				EBAB29E130933F5500BC1FD8 /* AuthManager.swift */,
 				3C75F910308650EF00F101AB /* UserDefaultsService.swift */,
 				EB4694EB306FE09F00510940 /* KeychainManager.swift */,
 			);
 			path = local;
+			sourceTree = "<group>";
+		};
+		EBAB29D230933ED100BC1FD8 /* screen */ = {
+			isa = PBXGroup;
+			children = (
+				EBAB29D030933ED100BC1FD8 /* IsColoredTypingScreen.swift */,
+				EBAB29D130933ED100BC1FD8 /* PorosityTypingScreen.swift */,
+			);
+			path = screen;
+			sourceTree = "<group>";
+		};
+		EBAB29D530933ED100BC1FD8 /* viewmodel */ = {
+			isa = PBXGroup;
+			children = (
+				EBAB29D330933ED100BC1FD8 /* IsColoredTypingViewModel.swift */,
+				EBAB29D430933ED100BC1FD8 /* PorosityTypingViewModel.swift */,
+			);
+			path = viewmodel;
+			sourceTree = "<group>";
+		};
+		EBAB29D930933ED100BC1FD8 /* hairTyping */ = {
+			isa = PBXGroup;
+			children = (
+				EBAB29D230933ED100BC1FD8 /* screen */,
+				EBAB29D530933ED100BC1FD8 /* viewmodel */,
+				EBAB29D630933ED100BC1FD8 /* Answer.swift */,
+				EBAB29D730933ED100BC1FD8 /* Question.swift */,
+				EBAB29D830933ED100BC1FD8 /* TypingComponents.swift */,
+			);
+			path = hairTyping;
 			sourceTree = "<group>";
 		};
 		EBB2B4E63073C0A500BF34DB /* response */ = {
@@ -716,6 +764,7 @@
 				EBB2B5113073D65A00BF34DB /* User.swift in Sources */,
 				3C217E463080D244006CE50B /* Font.swift in Sources */,
 				3E48FFB53077D5CD008C7914 /* PasswordField.swift in Sources */,
+				EBAB29E230933F5500BC1FD8 /* AuthManager.swift in Sources */,
 				EB4694A1306FC93900510940 /* Item.swift in Sources */,
 				EB4694EC306FE09F00510940 /* KeychainManager.swift in Sources */,
 				EBB2B5043073D33100BF34DB /* ProductEntity.swift in Sources */,
@@ -723,6 +772,13 @@
 				3E48FFBC3077DB04008C7914 /* .gitignore in Sources */,
 				EBB2B5153073D78900BF34DB /* HairType.swift in Sources */,
 				EBB2B4EF3073C72300BF34DB /* AnalysisResult.swift in Sources */,
+				EBAB29DA30933ED100BC1FD8 /* PorosityTypingScreen.swift in Sources */,
+				EBAB29DB30933ED100BC1FD8 /* Question.swift in Sources */,
+				EBAB29DC30933ED100BC1FD8 /* IsColoredTypingScreen.swift in Sources */,
+				EBAB29DD30933ED100BC1FD8 /* Answer.swift in Sources */,
+				EBAB29DE30933ED100BC1FD8 /* IsColoredTypingViewModel.swift in Sources */,
+				EBAB29DF30933ED100BC1FD8 /* PorosityTypingViewModel.swift in Sources */,
+				EBAB29E030933ED100BC1FD8 /* TypingComponents.swift in Sources */,
 				EB39FFEE307CF2DF00284C6E /* DictionaryViewModel.swift in Sources */,
 				EB39FFF1307CF32400284C6E /* DictionaryScreen.swift in Sources */,
 				EBB2B5003073D29F00BF34DB /* ProductResponse.swift in Sources */,

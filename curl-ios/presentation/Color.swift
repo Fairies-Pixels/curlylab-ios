@@ -7,4 +7,7 @@ extension Color {
     static let lightPink  = Color(red: 0.98, green: 0.85, blue: 0.88)
     static let accentPink = Color(red: 0.95, green: 0.65, blue: 0.75)
     static let brightPink = Color(red: 0.93, green: 0.45, blue: 0.62)
+    static let purpleGrey40 = Color(red: 0.45, green: 0.40, blue: 0.48)
+    static let pink80 = Color(red: 0.98, green: 0.82, blue: 0.86)
 }
+

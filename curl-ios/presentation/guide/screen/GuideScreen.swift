@@ -2,7 +2,7 @@
 //  GuideScreen.swift
 //  curl-ios
 //
-//  Created by Nadineenik on 12.10.2026.
+//  Created by Nadineenik on 12.10.2026. обновленно 19.10.2026
 //
 
 import SwiftUI
@@ -21,20 +21,6 @@ struct GuideScreen: View {
                         onTap: { viewModel.toggleSection(section) }
                     )
                 }
-                
-                
-                Button {
-                    dismiss()
-                } label: {
-                    Text("Вернуться назад")
-                        .font(.headline)
-                        .foregroundStyle(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 14)
-                        .background(Color.brightPink)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
-                }
-                .padding(.top, 8)
             }
             .padding(24)
         }
