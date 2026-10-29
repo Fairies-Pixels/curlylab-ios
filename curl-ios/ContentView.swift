@@ -60,9 +60,7 @@ struct ContentView: View {
                     )
 
                 case .porosityText:
-                    ThicknessTextTypingScreen(
-                        onBackToHome: { path.removeLast(2) }
-                    )
+                    PorosityTypingScreen()
 
                 case .thicknessText:
                     ThicknessTextTypingScreen(
@@ -70,9 +68,7 @@ struct ContentView: View {
                     )
 
                 case .coloredText:
-                    ThicknessTextTypingScreen(
-                        onBackToHome: { path.removeLast(2) }
-                    )
+                    IsColoredTypingScreen()
                 }
             }
         }

@@ -2,7 +2,7 @@
 //  GuideScreen.swift
 //  curl-ios
 //
-//  Created by Nadineenik on 12.10.2026.
+//  Created by Nadineenik on 12.10.2026. обновленно 19.10.2026
 //
 
 import SwiftUI
@@ -21,29 +21,14 @@ struct GuideScreen: View {
                         onTap: { viewModel.toggleSection(section) }
                     )
                 }
-                
-                
-                Button {
-                    dismiss()
-                } label: {
-                    Text("Вернуться назад")
-                        .font(.headline)
-                        .foregroundStyle(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 14)
-                        .background(Color.brightPink)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
-                }
-                .padding(.top, 8)
             }
             .padding(24)
         }
-        .background(Color.lightBeige)
+        .background(Color(hex: "F8F4ED").ignoresSafeArea())
         .navigationTitle("Гайд")
         .navigationBarTitleDisplayMode(.inline)
     }
 }
-
 
 private struct GuideCard: View {
     let section: GuideSection
@@ -52,23 +37,35 @@ private struct GuideCard: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text(section.title)
-                .font(.title3)
-                .fontWeight(.semibold)
-                .foregroundStyle(Color.brightPink)
+            HStack(alignment: .center) {
+                Text(section.title)
+                    .font(.system(size: 18, weight: .bold))
+                    .foregroundStyle(Color(hex: "4A5B48"))
+                    .multilineTextAlignment(.leading)
+                
+                Spacer()
+                
+                Image(systemName: "chevron.down")
+                    .font(.system(size: 14, weight: .bold))
+                    .foregroundStyle(Color(hex: "728C6A"))
+                    .rotationEffect(.degrees(isExpanded ? 180 : 0))
+                    .animation(.easeInOut(duration: 0.25), value: isExpanded)
+            }
             
             if isExpanded {
                 Text(section.content)
-                    .font(.body)
-                    .foregroundStyle(Color.darkGreen)
-                    .padding(.top, 8)
+                    .font(.system(size: 15, weight: .regular))
+                    .foregroundStyle(Color(hex: "4A5B48").opacity(0.8))
+                    .lineSpacing(4)
+                    .padding(.top, 12)
                     .transition(.opacity.combined(with: .move(edge: .top)))
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(16)
-        .background(Color.lightBeige.opacity(0.5))
-        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .padding(20)
+        .background(Color.white)
+        .cornerRadius(20)
+        .shadow(color: Color.black.opacity(0.03), radius: 8, x: 0, y: 4)
         .contentShape(Rectangle())
         .onTapGesture {
             withAnimation(.easeInOut(duration: 0.25)) {
