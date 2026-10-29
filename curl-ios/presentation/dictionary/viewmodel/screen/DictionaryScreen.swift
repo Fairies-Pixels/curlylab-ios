@@ -12,31 +12,42 @@ struct DictionaryScreen: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("Словарь")
-                .font(.largeTitle.bold())
-                .foregroundStyle(Color.darkGreen)
-                .padding(.horizontal, 24)
-                .padding(.top, 8)
             
-            TextField("Поиск", text: $viewModel.searchQuery)
-                .padding(12)
-                .background(Color.lightBeige)
-                .clipShape(RoundedRectangle(cornerRadius: 12))
+            Text("Словарь")
+                .font(.titleSerif)
+                .foregroundStyle(Color(hex: "4A5B48"))
                 .padding(.horizontal, 24)
                 .padding(.top, 16)
-                .padding(.bottom, 8)
+                .frame(maxWidth: .infinity, alignment: .center)
             
+            HStack {
+                Image(systemName: "magnifyingglass")
+                    .foregroundColor(Color(hex: "4A5B48").opacity(0.5))
+                
+                TextField("Поиск", text: $viewModel.searchQuery)
+                    .font(.system(size: 16))
+                    .foregroundColor(Color(hex: "4A5B48"))
+            }
+            .padding(16)
+            .background(Color.white)
+            .cornerRadius(20)
+            .shadow(color: Color.black.opacity(0.03), radius: 10, x: 0, y: 4)
+            .padding(.horizontal, 24)
+            .padding(.top, 16)
+            .padding(.bottom, 8)
+            
+           
             ScrollView {
-                LazyVStack(spacing: 0) {
+                LazyVStack(spacing: 12) {
                     ForEach(viewModel.words) { word in
                         WordItem(word: word)
                             .padding(.horizontal, 24)
                     }
                 }
+                .padding(.top, 8)
             }
         }
-        .background(Color.white)
-        .navigationTitle("Словарь")
+        .background(Color(hex: "F8F4ED").ignoresSafeArea())
         .navigationBarTitleDisplayMode(.inline)
         .onChange(of: viewModel.searchQuery) { _, _ in
             viewModel.filterWords()
@@ -48,19 +59,20 @@ private struct WordItem: View {
     let word: Word
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
+        VStack(alignment: .leading, spacing: 8) {
             Text(word.name)
-                .font(.title3.bold())
-                .foregroundStyle(Color.darkGreen)
+                .font(.system(size: 18, weight: .bold)) 
+                .foregroundStyle(Color(hex: "4A5B48"))
             
             Text(word.description)
-                .font(.body)
-                .foregroundStyle(Color.darkGreen)
+                .font(.system(size: 15, weight: .regular))
+                .foregroundStyle(Color(hex: "4A5B48").opacity(0.8))
+                .lineSpacing(4)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(16)
-        .background(Color.lightBeige)
-        .clipShape(RoundedRectangle(cornerRadius: 12))
-        .padding(.vertical, 8)
+        .padding(20)
+        .background(Color.white)
+        .cornerRadius(20)
+        .shadow(color: Color.black.opacity(0.03), radius: 8, x: 0, y: 4)
     }
 }
