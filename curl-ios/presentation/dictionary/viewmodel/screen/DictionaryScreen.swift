@@ -19,6 +19,7 @@ struct DictionaryScreen: View {
                 .padding(.top, 8)
             
             TextField("Поиск", text: $viewModel.searchQuery)
+                .accessibilityIdentifier("dictionary.searchField")
                 .padding(12)
                 .background(Color.lightBeige)
                 .clipShape(RoundedRectangle(cornerRadius: 12))
@@ -31,6 +32,7 @@ struct DictionaryScreen: View {
                     ForEach(viewModel.words) { word in
                         WordItem(word: word)
                             .padding(.horizontal, 24)
+                            .accessibilityIdentifier("dictionary.word.\(word.name)")
                     }
                 }
             }
@@ -50,6 +52,7 @@ private struct WordItem: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(word.name)
+                .accessibilityIdentifier("dictionary.word.name")
                 .font(.title3.bold())
                 .foregroundStyle(Color.darkGreen)
             
