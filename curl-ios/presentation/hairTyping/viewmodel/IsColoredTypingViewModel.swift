@@ -13,8 +13,8 @@ final class IsColoredTypingViewModel: ObservableObject {
         Question(
             topic: "У вас окрашенные волосы? :)",
             answers: [
-                Answer(result: ColoredTypes.colored.rawValue, text: "Да", isSelected: true),
-                Answer(result: ColoredTypes.notColored.rawValue, text: "Нет", isSelected: false)
+                Answer(result: ColoredTypes.colored.rawValue, text: "Да"),
+                Answer(result: ColoredTypes.notColored.rawValue, text: "Нет")
             ]
         )
     ]
@@ -28,28 +28,20 @@ final class IsColoredTypingViewModel: ObservableObject {
     var currentQuestion: Question { questions[currentQuestionId] }
     
     func selectAnswer(at index: Int) {
-        for i in 0..<currentQuestion.answers.count {
-            questions[currentQuestionId].answers[i].isSelected = (i == index)
-        }
+        questions[currentQuestionId].selectedIndex = index
     }
     
     func calculateResult() {
-        // Логика из Android (считаем количество вхождений символов)
-        let resultString = questions.compactMap { $0.answers.first(where: { $0.isSelected })?.result }.joined()
-        let coloredCount = resultString.filter { $0 == Character(ColoredTypes.colored.rawValue) }.count
-        let notColoredCount = resultString.filter { $0 == Character(ColoredTypes.notColored.rawValue) }.count
+        guard let index = questions[currentQuestionId].selectedIndex else { return }
+        let answerResult = questions[currentQuestionId].answers[index].result
         
-        result = coloredCount >= notColoredCount ? ColoredTypes.colored.resultName : ColoredTypes.notColored.resultName
+        result = (answerResult == ColoredTypes.colored.rawValue) ? ColoredTypes.colored.resultName : ColoredTypes.notColored.resultName
     }
     
     func saveResult(userId: String) async {
-        // TODO: Заменить на реальный вызов API (hairTypesRepository.updateHairType)
+        // TODO: Заменить на реальный вызов API
         do {
-            try await Task.sleep(nanoseconds: 1_000_000_000) // Имитация сети
-            // Пример того, что вы отправите:
-            // let isColored = result == ColoredTypes.colored.resultName
-            // let request = HairTypeRequest(userId: userId, isColored: isColored)
-            
+            try await Task.sleep(nanoseconds: 1_000_000_000)
             isSavedSuccess = true
             alertMessage = "Результат успешно сохранен"
         } catch {

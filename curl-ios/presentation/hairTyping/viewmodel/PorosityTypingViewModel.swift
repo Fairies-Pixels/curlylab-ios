@@ -11,31 +11,31 @@ import SwiftUI
 final class PorosityTypingViewModel: ObservableObject {
     @Published var questions: [Question] = [
         Question(topic: "Проведите пальцами по волоску от кончика к коже головы.", answers: [
-            Answer(result: "\(PorosityTypes.porous.rawValue)\(PorosityTypes.semiPorous.rawValue)", text: "Чувствую сопротивление", isSelected: true),
-            Answer(result: "\(PorosityTypes.semiPorous.rawValue)\(PorosityTypes.nonPorous.rawValue)", text: "Не чувствую сопротивление", isSelected: false)
+            Answer(result: "\(PorosityTypes.porous.rawValue)\(PorosityTypes.semiPorous.rawValue)", text: "Чувствую сопротивление"),
+            Answer(result: "\(PorosityTypes.semiPorous.rawValue)\(PorosityTypes.nonPorous.rawValue)", text: "Не чувствую сопротивление")
         ]),
         Question(topic: "Какие Ваши волосы наощупь и на вид?", answers: [
-            Answer(result: PorosityTypes.nonPorous.rawValue, text: "Скользкие и гладкие, на вид –– блестящие, буквально отражающие свет", isSelected: true),
-            Answer(result: PorosityTypes.semiPorous.rawValue, text: "Гладкие и блестящие", isSelected: false),
-            Answer(result: PorosityTypes.porous.rawValue, text: "На ощупь шершавые, визуально матовые, не блестят", isSelected: false)
+            Answer(result: PorosityTypes.nonPorous.rawValue, text: "Скользкие и гладкие, на вид –– блестящие, буквально отражающие свет"),
+            Answer(result: PorosityTypes.semiPorous.rawValue, text: "Гладкие и блестящие"),
+            Answer(result: PorosityTypes.porous.rawValue, text: "На ощупь шершавые, визуально матовые, не блестят")
         ]),
         Question(topic: "Хорошо ли Ваши волосы держат завиток?", answers: [
-            Answer(result: "\(PorosityTypes.porous.rawValue)\(PorosityTypes.semiPorous.rawValue)", text: "Да", isSelected: true),
-            Answer(result: PorosityTypes.nonPorous.rawValue, text: "Нет", isSelected: false)
+            Answer(result: "\(PorosityTypes.porous.rawValue)\(PorosityTypes.semiPorous.rawValue)", text: "Да"),
+            Answer(result: PorosityTypes.nonPorous.rawValue, text: "Нет")
         ]),
         Question(topic: "Пушаться ли Ваши волосы?", answers: [
-            Answer(result: "\(PorosityTypes.porous.rawValue)\(PorosityTypes.semiPorous.rawValue)", text: "Да", isSelected: true),
-            Answer(result: PorosityTypes.nonPorous.rawValue, text: "Нет", isSelected: false)
+            Answer(result: "\(PorosityTypes.porous.rawValue)\(PorosityTypes.semiPorous.rawValue)", text: "Да"),
+            Answer(result: PorosityTypes.nonPorous.rawValue, text: "Нет")
         ]),
         Question(topic: "Насколько хорошо Ваши волосы держат кудри и прикорневой объем?", answers: [
-            Answer(result: PorosityTypes.nonPorous.rawValue, text: "Плохо, без дополнительных фиксирующих средств совсем не держат", isSelected: true),
-            Answer(result: PorosityTypes.semiPorous.rawValue, text: "Укладка может держаться несколько дней", isSelected: false),
-            Answer(result: PorosityTypes.porous.rawValue, text: "Отлично держат форму, хороший прикорневой объем", isSelected: false)
+            Answer(result: PorosityTypes.nonPorous.rawValue, text: "Плохо, без дополнительных фиксирующих средств совсем не держат"),
+            Answer(result: PorosityTypes.semiPorous.rawValue, text: "Укладка может держаться несколько дней"),
+            Answer(result: PorosityTypes.porous.rawValue, text: "Отлично держат форму, хороший прикорневой объем")
         ]),
         Question(topic: "Как ведут себя Ваши волосы после мытья?", answers: [
-            Answer(result: PorosityTypes.nonPorous.rawValue, text: "Во влажном состоянии могут виться, но после высыхания распрямляются", isSelected: true),
-            Answer(result: PorosityTypes.semiPorous.rawValue, text: "Пушаться и лохматяться", isSelected: false),
-            Answer(result: PorosityTypes.porous.rawValue, text: "Если лечь спать с влажными волосами, на утро будет колтун и валенок", isSelected: false)
+            Answer(result: PorosityTypes.nonPorous.rawValue, text: "Во влажном состоянии могут виться, но после высыхания распрямляются"),
+            Answer(result: PorosityTypes.semiPorous.rawValue, text: "Пушаться и лохматяться"),
+            Answer(result: PorosityTypes.porous.rawValue, text: "Если лечь спать с влажными волосами, на утро будет колтун и валенок")
         ])
     ]
     
@@ -48,9 +48,7 @@ final class PorosityTypingViewModel: ObservableObject {
     var currentQuestion: Question { questions[currentQuestionId] }
     
     func selectAnswer(at index: Int) {
-        for i in 0..<currentQuestion.answers.count {
-            questions[currentQuestionId].answers[i].isSelected = (i == index)
-        }
+        questions[currentQuestionId].selectedIndex = index
     }
     
     func nextQuestion() {
@@ -61,8 +59,17 @@ final class PorosityTypingViewModel: ObservableObject {
         }
     }
     
+    func previousQuestion() {
+        if currentQuestionId > 0 {
+            currentQuestionId -= 1
+        }
+    }
+    
     func calculateResult() {
-        let resultString = questions.compactMap { $0.answers.first(where: { $0.isSelected })?.result }.joined()
+        let resultString = questions.compactMap { question in
+            guard let index = question.selectedIndex else { return nil }
+            return question.answers[index].result
+        }.joined()
         
         let porous = resultString.filter { $0 == Character(PorosityTypes.porous.rawValue) }.count
         let semiPorous = resultString.filter { $0 == Character(PorosityTypes.semiPorous.rawValue) }.count
@@ -80,10 +87,9 @@ final class PorosityTypingViewModel: ObservableObject {
     }
     
     func saveResult(userId: String) async {
-        // TODO: Заменить на реальный вызов API (hairTypesRepository.updateHairType)
+        // TODO: Заменить на реальный вызов API
         do {
             try await Task.sleep(nanoseconds: 1_000_000_000)
-            // Пример: let request = HairTypeRequest(userId: userId, porosity: result?.dbCode)
             isSavedSuccess = true
             alertMessage = "Результат успешно сохранен"
         } catch {

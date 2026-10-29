@@ -7,11 +7,10 @@
 
 import Foundation
 
-struct Answer: Identifiable, Equatable {
+struct Answer: Identifiable {
     let id = UUID()
     let result: String
     let text: String
-    var isSelected: Bool
 }
 
 enum PorosityTypes: String {
