@@ -9,4 +9,8 @@ enum Route: Hashable {
     case dictionary
     case composition
     case hairTyping
+    case hairAnalysis
+    case porosityText
+    case thicknessText
+    case coloredText
 }
