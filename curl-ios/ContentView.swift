@@ -35,7 +35,7 @@ struct ContentView: View {
                     )
 
                 case .composition:
-                    GuideScreen()// TODO(поменять)
+                    GuideScreen()
 
                 case .guide:
                     GuideScreen()
@@ -44,10 +44,35 @@ struct ContentView: View {
                     DictionaryScreen()
 
                 case .hairTyping:
-                    GuideScreen()// TODO(поменять)
+                    HairTypingScreen(
+                        onOpenPhotoAnalysis: { path.append(Route.hairAnalysis) },
+                        onOpenPorosityText:  { path.append(Route.porosityText) },
+                        onOpenThicknessText: { path.append(Route.thicknessText) },
+                        onOpenColoredText:   { path.append(Route.coloredText) }
+                    )
 
                 case .products:
                     ProductsScreen(viewModel: ProductsViewModelFactory.make())
+
+                case .hairAnalysis:
+                    HairAnalysisScreen(
+                        onSaveComplete: { path.removeLast(2) }
+                    )
+
+                case .porosityText:
+                    ThicknessTextTypingScreen(
+                        onBackToHome: { path.removeLast(2) }
+                    )
+
+                case .thicknessText:
+                    ThicknessTextTypingScreen(
+                        onBackToHome: { path.removeLast(2) }
+                    )
+
+                case .coloredText:
+                    ThicknessTextTypingScreen(
+                        onBackToHome: { path.removeLast(2) }
+                    )
                 }
             }
         }
