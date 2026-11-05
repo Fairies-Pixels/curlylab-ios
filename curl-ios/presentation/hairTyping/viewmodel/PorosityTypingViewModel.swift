@@ -9,6 +9,10 @@ import SwiftUI
 
 @MainActor
 final class PorosityTypingViewModel: ObservableObject {
+    
+    private let repository = HairTypesRepositoryImpl()
+    private let profileService = UserDefaultsService.shared
+    
     @Published var questions: [Question] = [
         Question(topic: "Проведите пальцами по волоску от кончика к коже головы.", answers: [
             Answer(result: "\(PorosityTypes.porous.rawValue)\(PorosityTypes.semiPorous.rawValue)", text: "Чувствую сопротивление"),
@@ -86,15 +90,33 @@ final class PorosityTypingViewModel: ObservableObject {
         }
     }
     
-    func saveResult(userId: String) async {
-        // TODO: Заменить на реальный вызов API
+    func saveResult() async {
+        guard let result = result else { return }
+        
+        guard let userId = AuthManager.shared.getUserId() else {
+            isSavedSuccess = false
+            alertMessage = "Ошибка: вы не авторизованы!"
+            showAlert = true
+            return
+        }
+        
+        let request = HairTypeRequest(
+            userId: userId,
+            porosity: result.dbCode,
+            isColored: nil,
+            thickness: nil
+        )
+        
         do {
-            try await Task.sleep(nanoseconds: 1_000_000_000)
+            try await repository.updateHairType(userId: userId, request: request)
+            
+            profileService.hairPorosity = result.resultName.capitalized
+            
             isSavedSuccess = true
             alertMessage = "Результат успешно сохранен"
         } catch {
             isSavedSuccess = false
-            alertMessage = "Ошибка, не удалось сохранить"
+            alertMessage = "Ошибка: \(error.localizedDescription)"
         }
         showAlert = true
     }

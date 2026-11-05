@@ -7,7 +7,6 @@
 
 import Foundation
 
-//Вложенная модель проблемы
 struct AnalysisIssue: Codable {
     let ingredient: String?
     let category: String?

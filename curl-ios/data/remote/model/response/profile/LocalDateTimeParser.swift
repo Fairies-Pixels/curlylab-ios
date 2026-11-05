@@ -13,7 +13,7 @@ enum LocalDateTimeParser {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS" // с микросекундами
         formatter.locale = Locale(identifier: "en_US_POSIX")
-        formatter.timeZone = TimeZone(identifier: "UTC") // ПРЕДПОЛАГАЕМ, что сервер отдает UTC
+        formatter.timeZone = TimeZone(identifier: "UTC")
         return formatter
     }()
     
@@ -21,7 +21,7 @@ enum LocalDateTimeParser {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         formatter.locale = Locale(identifier: "en_US_POSIX")
-        formatter.timeZone = TimeZone(identifier: "UTC") // ПРЕДПОЛАГАЕМ, что сервер отдает UTC
+        formatter.timeZone = TimeZone(identifier: "UTC")
         return formatter
     }()
     

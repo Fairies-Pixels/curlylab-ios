@@ -5,65 +5,60 @@ final class ApiService {
 
     private let baseURL = "https://curlylab.ru:8080"
     private let session: URLSession
-    private let decoder: JSONDecoder
-    private let encoder: JSONEncoder
 
-    init(
-        session: URLSession = .shared,
-        decoder: JSONDecoder = JSONDecoder(),
-        encoder: JSONEncoder = JSONEncoder()
-    ) {
+    init(session: URLSession = .shared) {
         self.session = session
-        self.decoder = decoder
-        self.encoder = encoder
     }
 
-    func get<T: Decodable>(
-        _ path: String,
-        queryItems: [URLQueryItem]? = nil,
-        token: String? = nil
-    ) async throws -> T {
+    func get<T: Decodable>(_ path: String, queryItems: [URLQueryItem]? = nil) async throws -> T {
         let request = try await buildRequest(
             path,
             method: "GET",
-            queryItems: queryItems,
-            token: token
+            queryItems: queryItems
         )
-        return try await perform(request)
+        return try await execute(request)
     }
 
-    func post<T: Decodable, U: Encodable>(
-        _ path: String,
-        body: U?,
-        token: String? = nil
-    ) async throws -> T {
-        var request = try await buildRequest(path, method: "POST", token: token)
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        if let body {
-            request.httpBody = try encoder.encode(body)
-        }
-        return try await perform(request)
-    }
-
-    func put<T: Decodable, U: Encodable>(
-        _ path: String,
-        body: U?,
-        token: String? = nil
-    ) async throws -> T {
+    func put<T: Encodable>(_ path: String, body: T, token: String?) async throws {
         var request = try await buildRequest(path, method: "PUT", token: token)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        if let body {
-            request.httpBody = try encoder.encode(body)
+        request.httpBody = try JSONEncoder().encode(body)
+
+        let (data, response) = try await session.data(for: request)
+
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw ApiError.unknown
         }
-        return try await perform(request)
+
+        guard (200..<300).contains(httpResponse.statusCode) else {
+            throw ApiError.http(
+                code: httpResponse.statusCode,
+                message: String(data: data, encoding: .utf8) ?? "Ошибка сохранения"
+            )
+        }
     }
 
-    func delete<T: Decodable>(
-        _ path: String,
-        token: String? = nil
-    ) async throws -> T {
-        let request = try await buildRequest(path, method: "DELETE", token: token)
-        return try await perform(request)
+    func post<T: Decodable, U: Encodable>(_ path: String, body: U?) async throws -> T {
+        var request = try await buildRequest(path, method: "POST")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        if let body {
+            request.httpBody = try JSONEncoder().encode(body)
+        }
+        return try await execute(request)
+    }
+
+    func putReturning<T: Decodable, U: Encodable>(_ path: String, body: U?) async throws -> T {
+        var request = try await buildRequest(path, method: "PUT")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        if let body {
+            request.httpBody = try JSONEncoder().encode(body)
+        }
+        return try await execute(request)
+    }
+
+    func delete<T: Decodable>(_ path: String) async throws -> T {
+        let request = try await buildRequest(path, method: "DELETE")
+        return try await execute(request)
     }
 
     private func buildRequest(
@@ -85,7 +80,8 @@ final class ApiService {
         request.httpMethod = method
         request.setValue("application/json", forHTTPHeaderField: "Accept")
 
-        let effectiveToken = token ?? (await AuthManager.shared.getAccessToken())
+        let storedToken = await AuthManager.shared.getAccessToken()
+        let effectiveToken = token ?? storedToken
         if let effectiveToken {
             request.setValue("Bearer \(effectiveToken)", forHTTPHeaderField: "Authorization")
         }
@@ -93,7 +89,7 @@ final class ApiService {
         return request
     }
 
-    private func perform<T: Decodable>(_ request: URLRequest) async throws -> T {
+    private func execute<T: Decodable>(_ request: URLRequest) async throws -> T {
         do {
             let (data, response) = try await session.data(for: request)
 
@@ -122,7 +118,7 @@ final class ApiService {
             }
 
             do {
-                return try decoder.decode(T.self, from: data)
+                return try JSONDecoder().decode(T.self, from: data)
             } catch {
                 throw ApiError.decoding(error)
             }

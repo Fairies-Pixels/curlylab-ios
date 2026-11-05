@@ -53,7 +53,7 @@ final class ProductRepositoryImpl: ProductRepository {
     
     func updateReview(userId: UUID, productId: UUID, reviewId: UUID, mark: Int, review: String) async throws {
         let request = ReviewRequest(userId: userId, mark: mark, review: review)
-        let _: ReviewResponse = try await apiClient.put("/products/\(productId.uuidString)/reviews/\(reviewId.uuidString)", body: request)
+        let _: ReviewResponse = try await apiClient.putReturning("/products/\(productId.uuidString)/reviews/\(reviewId.uuidString)", body: request)
     }
     
     func deleteReview(productId: UUID, reviewId: UUID) async throws {

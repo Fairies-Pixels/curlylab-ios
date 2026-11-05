@@ -9,6 +9,9 @@ import SwiftUI
 
 @MainActor
 final class IsColoredTypingViewModel: ObservableObject {
+    private let repository = HairTypesRepositoryImpl()
+    private let profileService = UserDefaultsService.shared
+    
     @Published var questions: [Question] = [
         Question(
             topic: "У вас окрашенные волосы? :)",
@@ -38,15 +41,35 @@ final class IsColoredTypingViewModel: ObservableObject {
         result = (answerResult == ColoredTypes.colored.rawValue) ? ColoredTypes.colored.resultName : ColoredTypes.notColored.resultName
     }
     
-    func saveResult(userId: String) async {
-        // TODO: Заменить на реальный вызов API
+    func saveResult() async {
+        guard let result = result else { return }
+        
+        guard let userId = AuthManager.shared.getUserId() else {
+            isSavedSuccess = false
+            alertMessage = "Ошибка: вы не авторизованы!"
+            showAlert = true
+            return
+        }
+        
+        let isColoredBool = (result == ColoredTypes.colored.resultName)
+        
+        let request = HairTypeRequest(
+            userId: userId,
+            porosity: nil,
+            isColored: isColoredBool,
+            thickness: nil
+        )
+        
         do {
-            try await Task.sleep(nanoseconds: 1_000_000_000)
+            try await repository.updateHairType(userId: userId, request: request)
+            
+            profileService.hairColoring = isColoredBool ? "Окрашенные" : "Неокрашенные"
+            
             isSavedSuccess = true
             alertMessage = "Результат успешно сохранен"
         } catch {
             isSavedSuccess = false
-            alertMessage = "Ошибка, не удалось сохранить"
+            alertMessage = "Ошибка: \(error.localizedDescription)"
         }
         showAlert = true
     }

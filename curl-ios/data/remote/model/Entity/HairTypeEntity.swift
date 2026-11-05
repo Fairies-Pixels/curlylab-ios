@@ -3,7 +3,6 @@
 //  curl-ios
 //
 //  Created by Nadineenik on 02.10.2026.
-// чтобы мы могли сохранить локально ответ от сервера, HairTypeRequest - только для сети
 //
 
 import SwiftData

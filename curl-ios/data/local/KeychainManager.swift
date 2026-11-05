@@ -12,18 +12,15 @@ final class KeychainManager {
     static let shared = KeychainManager()
     private init() {}
     
-    // Сохранение строки в Keychain
     func save(key: String, value: String) -> Bool {
         guard let data = value.data(using: .utf8) else { return false }
         
-        // Удаляем старое значение, если оно было
         let deleteQuery: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: key
         ]
         SecItemDelete(deleteQuery as CFDictionary)
         
-        // Добавляем новое
         let addQuery: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: key,
@@ -35,7 +32,6 @@ final class KeychainManager {
         return status == errSecSuccess
     }
     
-    // Чтение строки из Keychain
     func read(key: String) -> String? {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
@@ -51,7 +47,6 @@ final class KeychainManager {
         return String(data: data, encoding: .utf8)
     }
     
-    // Удаление
     func delete(key: String) -> Bool {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,

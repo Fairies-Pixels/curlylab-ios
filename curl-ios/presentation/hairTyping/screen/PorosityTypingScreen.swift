@@ -177,7 +177,7 @@ struct PorosityTypingScreen: View {
             Spacer()
 
             Button("Сохранить результат") {
-                Task { await viewModel.saveResult(userId: userId) }
+                Task { await viewModel.saveResult() }
             }
             .font(.system(size: 16, weight: .medium))
             .foregroundColor(.white)
