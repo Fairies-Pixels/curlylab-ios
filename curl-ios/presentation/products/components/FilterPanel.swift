@@ -9,7 +9,7 @@ struct FilterPanel: View {
     let onSave: () -> Void
 
     var body: some View {
-        VStack(spacing: 0) {
+        VStack(spacing: 16) {
             TagFilterSheet(
                 selectedTags: [
                     "Пористость": porosityTag,
@@ -20,43 +20,33 @@ struct FilterPanel: View {
                 onClose: onSave
             )
 
-            Spacer().frame(height: 12)
-
-            HStack {
+            HStack(spacing: 12) {
                 Button(action: onReset) {
-                    Text("Сбросить фильтры")
-                        .font(.footnote)
-                        .foregroundColor(.lightBeige)
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 8)
-                        .background(Color.brightPink)
-                        .cornerRadius(12)
+                    Text("Сбросить")
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundColor(Color(hex: "4A5B48"))
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 12)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 16)
+                                .stroke(Color(hex: "4A5B48").opacity(0.4), lineWidth: 1)
+                        )
                 }
-
-                Spacer()
 
                 Button(action: onSave) {
                     Text("Сохранить")
-                        .font(.footnote)
-                        .foregroundColor(.lightBeige)
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 8)
-                        .background(Color.darkGreen)
-                        .cornerRadius(12)
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 12)
+                        .background(Color(hex: "728C6A"))
+                        .cornerRadius(16)
                 }
             }
-            .frame(maxWidth: .infinity)
         }
-        .frame(maxWidth: .infinity)
-        .background(
-            Color.lightBeige
-                .clipShape(
-                    .rect(
-                        bottomLeadingRadius: 24,
-                        bottomTrailingRadius: 24
-                    )
-                )
-        )
-        .padding(16)
+        .padding(20)
+        .background(Color.white)
+        .cornerRadius(24)
+        .shadow(color: Color.black.opacity(0.05), radius: 5, x: 0, y: 2)
     }
 }

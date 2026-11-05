@@ -11,41 +11,11 @@ struct ProductsScreen: View {
     }
 
     var body: some View {
-        ZStack {
-            VStack(alignment: .leading, spacing: 0) {
-                Text("База средств")
-                    .font(.largeTitle)
-                    .foregroundColor(.darkGreen)
-                    .padding(.horizontal, 8)
-                    .padding(.top, 24)
-
-                Spacer().frame(height: 24)
-
-                HStack(spacing: 8) {
-                    SegmentedControl(
-                        items: ["Все продукты", "Избранное"],
-                        defaultSelectedIndex: viewModel.selectedTab == .allProducts ? 0 : 1,
-                        onSelection: { index in
-                            viewModel.selectTab(index == 0 ? .allProducts : .favoriteProducts)
-                        }
-                    )
-                    .frame(maxWidth: .infinity)
-
-                    Button {
-                        withAnimation {
-                            isFilterVisible.toggle()
-                        }
-                    } label: {
-                        Image(systemName: "line.3.horizontal.decrease.circle")
-                            .font(.system(size: 24))
-                            .foregroundColor(.lightBeige)
-                            .frame(width: 48, height: 48)
-                            .background(Color.brightPink)
-                            .cornerRadius(12)
-                    }
-                }
-                .padding(.horizontal, 8)
-
+        ScrollView {
+            VStack(alignment: .leading, spacing: 24) {
+                header
+                introCard
+                controls
                 if isFilterVisible {
                     FilterPanel(
                         porosityTag: viewModel.porosityTag,
@@ -64,17 +34,22 @@ struct ProductsScreen: View {
                     )
                     .transition(.move(edge: .top).combined(with: .opacity))
                 }
-
-                Spacer().frame(height: 16)
-
                 content
             }
-            .padding(.horizontal, 16)
-            .padding(.bottom, 24)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+            .padding(24)
         }
-        .navigationTitle("")
+        .background(Color(hex: "F8F4ED").ignoresSafeArea())
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Image(systemName: "line.3.horizontal")
+                    .foregroundColor(Color(hex: "4A5B48"))
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Image(systemName: "person.circle")
+                    .foregroundColor(Color(hex: "4A5B48"))
+            }
+        }
         .sheet(item: $selectedProduct) { product in
             ReviewModalSheet(
                 product: product,
@@ -86,12 +61,67 @@ struct ProductsScreen: View {
         }
     }
 
+    private var header: some View {
+        Text("База средств")
+            .font(.system(size: 28, weight: .regular, design: .serif))
+            .foregroundColor(Color(hex: "4A5B48"))
+            .frame(maxWidth: .infinity, alignment: .center)
+            .padding(.top, 16)
+    }
+
+    private var introCard: some View {
+        HStack(alignment: .top, spacing: 16) {
+            Image(systemName: "sparkles")
+                .font(.title)
+                .foregroundColor(Color(hex: "728C6A"))
+                .padding(12)
+                .background(Color.white)
+                .clipShape(Circle())
+                .shadow(color: Color.black.opacity(0.05), radius: 5, x: 0, y: 2)
+
+            Text("Подберите средства под тип ваших волос или сохраните любимые в избранное")
+                .font(.system(size: 15, weight: .medium))
+                .foregroundColor(Color(hex: "4A5B48"))
+                .lineSpacing(4)
+        }
+        .padding(20)
+        .background(Color(hex: "F8F4ED"))
+        .cornerRadius(24)
+    }
+
+    private var controls: some View {
+        HStack(spacing: 12) {
+            SegmentedControl(
+                items: ["Все продукты", "Избранное"],
+                defaultSelectedIndex: viewModel.selectedTab == .allProducts ? 0 : 1,
+                onSelection: { index in
+                    viewModel.selectTab(index == 0 ? .allProducts : .favoriteProducts)
+                }
+            )
+            .frame(maxWidth: .infinity)
+
+            Button {
+                withAnimation { isFilterVisible.toggle() }
+            } label: {
+                Image(systemName: "line.3.horizontal.decrease.circle")
+                    .font(.system(size: 22))
+                    .foregroundColor(Color(hex: "4A5B48"))
+                    .frame(width: 48, height: 48)
+                    .background(Color.white)
+                    .clipShape(Circle())
+                    .shadow(color: Color.black.opacity(0.05), radius: 5, x: 0, y: 2)
+            }
+        }
+    }
+
     @ViewBuilder
     private var content: some View {
         if viewModel.isLoading {
             ProductsLoading()
+                .padding(.top, 40)
         } else if let error = viewModel.error {
             ErrorMessage(message: error)
+                .padding(.top, 40)
         } else {
             let productsToShow: [Product] = {
                 switch viewModel.selectedTab {
@@ -100,19 +130,29 @@ struct ProductsScreen: View {
                 }
             }()
 
-            ProductsList(
-                productsToShow: productsToShow,
-                onFavoriteClick: { id in
-                    Task { await viewModel.toggleFavorite(productId: id) }
-                },
-                onProductClick: { product in
-                    selectedProduct = product
-                    Task { await viewModel.loadReviews(product.id) }
-                },
-                isProductFavorite: { id in
-                    viewModel.favorites.contains { $0.productId == id }
+            if productsToShow.isEmpty {
+                Text("Пока нет средств по выбранным фильтрам")
+                    .font(.system(size: 15, weight: .medium))
+                    .foregroundColor(Color(hex: "4A5B48").opacity(0.6))
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding(.vertical, 40)
+            } else {
+                LazyVStack(spacing: 12) {
+                    ForEach(productsToShow) { product in
+                        ProductCard(
+                            product: product,
+                            isFavorite: viewModel.favorites.contains { $0.productId == product.id },
+                            onFavoriteClick: {
+                                Task { await viewModel.toggleFavorite(productId: product.id) }
+                            },
+                            onProductClick: {
+                                selectedProduct = product
+                                Task { await viewModel.loadReviews(product.id) }
+                            }
+                        )
+                    }
                 }
-            )
+            }
         }
     }
 }

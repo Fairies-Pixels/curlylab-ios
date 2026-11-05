@@ -8,6 +8,6 @@ final class GetReviewsUseCase {
     }
 
     func execute(productId: UUID) async throws -> [Review] {
-        try await repository.fetchReviews(productId: productId)
+        try await repository.getReviews(productId: productId)
     }
 }

@@ -22,14 +22,12 @@ struct SegmentedControl: View {
         HStack(spacing: 4) {
             ForEach(items.indices, id: \.self) { index in
                 Text(items[index])
-                    .font(.custom("Golos", size: 14))
-                    .foregroundColor(selectedIndex == index ? .lightBeige : .darkGreen)
+                    .font(.system(size: 14, weight: .medium))
+                    .foregroundColor(selectedIndex == index ? .white : Color(hex: "4A5B48"))
                     .frame(maxWidth: .infinity)
-                    .padding(.vertical, 8)
-                    .background(
-                        selectedIndex == index ? Color.brightPink : Color.clear
-                    )
-                    .cornerRadius(8)
+                    .padding(.vertical, 10)
+                    .background(selectedIndex == index ? Color(hex: "728C6A") : Color.clear)
+                    .cornerRadius(14)
                     .contentShape(Rectangle())
                     .onTapGesture {
                         selectedIndex = index
@@ -38,7 +36,8 @@ struct SegmentedControl: View {
             }
         }
         .padding(4)
-        .background(Color.lightBeige)
-        .cornerRadius(12)
+        .background(Color.white)
+        .cornerRadius(18)
+        .shadow(color: Color.black.opacity(0.05), radius: 5, x: 0, y: 2)
     }
 }
