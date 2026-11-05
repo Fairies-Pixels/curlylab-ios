@@ -1,7 +1,3 @@
-//
-//  TokenStorage.swift
-//  curl-ios
-//  Для UserDefaults лучше сразу сделать небольшую обертку, чтобы не разбрасывать строковые ключи по всему проекту
 //  Created by Nadineenik on 02.10.2026. update 09.10.2026
 //
 

@@ -14,18 +14,3 @@ struct AuthResponse: Codable {
     let email: String?
     let username: String?
 }
-
-
-//struct AuthResponse: Codable {
-//    let accessToken: String
-//    let refreshToken: String
-//    let userId: String?
-//    let email: String?
-//    let username: String?
-//
-//    enum CodingKeys: String, CodingKey {
-//        case accessToken = "access"
-//        case refreshToken = "refresh"
-//        case  userId, email, username
-//    }
-//}
