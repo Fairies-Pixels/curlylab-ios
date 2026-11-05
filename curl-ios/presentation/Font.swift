@@ -6,6 +6,12 @@ public extension Font {
         weight: .medium,
         design: .serif
     )
+    
+    static var textSerif = Font.system(
+        size: 14,
+        weight: .medium,
+        design: .serif
+    )
 
     static var bodySerif = Font.system(
         size: 16,
@@ -22,6 +28,12 @@ public extension Font {
     static var titleSerif = Font.system(
         size: 28,
         weight: .medium,
+        design: .serif
+    )
+    
+    static var displaySerif = Font.system(
+        size: 40,
+        weight: .regular,
         design: .serif
     )
 }

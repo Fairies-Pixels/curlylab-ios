@@ -47,7 +47,7 @@ struct DictionaryScreen: View {
                 .padding(.top, 8)
             }
         }
-        .background(Color(hex: "F8F4ED").ignoresSafeArea())
+        .background(Color.curlySurface.ignoresSafeArea())
         .navigationBarTitleDisplayMode(.inline)
         .onChange(of: viewModel.searchQuery) { _, _ in
             viewModel.filterWords()

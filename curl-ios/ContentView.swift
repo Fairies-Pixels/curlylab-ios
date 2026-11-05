@@ -6,6 +6,7 @@ struct ContentView: View {
     var body: some View {
         NavigationStack(path: $path) {
             SignInScreen(
+                viewModel: SignInViewModelFactory.make(),
                 onSignIn: { path.append(Route.home) },
                 onGoToSignUp: { path.append(Route.signUp) }
             )
@@ -13,12 +14,14 @@ struct ContentView: View {
                 switch route {
                 case .signIn:
                     SignInScreen(
+                        viewModel: SignInViewModelFactory.make(),
                         onSignIn: { path.append(Route.home) },
                         onGoToSignUp: { path.append(Route.signUp) }
-                    )
+                )
 
                 case .signUp:
                     SignUpScreen(
+                        viewModel: SignUpViewModelFactory.make(),
                         onSignUp: { path.append(Route.home) },
                         onGoToSignIn: { path.removeLast() }
                     )
