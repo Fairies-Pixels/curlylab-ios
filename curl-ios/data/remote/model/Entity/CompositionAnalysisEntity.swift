@@ -18,7 +18,6 @@ class CompositionAnalysisEntity {
     var result: String?
     var dateCreated: Date
     
-    // Связь "один-ко-многим" с проблемами
     @Relationship(deleteRule: .cascade) var issues: [CompositionIssueEntity]?
     
     init(id: UUID = UUID(), status: String? = nil, ok: Bool? = nil, rawTextExcerpt: String? = nil, issuesCount: Int? = nil, result: String? = nil, dateCreated: Date = Date()) {

@@ -14,7 +14,7 @@ class FavoriteEntity {
     var userId: UUID
     var dateAdded: Date
     
-    // Связь с локальной сущностью продукта (если вы кэшируете продукты)
+    // Связь с локальной сущностью продукта (если кэшируете продукты)
     var product: ProductEntity?
     
     init(userId: UUID, productId: UUID, dateAdded: Date = Date()) {
