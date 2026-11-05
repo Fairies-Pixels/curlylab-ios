@@ -24,8 +24,6 @@
 		3E48FFB73077D617008C7914 /* OrDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E48FFB63077D617008C7914 /* OrDivider.swift */; };
 		3E48FFBA3077D865008C7914 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E48FFB93077D865008C7914 /* Color.swift */; };
 		3E48FFBC3077DB04008C7914 /* .gitignore in Sources */ = {isa = PBXBuildFile; fileRef = 3E48FFBB3077DB03008C7914 /* .gitignore */; };
-		3E7636F8308023D6004CAD5E /* ProductDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7636F7308023D6004CAD5E /* ProductDTO.swift */; };
-		3E7636FA308023EA004CAD5E /* ProductsResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7636F9308023EA004CAD5E /* ProductsResponseDTO.swift */; };
 		EB39FFDC307CEF0100284C6E /* GuideParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB39FFDB307CEF0100284C6E /* GuideParser.swift */; };
 		EB39FFDF307CEF6100284C6E /* GuideViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB39FFDE307CEF6100284C6E /* GuideViewModel.swift */; };
 		EB39FFE2307CEFA400284C6E /* GuideScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB39FFE1307CEFA400284C6E /* GuideScreen.swift */; };
@@ -108,8 +106,6 @@
 		3E48FFB63077D617008C7914 /* OrDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrDivider.swift; sourceTree = "<group>"; };
 		3E48FFB93077D865008C7914 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		3E48FFBB3077DB03008C7914 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		3E7636F7308023D6004CAD5E /* ProductDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDTO.swift; sourceTree = "<group>"; };
-		3E7636F9308023EA004CAD5E /* ProductsResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsResponseDTO.swift; sourceTree = "<group>"; };
 		EB39FFDB307CEF0100284C6E /* GuideParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideParser.swift; sourceTree = "<group>"; };
 		EB39FFDE307CEF6100284C6E /* GuideViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideViewModel.swift; sourceTree = "<group>"; };
 		EB39FFE1307CEFA400284C6E /* GuideScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideScreen.swift; sourceTree = "<group>"; };
@@ -452,7 +448,6 @@
 		EB4694CE306FCE7700510940 /* products */ = {
 			isa = PBXGroup;
 			children = (
-				3E7636F7308023D6004CAD5E /* ProductDTO.swift */,
 				EB4694D7306FDAC700510940 /* FavoriteRequest.swift */,
 				EB4694DB306FDC8600510940 /* ReviewRequest.swift */,
 			);
@@ -544,7 +539,6 @@
 				EBB2B4FF3073D29F00BF34DB /* ProductResponse.swift */,
 				EBB2B5053073D39B00BF34DB /* ReviewResponse.swift */,
 				EBB2B5093073D42000BF34DB /* DateParser.swift */,
-				3E7636F9308023EA004CAD5E /* ProductsResponseDTO.swift */,
 			);
 			path = products;
 			sourceTree = "<group>";
@@ -721,7 +715,6 @@
 				EB4694E0306FDE8100510940 /* RegisterRequest.swift in Sources */,
 				EBB2B5133073D74F00BF34DB /* HairTypeResponse.swift in Sources */,
 				EB46949F306FC93900510940 /* ContentView.swift in Sources */,
-				3E7636F8308023D6004CAD5E /* ProductDTO.swift in Sources */,
 				3E48FFB33077D5B4008C7914 /* FeatureCard.swift in Sources */,
 				EB4694D6306FD0C500510940 /* HairTypeEntity.swift in Sources */,
 				EB4694E7306FDF8100510940 /* LoginRequest.swift in Sources */,
@@ -741,7 +734,6 @@
 				EB39FFF1307CF32400284C6E /* DictionaryScreen.swift in Sources */,
 				EBB2B5003073D29F00BF34DB /* ProductResponse.swift in Sources */,
 				3E48FFA33077C1D5008C7914 /* SignInScreen.swift in Sources */,
-				3E7636FA308023EA004CAD5E /* ProductsResponseDTO.swift in Sources */,
 				EBB2B4EC3073C36800BF34DB /* AuthResponse.swift in Sources */,
 				3E48FFBA3077D865008C7914 /* Color.swift in Sources */,
 				EB4694DC306FDC8600510940 /* ReviewRequest.swift in Sources */,

@@ -5,8 +5,13 @@ struct ErrorMessage: View {
 
     var body: some View {
         Text(message)
-            .font(.body)
-            .foregroundColor(.red)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .font(.system(size: 15, weight: .medium))
+            .foregroundColor(Color(hex: "B5534B"))
+            .multilineTextAlignment(.center)
+            .frame(maxWidth: .infinity)
+            .padding(20)
+            .background(Color.white)
+            .cornerRadius(24)
+            .shadow(color: Color.black.opacity(0.05), radius: 5, x: 0, y: 2)
     }
 }

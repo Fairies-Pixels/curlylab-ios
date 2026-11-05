@@ -8,6 +8,6 @@ final class GetProductsUseCase {
     }
 
     func execute() async throws -> [Product] {
-        try await repository.fetchProducts()
+        try await repository.getProducts()
     }
 }

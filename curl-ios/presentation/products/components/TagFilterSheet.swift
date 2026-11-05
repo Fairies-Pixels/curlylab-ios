@@ -6,7 +6,7 @@ struct TagFilterSheet: View {
     let onClose: () -> Void
 
     var body: some View {
-        VStack(spacing: 10) {
+        VStack(spacing: 16) {
             FilterGroup(
                 title: "Пористость",
                 options: ["Высокая", "Средняя", "Низкая"],
@@ -26,15 +26,7 @@ struct TagFilterSheet: View {
                 onClick: { onTagClick("Окрашенность", $0) }
             )
         }
-        .padding(10)
         .frame(maxWidth: .infinity)
-        .background(Color.accentPink.opacity(0.1))
-        .clipShape(
-            .rect(
-                bottomLeadingRadius: 24,
-                bottomTrailingRadius: 24
-            )
-        )
     }
 }
 
@@ -45,30 +37,28 @@ private struct FilterGroup: View {
     let onClick: (String) -> Void
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
+        VStack(alignment: .leading, spacing: 8) {
             Text(title)
-                .font(.custom("Golos", size: 16))
-                .foregroundColor(.darkGreen)
+                .font(.system(size: 14, weight: .semibold))
+                .foregroundColor(Color(hex: "4A5B48"))
 
             HStack(spacing: 8) {
                 ForEach(options, id: \.self) { tag in
                     let isSelected = selected == tag
 
                     Text(tag)
-                        .font(.custom("Golos", size: 13))
-                        .foregroundColor(isSelected ? .white : .darkGreen)
+                        .font(.system(size: 13, weight: .medium))
+                        .foregroundColor(isSelected ? .white : Color(hex: "4A5B48"))
                         .lineLimit(1)
                         .truncationMode(.tail)
                         .multilineTextAlignment(.center)
                         .frame(maxWidth: .infinity)
                         .padding(.horizontal, 12)
-                        .padding(.vertical, 6)
-                        .background(isSelected ? Color.brightPink : Color.lightBeige)
+                        .padding(.vertical, 8)
+                        .background(isSelected ? Color(hex: "728C6A") : Color(hex: "F8F4ED"))
                         .cornerRadius(12)
                         .contentShape(Rectangle())
-                        .onTapGesture {
-                            onClick(tag)
-                        }
+                        .onTapGesture { onClick(tag) }
                 }
             }
             .frame(maxWidth: .infinity)

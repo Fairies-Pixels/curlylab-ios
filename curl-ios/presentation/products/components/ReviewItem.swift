@@ -6,60 +6,54 @@ struct ReviewItem: View {
     let onEditClick: (() -> Void)?
     let onDeleteClick: (() -> Void)?
 
-    @State private var expanded = false
-
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 10) {
             HStack(alignment: .center) {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(review.userName)
-                        .fontWeight(.bold)
-                        .foregroundColor(.darkGreen)
+                        .font(.system(size: 15, weight: .semibold))
+                        .foregroundColor(Color(hex: "4A5B48"))
 
                     Text(review.createdAt.formatted(.dateTime.day(.twoDigits).month(.twoDigits).year()))
-                        .font(.caption2)
-                        .foregroundColor(.gray)
+                        .font(.system(size: 12))
+                        .foregroundColor(Color(hex: "4A5B48").opacity(0.5))
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
 
-                HStack(spacing: 4) {
+                HStack(spacing: 2) {
                     ForEach(1...5, id: \.self) { i in
                         Image(systemName: i <= review.rating ? "star.fill" : "star")
-                            .font(.system(size: 16))
-                            .foregroundColor(i <= review.rating ? .accentPink : .gray)
+                            .font(.system(size: 14))
+                            .foregroundColor(i <= review.rating ? Color(hex: "D4739A") : Color(hex: "4A5B48").opacity(0.25))
                     }
                 }
 
-                Spacer().frame(width: 12)
+                Spacer().frame(width: 8)
 
                 if showMenu {
                     Menu {
                         if let onEditClick {
-                            Button {
-                                onEditClick()
-                            } label: {
+                            Button { onEditClick() } label: {
                                 Label("Редактировать", systemImage: "pencil")
                             }
                         }
                         if let onDeleteClick {
-                            Button(role: .destructive) {
-                                onDeleteClick()
-                            } label: {
+                            Button(role: .destructive) { onDeleteClick() } label: {
                                 Label("Удалить", systemImage: "trash")
                             }
                         }
                     } label: {
                         Image(systemName: "ellipsis")
-                            .foregroundColor(.gray)
+                            .foregroundColor(Color(hex: "4A5B48").opacity(0.5))
                             .frame(width: 24, height: 24)
                     }
-                } else {
-                    Spacer().frame(width: 24)
                 }
             }
 
             Text(review.comment)
-                .foregroundColor(.gray)
+                .font(.system(size: 14))
+                .foregroundColor(Color(hex: "4A5B48").opacity(0.75))
+                .lineSpacing(3)
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
         .padding(16)
