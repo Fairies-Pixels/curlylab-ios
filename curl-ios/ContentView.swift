@@ -2,10 +2,12 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var path = NavigationPath()
+    @StateObject private var authManager = AuthManager.shared
 
     var body: some View {
         NavigationStack(path: $path) {
             SignInScreen(
+                viewModel: SignInViewModelFactory.make(),
                 onSignIn: { path.append(Route.home) },
                 onGoToSignUp: { path.append(Route.signUp) }
             )
@@ -13,12 +15,14 @@ struct ContentView: View {
                 switch route {
                 case .signIn:
                     SignInScreen(
+                        viewModel: SignInViewModelFactory.make(),
                         onSignIn: { path.append(Route.home) },
                         onGoToSignUp: { path.append(Route.signUp) }
-                    )
+                )
 
                 case .signUp:
                     SignUpScreen(
+                        viewModel: SignUpViewModelFactory.make(),
                         onSignUp: { path.append(Route.home) },
                         onGoToSignIn: { path.removeLast() }
                     )
@@ -31,7 +35,8 @@ struct ContentView: View {
                             onDictionary:  { path.append(Route.dictionary) },
                             onHairTyping:  { path.append(Route.hairTyping) },
                             onProducts:    { path.append(Route.products) }
-                        )
+                        ),
+                        onLogout: { path.append(Route.signIn) }
                     )
 
                 case .composition:
@@ -72,5 +77,12 @@ struct ContentView: View {
                 }
             }
         }
+        .onAppear(perform: setInitialRouteIfNeeded)
     }
+    
+    private func setInitialRouteIfNeeded() {
+            if authManager.hasValidSession {
+                path.append(Route.home)
+            }
+        }
 }

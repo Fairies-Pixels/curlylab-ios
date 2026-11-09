@@ -18,24 +18,29 @@ final class HomeViewModel: ObservableObject {
     @Published var draftName: String = ""
     @Published var draftEmail: String = ""
     @Published var draftAvatar: String = ""
+    
+    @Published private(set) var errorMessage: String? = nil
 
     private let profileService: UserDefaultsService
     private let router: HomeRouter
     private var cancellables = Set<AnyCancellable>()
+    private let logoutUseCase: LogoutUseCase
 
     init(
         profileService: UserDefaultsService = .shared,
+        logoutUseCase: LogoutUseCase,
         router: HomeRouter
     ) {
         self.profileService = profileService
         self.router = router
+        self.logoutUseCase = logoutUseCase
         refreshFromProfile()
         bindProfile()
     }
 
     private func refreshFromProfile() {
         userName      = Self.displayName(from: profileService.name)
-        email         = profileService.email
+        email         = Self.displayName(from: profileService.email)
         avatar        = profileService.avatar
         hairPorosity  = profileService.hairPorosity
         hairThickness = profileService.hairThickness
@@ -102,7 +107,6 @@ final class HomeViewModel: ObservableObject {
     }
 
     private func isValidEmail(_ email: String) -> Bool {
-        // минимальная проверка; при желании замените на regex
         let parts = email.split(separator: "@")
         guard parts.count == 2,
               let domain = parts.last,
@@ -110,8 +114,21 @@ final class HomeViewModel: ObservableObject {
               !parts[0].isEmpty else { return false }
         return true
     }
+    
+    func didTapSignOut(onSuccess: @escaping () -> Void) {
+        Task {
+            defer { isLoading = true }
+            do {
+                _ = try await logoutUseCase()
+                errorMessage = nil
+                onSuccess()
+            } catch {
+                errorMessage = (error as? LocalizedError)?.errorDescription
+                    ?? error.localizedDescription
+            }
+        }
+    }
 
-    // MARK: - Sidebar
     func openSidebar() {
         withAnimation(.easeInOut(duration: 0.25)) { isSidebarOpen = true }
     }
@@ -123,8 +140,6 @@ final class HomeViewModel: ObservableObject {
     func toggleSidebar() {
         isSidebarOpen ? closeSidebar() : openSidebar()
     }
-
-    func didTapSignOut() { /* логика выхода */ }
 
     func didTapComposition() { router.openComposition() }
     func didTapGuide()       { router.openGuide() }

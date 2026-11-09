@@ -2,7 +2,14 @@ import SwiftUI
 
 struct SidebarView: View {
     
+    let onLogout: () -> Void
+    
     @ObservedObject var viewModel: HomeViewModel
+    
+    init(onLogout: @escaping () -> Void, viewModel: HomeViewModel) {
+        self.onLogout = onLogout
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -42,7 +49,7 @@ struct SidebarView: View {
                 .overlay(Color(.curlySurface))
                 .padding(.vertical, 10)
             
-            Button(action: viewModel.didTapSignOut) {
+            Button(action: { viewModel.didTapSignOut(onSuccess: onLogout) }) {
                 Label("Выйти", systemImage: "rectangle.portrait.and.arrow.right")
                     .font(.bodySerif)
                     .foregroundStyle(Color(.curlySurface))
@@ -112,7 +119,7 @@ struct SidebarView: View {
                 .font(.titleSerif)
                 .foregroundStyle(Color(.curlySurface))
             
-            Text(verbatim: viewModel.email.uppercased())
+            Text(viewModel.email.uppercased())
                 .font(.captionSerif)
                 .tracking(1)
                 .foregroundStyle(Color(.curlySurface))

@@ -24,7 +24,7 @@ struct GuideScreen: View {
             }
             .padding(24)
         }
-        .background(Color(hex: "F8F4ED").ignoresSafeArea())
+        .background(Color.curlySurface.ignoresSafeArea())
         .navigationTitle("Гайд")
         .navigationBarTitleDisplayMode(.inline)
     }

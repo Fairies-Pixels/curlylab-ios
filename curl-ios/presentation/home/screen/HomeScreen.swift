@@ -3,9 +3,14 @@ import SwiftUI
 struct HomeScreen: View {
 
     @StateObject private var viewModel: HomeViewModel
+    
+    let onLogout: () -> Void
 
-    init(router: HomeRouter) {
-        _viewModel = StateObject(wrappedValue: HomeViewModel(router: router))
+    init(router: HomeRouter, onLogout: @escaping () -> Void) {
+        _viewModel = StateObject(
+            wrappedValue: HomeViewModelFactory.make(router: router)
+        )
+        self.onLogout = onLogout
     }
 
     var body: some View {
@@ -20,7 +25,7 @@ struct HomeScreen: View {
                     .transition(.opacity)
             }
             
-            SidebarView(viewModel: viewModel)
+            SidebarView(onLogout: onLogout, viewModel: viewModel)
                 .frame(width: 280)
                 .offset(x: viewModel.isSidebarOpen ? 0 : -280)
                 .animation(.easeInOut(duration: 0.25), value: viewModel.isSidebarOpen)

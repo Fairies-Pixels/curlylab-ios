@@ -22,6 +22,12 @@ final class ApiService {
     func put<T: Encodable>(_ path: String, body: T, token: String?) async throws {
         var request = try await buildRequest(path, method: "PUT", token: token)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+
+        if let token = token {
+            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        }
+
         request.httpBody = try JSONEncoder().encode(body)
 
         let (data, response) = try await session.data(for: request)
@@ -121,6 +127,20 @@ final class ApiService {
                 return try JSONDecoder().decode(T.self, from: data)
             } catch {
                 throw ApiError.decoding(error)
+            }
+        } catch let error as ApiError {
+            throw error
+        } catch {
+            throw ApiError.network(error)
+        }
+    }
+
+    private func executeVoid(_ request: URLRequest) async throws {
+        do {
+            let (data, response) = try await session.data(for: request)
+            guard let httpResponse = response as? HTTPURLResponse else { throw ApiError.unknown }
+            guard (200..<300).contains(httpResponse.statusCode) else {
+                throw ApiError.http(code: httpResponse.statusCode, message: String(data: data, encoding: .utf8))
             }
         } catch let error as ApiError {
             throw error
