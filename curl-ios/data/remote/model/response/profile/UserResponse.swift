@@ -10,7 +10,7 @@ import Foundation
 struct UserResponse: Codable {
     let id: String
     let username: String
-    let createdAt: String // LocalDateTime приходит как строка в ISO формате
+    let createdAt: String
     let imageUrl: String?
 }
 

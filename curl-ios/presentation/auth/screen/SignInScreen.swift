@@ -65,7 +65,7 @@ struct SignInScreen: View {
                         Spacer().frame(height: 4)
 
                         Button {
-                            onSignIn()//viewModel.signIn(onSuccess: onSignIn)
+                            viewModel.signIn(onSuccess: onSignIn)
                         } label: {
                             if viewModel.isEmailLoading {
                                 ProgressView()

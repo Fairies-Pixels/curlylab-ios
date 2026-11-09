@@ -1,9 +1,9 @@
 import Foundation
 
 final class AuthRepositoryImpl: AuthRepository {
-
     private let apiService = ApiService.shared
     private let authManager = AuthManager.shared
+    private let userRepository: UserRepository = UserRepositoryImpl()
 
     func register(email: String, password: String, username: String) async throws -> AuthResponse {
         do {
@@ -27,6 +27,8 @@ final class AuthRepositoryImpl: AuthRepository {
                 username: username,
                 email: email
             )
+            UserDefaultsService.shared.name  = username
+            UserDefaultsService.shared.email = email
             return authResponse
         } catch let error as AuthError {
             throw error
@@ -34,8 +36,6 @@ final class AuthRepositoryImpl: AuthRepository {
             throw AuthError.network(error.localizedDescription)
         }
     }
-
-    // MARK: - Login
 
     func login(email: String, password: String) async throws -> AuthResponse {
         do {
@@ -50,15 +50,19 @@ final class AuthRepositoryImpl: AuthRepository {
             guard let userId = JwtDecoder.decodeUserId(authResponse.access) else {
                 throw AuthError.invalidToken
             }
+            
+            let user = try await userRepository.getUser(id: userId)
 
             await authManager.saveAuthData(
                 isLoggedIn: true,
                 accessToken: authResponse.access,
                 refreshToken: authResponse.refresh,
                 userId: userId,
-                username: authResponse.username,
+                username: user.username,
                 email: email
             )
+            UserDefaultsService.shared.name = user.username
+            UserDefaultsService.shared.email = email
             return authResponse
         } catch let error as AuthError {
             throw error
@@ -76,24 +80,15 @@ final class AuthRepositoryImpl: AuthRepository {
             if let refreshToken = await authManager.getRefreshToken() {
                 let path = "/auth/logout"
                 let body = LogoutRequest(refreshToken: refreshToken)
-                //try await apiService.postVoid(path, body: body, token: nil)
+                let resp: AuthResponse = try await apiService.post(
+                    path,
+                    body: body
+                )
             }
         } catch {
             print("Logout error: \(error)")
         }
         await authManager.clearAuthData()
-    }
-
-    func deleteAccount(userId: String) async throws {
-        await logout()
-        do {
-            let path = "/users/\(userId)"
-            let token = await authManager.getAccessToken()
-            //try await apiService.delete(path, token: token)
-            await authManager.clearAuthData()
-        } catch {
-            throw AuthError.deleteAccount(error.localizedDescription)
-        }
     }
 
     func getAccessToken() async -> String? {

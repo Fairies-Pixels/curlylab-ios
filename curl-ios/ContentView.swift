@@ -34,7 +34,8 @@ struct ContentView: View {
                             onDictionary:  { path.append(Route.dictionary) },
                             onHairTyping:  { path.append(Route.hairTyping) },
                             onProducts:    { path.append(Route.products) }
-                        )
+                        ),
+                        onLogout: { path.append(Route.signIn) }
                     )
 
                 case .composition:

@@ -5,7 +5,6 @@ protocol AuthRepository {
     func login(email: String, password: String) async throws -> AuthResponse
     func isUserLoggedIn() async -> Bool
     func logout() async
-    func deleteAccount(userId: String) async throws
     func getAccessToken() async -> String?
     func getUserId() async -> String?
 }
