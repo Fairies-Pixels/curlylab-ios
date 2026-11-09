@@ -33,6 +33,12 @@ final class AuthManager: ObservableObject {
         self.isLoggedIn = userDefaults.bool(forKey: Keys.isLoggedIn)
     }
     
+    var hasValidSession: Bool {
+        isLoggedIn
+        && tokenStorage.getAccessToken() != nil
+        && tokenStorage.getRefreshToken() != nil
+    }
+    
     func saveAuthData(
         isLoggedIn: Bool,
         accessToken: String? = nil,

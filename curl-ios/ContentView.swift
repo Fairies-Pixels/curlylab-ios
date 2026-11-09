@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var path = NavigationPath()
+    @StateObject private var authManager = AuthManager.shared
 
     var body: some View {
         NavigationStack(path: $path) {
@@ -76,5 +77,12 @@ struct ContentView: View {
                 }
             }
         }
+        .onAppear(perform: setInitialRouteIfNeeded)
     }
+    
+    private func setInitialRouteIfNeeded() {
+            if authManager.hasValidSession {
+                path.append(Route.home)
+            }
+        }
 }
