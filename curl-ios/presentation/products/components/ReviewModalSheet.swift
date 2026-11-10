@@ -113,7 +113,7 @@ struct ReviewModalSheet: View {
                     Button {
                         if let review = editingReview {
                             Task {
-                                await viewModel.deleteReview(product.id, review.id)
+                                await viewModel.deleteReview(productId: product.id, reviewId: review.id)
                                 editingReview = nil
                                 rating = 0
                                 comment = ""
@@ -241,6 +241,6 @@ struct ReviewModalSheet: View {
     }
 
     private func handleDelete(_ review: Review) {
-        Task { await viewModel.deleteReview(product.id, review.id) }
+        Task { await viewModel.deleteReview(productId: product.id, reviewId: review.id) }
     }
 }

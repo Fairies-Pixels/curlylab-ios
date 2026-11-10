@@ -66,6 +66,40 @@ final class ApiService {
         let request = try await buildRequest(path, method: "DELETE")
         return try await execute(request)
     }
+    
+    func postMultipart(_ path: String, fieldName: String, fileName: String, mimeType: String, fileData: Data) async throws -> String {
+        let boundary = "Boundary-\(UUID().uuidString)"
+        var request = try await buildRequest(path, method: "POST")
+
+        request.setValue(
+            "multipart/form-data; boundary=\(boundary)",
+            forHTTPHeaderField: "Content-Type"
+        )
+
+        var body = Data()
+        body.append("--\(boundary)\r\n".data(using: .utf8)!)
+        body.append("Content-Disposition: form-data; name=\"\(fieldName)\"; filename=\"\(fileName)\"\r\n".data(using: .utf8)!)
+        body.append("Content-Type: \(mimeType)\r\n\r\n".data(using: .utf8)!)
+        body.append(fileData)
+        body.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
+
+        request.httpBody = body
+
+        let (data, response) = try await session.data(for: request)
+
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw ApiError.unknown
+        }
+
+        guard (200..<300).contains(httpResponse.statusCode) else {
+            throw ApiError.http(
+                code: httpResponse.statusCode,
+                message: String(data: data, encoding: .utf8)
+            )
+        }
+
+        return String(data: data, encoding: .utf8) ?? ""
+    }
 
     private func buildRequest(
         _ path: String,
@@ -110,10 +144,11 @@ final class ApiService {
                 )
             }
 
+            if T.self == EmptyResponse.self {
+                return EmptyResponse() as! T
+            }
+
             if data.isEmpty {
-                if T.self == EmptyResponse.self {
-                    return EmptyResponse() as! T
-                }
                 throw ApiError.decoding(
                     NSError(
                         domain: "ApiService",
@@ -134,20 +169,9 @@ final class ApiService {
             throw ApiError.network(error)
         }
     }
-
-    private func executeVoid(_ request: URLRequest) async throws {
-        do {
-            let (data, response) = try await session.data(for: request)
-            guard let httpResponse = response as? HTTPURLResponse else { throw ApiError.unknown }
-            guard (200..<300).contains(httpResponse.statusCode) else {
-                throw ApiError.http(code: httpResponse.statusCode, message: String(data: data, encoding: .utf8))
-            }
-        } catch let error as ApiError {
-            throw error
-        } catch {
-            throw ApiError.network(error)
-        }
-    }
 }
 
-struct EmptyResponse: Decodable {}
+struct EmptyResponse: Decodable {
+    init() {}
+    init(from decoder: Decoder) throws {}
+}
