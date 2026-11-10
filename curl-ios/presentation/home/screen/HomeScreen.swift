@@ -60,18 +60,25 @@ struct HomeScreen: View {
                 VStack(spacing: 16) {
                     HStack(alignment: .top, spacing: 16) {
                         VStack(spacing: 16) {
+//                            FeatureCard(
+//                                bgColor: Color(.curlyGreen),
+//                                textColor: Color.curlySurface,
+//                                title: "Проверка составов",
+//                                height: 280,
+//                                action: viewModel.didTapComposition
+//                            )
                             FeatureCard(
-                                bgColor: Color(.curlyGreen),
+                                bgColor: Color(.curlyLavander),
                                 textColor: Color.curlySurface,
-                                title: "Проверка составов",
+                                title: "База средств",
                                 height: 280,
-                                action: viewModel.didTapComposition
+                                action: viewModel.didTapProducts
                             )
                             FeatureCard(
                                 bgColor: Color(.curlyBlue),
                                 textColor: Color.curlySurface,
                                 title: "Гайд",
-                                height: 132,
+                                height: 200,
                                 action: viewModel.didTapGuide
                             )
                         }
@@ -81,7 +88,7 @@ struct HomeScreen: View {
                                 bgColor: Color(.curlyOrange),
                                 textColor: Color.curlySurface,
                                 title: "Словарь",
-                                height: 132,
+                                height: 200,
                                 action: viewModel.didTapDictionary
                             )
                             FeatureCard(
@@ -93,14 +100,6 @@ struct HomeScreen: View {
                             )
                         }
                     }
-
-                    FeatureCard(
-                        bgColor: Color(.curlyLavander),
-                        textColor: Color.curlySurface,
-                        title: "База средств",
-                        height: 132,
-                        action: viewModel.didTapProducts
-                    )
                 }
             }
             .padding(24)

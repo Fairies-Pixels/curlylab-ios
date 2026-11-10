@@ -18,15 +18,44 @@ final class UserDefaultsService: ObservableObject {
         static let name = "Вика"
         static let email = "vik@mail.ru"
         static let avatar = "person.crop.circle"
-        static let hairPorosity = "Средне-пористые"
-        static let hairThickness = "Тонкие"
-        static let hairColoring = "Неокрашенные"
+        static let hairPorosity = "Не определено"
+        static let hairThickness = "Не определено"
+        static let hairColoring = "Не определено"
     }
     
     enum Options {
-        static let porosity = ["Низко-пористые", "Средне-пористые", "Высоко-пористые"]
-        static let thickness = ["Тонкие", "Средние", "Толстые"]
-        static let coloring = ["Неокрашенные", "Окрашенные", "Осветлённые"]
+        static let porosity = [PorosityOptions.low, PorosityOptions.medium, PorosityOptions.high]
+        static let thickness = [ThicknessOptions.thick, ThicknessOptions.thin, ThicknessOptions.medium]
+        static let coloring = [ColoringOptions.colored, ColoringOptions.notColored]
+    }
+    
+    enum PorosityOptions {
+        static let low = "Низко-пористые"
+        static let medium = "Средне-пористые"
+        static let high = "Средне-пористые"
+    }
+    
+    enum PorosityDbOptions {
+        static let low = "LOW"
+        static let medium = "MEDIUM"
+        static let high = "HIGH"
+    }
+    
+    enum ThicknessDbOptions {
+        static let thin = "THIN"
+        static let medium = "MEDIUM"
+        static let thick = "THICK"
+    }
+    
+    enum ThicknessOptions {
+        static let thin = "Тонкие"
+        static let medium = "Средние"
+        static let thick = "Толстые"
+    }
+    
+    enum ColoringOptions {
+        static let notColored = "Неокрашенные"
+        static let colored = "Окрашенные"
     }
     
     enum Avatars {
@@ -92,6 +121,32 @@ final class UserDefaultsService: ObservableObject {
         set {
             objectWillChange.send()
             defaults.set(newValue, forKey: Keys.hairColoring)
+        }
+    }
+    
+    func porosityFromDbCode(dbCode: String?) -> String {
+        return switch dbCode {
+            case PorosityDbOptions.high: PorosityOptions.high
+            case PorosityDbOptions.medium: PorosityOptions.medium
+            case PorosityDbOptions.low: PorosityOptions.low
+            default: "Не определено"
+        }
+    }
+    
+    func thicknessFromDbCode(dbCode: String?) -> String {
+        return switch dbCode {
+            case ThicknessDbOptions.thin: ThicknessOptions.thin
+            case ThicknessDbOptions.thick: ThicknessOptions.thin
+            case ThicknessDbOptions.medium: ThicknessOptions.medium
+            default: "Не определено"
+        }
+    }
+    
+    func coloredFromDbCode(dbCode: Bool?) -> String {
+        return switch dbCode {
+            case true: ColoringOptions.colored
+            case false: ColoringOptions.notColored
+            default: "Не определено"
         }
     }
     

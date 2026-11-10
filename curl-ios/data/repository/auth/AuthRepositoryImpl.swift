@@ -3,7 +3,9 @@ import Foundation
 final class AuthRepositoryImpl: AuthRepository {
     private let apiService = ApiService.shared
     private let authManager = AuthManager.shared
+    private let userDefaultsService = UserDefaultsService.shared
     private let userRepository: UserRepository = UserRepositoryImpl()
+    private let hairTypeRepository: HairTypesRepository = HairTypesRepositoryImpl()
 
     func register(email: String, password: String, username: String) async throws -> AuthResponse {
         do {
@@ -52,6 +54,7 @@ final class AuthRepositoryImpl: AuthRepository {
             }
             
             let user = try await userRepository.getUser(id: userId)
+            let userHairType = try await hairTypeRepository.getHairType(userId: userId)
 
             await authManager.saveAuthData(
                 isLoggedIn: true,
@@ -63,6 +66,10 @@ final class AuthRepositoryImpl: AuthRepository {
             )
             UserDefaultsService.shared.name = user.username
             UserDefaultsService.shared.email = email
+            UserDefaultsService.shared.hairColoring = userDefaultsService.coloredFromDbCode(dbCode: userHairType.isColored)
+            UserDefaultsService.shared.hairPorosity = userDefaultsService.porosityFromDbCode(dbCode: userHairType.porosity)
+            UserDefaultsService.shared.hairThickness = userDefaultsService.thicknessFromDbCode(dbCode: userHairType.thickness)
+            
             return authResponse
         } catch let error as AuthError {
             throw error
@@ -89,6 +96,7 @@ final class AuthRepositoryImpl: AuthRepository {
             print("Logout error: \(error)")
         }
         await authManager.clearAuthData()
+        userDefaultsService.reset()
     }
 
     func getAccessToken() async -> String? {
