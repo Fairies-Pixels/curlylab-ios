@@ -60,13 +60,6 @@ struct HomeScreen: View {
                 VStack(spacing: 16) {
                     HStack(alignment: .top, spacing: 16) {
                         VStack(spacing: 16) {
-//                            FeatureCard(
-//                                bgColor: Color(.curlyGreen),
-//                                textColor: Color.curlySurface,
-//                                title: "Проверка составов",
-//                                height: 280,
-//                                action: viewModel.didTapComposition
-//                            )
                             FeatureCard(
                                 bgColor: Color(.curlyLavander),
                                 textColor: Color.curlySurface,
@@ -92,7 +85,7 @@ struct HomeScreen: View {
                                 action: viewModel.didTapDictionary
                             )
                             FeatureCard(
-                                bgColor: Color.lightPink,
+                                bgColor: Color.curlyPink,
                                 textColor: Color.curlyDarkGreen,
                                 title: "Типизация волос",
                                 height: 280,

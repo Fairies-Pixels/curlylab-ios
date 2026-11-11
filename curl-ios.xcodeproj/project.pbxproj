@@ -17,13 +17,13 @@
 		3C75F95C3086626F00F101AB /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C75F95B3086626F00F101AB /* EditProfileView.swift */; };
 		3C75F95E3086645600F101AB /* AvatarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C75F95D3086645600F101AB /* AvatarCell.swift */; };
 		3CF5B22330A20C4A006A7B34 /* HomeViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF5B22230A20C37006A7B34 /* HomeViewModelFactory.swift */; };
+		3CF5B7C930A4CE9A006A7B34 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 3CF5B7C830A4CE96006A7B34 /* .swiftlint.yml */; };
 		3E48FFA03077C126008C7914 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E48FF9F3077C126008C7914 /* Screen.swift */; };
 		3E48FFA83077C63E008C7914 /* OutlinedField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E48FFA73077C63E008C7914 /* OutlinedField.swift */; };
 		3E48FFAF3077CF02008C7914 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E48FFAE3077CF02008C7914 /* Assets.xcassets */; };
 		3E48FFB33077D5B4008C7914 /* FeatureCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E48FFB23077D5B4008C7914 /* FeatureCard.swift */; };
 		3E48FFB53077D5CD008C7914 /* PasswordField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E48FFB43077D5CD008C7914 /* PasswordField.swift */; };
 		3E48FFB73077D617008C7914 /* OrDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E48FFB63077D617008C7914 /* OrDivider.swift */; };
-		3E48FFBA3077D865008C7914 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E48FFB93077D865008C7914 /* Color.swift */; };
 		3E48FFBC3077DB04008C7914 /* .gitignore in Sources */ = {isa = PBXBuildFile; fileRef = 3E48FFBB3077DB03008C7914 /* .gitignore */; };
 		D8B6DD35309C6E90005167ED /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B6DD34309C6E90005167ED /* AuthManager.swift */; };
 		EB39FFDC307CEF0100284C6E /* GuideParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB39FFDB307CEF0100284C6E /* GuideParser.swift */; };
@@ -99,13 +99,13 @@
 		3C75F95B3086626F00F101AB /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		3C75F95D3086645600F101AB /* AvatarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCell.swift; sourceTree = "<group>"; };
 		3CF5B22230A20C37006A7B34 /* HomeViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelFactory.swift; sourceTree = "<group>"; };
+		3CF5B7C830A4CE96006A7B34 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		3E48FF9F3077C126008C7914 /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 		3E48FFA73077C63E008C7914 /* OutlinedField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinedField.swift; sourceTree = "<group>"; };
 		3E48FFAE3077CF02008C7914 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E48FFB23077D5B4008C7914 /* FeatureCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureCard.swift; sourceTree = "<group>"; };
 		3E48FFB43077D5CD008C7914 /* PasswordField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordField.swift; sourceTree = "<group>"; };
 		3E48FFB63077D617008C7914 /* OrDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrDivider.swift; sourceTree = "<group>"; };
-		3E48FFB93077D865008C7914 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		3E48FFBB3077DB03008C7914 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		D8B6DD34309C6E90005167ED /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		EB39FFDB307CEF0100284C6E /* GuideParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideParser.swift; sourceTree = "<group>"; };
@@ -208,7 +208,6 @@
 				3E48FFA93077C6A5008C7914 /* home */,
 				3E48FFA13077C1C6008C7914 /* auth */,
 				3E48FF9E3077C10D008C7914 /* navigation */,
-				3E48FFB93077D865008C7914 /* Color.swift */,
 			);
 			path = presentation;
 			sourceTree = "<group>";
@@ -339,6 +338,7 @@
 		EB469490306FC93900510940 = {
 			isa = PBXGroup;
 			children = (
+				3CF5B7C830A4CE96006A7B34 /* .swiftlint.yml */,
 				3E48FFBB3077DB03008C7914 /* .gitignore */,
 				3E48FFAE3077CF02008C7914 /* Assets.xcassets */,
 				EB46949B306FC93900510940 /* curl-ios */,
@@ -563,6 +563,7 @@
 				EB469495306FC93900510940 /* Sources */,
 				EB469496306FC93900510940 /* Frameworks */,
 				EB469497306FC93900510940 /* Resources */,
+				3CF5B7CA30A4CF0F006A7B34 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -674,6 +675,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CF5B7C930A4CE9A006A7B34 /* .swiftlint.yml in Resources */,
 				3E48FFAF3077CF02008C7914 /* Assets.xcassets in Resources */,
 				EB4694A6306FC93B00510940 /* Preview Assets.xcassets in Resources */,
 			);
@@ -694,6 +696,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3CF5B7CA30A4CF0F006A7B34 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\ncd \"$SRCROOT\"\n\nif command -v swiftlint >/dev/null 2>&1; then\n    swiftlint lint --config \"$SRCROOT/.swiftlint.yml\" \"$SRCROOT\"\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EB469495306FC93900510940 /* Sources */ = {
@@ -737,7 +759,6 @@
 				EB39FFF1307CF32400284C6E /* DictionaryScreen.swift in Sources */,
 				EBB2B5003073D29F00BF34DB /* ProductResponse.swift in Sources */,
 				EBB2B4EC3073C36800BF34DB /* AuthResponse.swift in Sources */,
-				3E48FFBA3077D865008C7914 /* Color.swift in Sources */,
 				EB4694DC306FDC8600510940 /* ReviewRequest.swift in Sources */,
 				EBB2B4FA3073D11000BF34DB /* FavoriteResponse.swift in Sources */,
 				EBB2B50A3073D42000BF34DB /* DateParser.swift in Sources */,
@@ -923,6 +944,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"curl-ios/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -951,6 +973,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"curl-ios/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

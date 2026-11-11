@@ -3,16 +3,19 @@ import SwiftUI
 struct PorosityTypingScreen: View {
     @StateObject private var viewModel = PorosityTypingViewModel()
     @Environment(\.dismiss) private var dismiss
-    
+
     var body: some View {
         ZStack {
             Color(hex: "F8F4ED").ignoresSafeArea()
-            
+
             if let result = viewModel.result {
+                let onSaveAction: () -> Void = { Task { await viewModel.saveResult() } }
+                let onSkipAction: () -> Void = { dismiss() }
+
                 TypingResultView(
                     resultTitle: result.resultName,
-                    onSave: { Task { await viewModel.saveResult() } },
-                    onSkip: { dismiss() }
+                    onSave: onSaveAction,
+                    onSkip: onSkipAction
                 )
             } else {
                 questionView
@@ -35,7 +38,7 @@ struct PorosityTypingScreen: View {
             }
         }
     }
-    
+
     private var questionView: some View {
         VStack(spacing: 24) {
             HStack(spacing: 12) {
@@ -44,7 +47,7 @@ struct PorosityTypingScreen: View {
                         Capsule()
                             .fill(Color(hex: "EDE9E1"))
                             .frame(height: 4)
-                        
+
                         Capsule()
                             .fill(Color(hex: "728C6A"))
                             .frame(width: geo.size.width * progress, height: 4)
@@ -52,7 +55,7 @@ struct PorosityTypingScreen: View {
                     }
                 }
                 .frame(height: 4)
-                
+
                 Text("\(viewModel.currentQuestionId + 1)/\(viewModel.questions.count)")
                     .font(.system(size: 14, weight: .medium))
                     .foregroundColor(Color(hex: "4A5B48"))
@@ -72,7 +75,7 @@ struct PorosityTypingScreen: View {
                             .background(Color(hex: "F8F4ED"))
                             .clipShape(Circle())
                             .overlay(Circle().stroke(Color(hex: "728C6A").opacity(0.3), lineWidth: 1))
-                        
+
                         Text(question.topic)
                             .font(.system(size: 18, weight: .medium))
                             .foregroundColor(Color(hex: "4A5B48"))
@@ -87,7 +90,7 @@ struct PorosityTypingScreen: View {
                         ForEach(question.answers.indices, id: \.self) { index in
                             let answer = question.answers[index]
                             let isSelected = question.selectedIndex == index
-                            
+
                             Button {
                                 viewModel.selectAnswer(at: index)
                             } label: {
@@ -102,7 +105,7 @@ struct PorosityTypingScreen: View {
                                         .font(.system(size: 15, weight: .regular))
                                         .foregroundColor(Color(hex: "4A5B48"))
                                         .multilineTextAlignment(.leading)
-                                    
+
                                     Spacer()
                                 }
                                 .padding(20)
@@ -139,7 +142,7 @@ struct PorosityTypingScreen: View {
             }
         }
     }
-    
+
     private var progress: CGFloat {
         guard !viewModel.questions.isEmpty else { return 0 }
         return CGFloat(viewModel.currentQuestionId + 1) / CGFloat(viewModel.questions.count)

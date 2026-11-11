@@ -8,7 +8,7 @@ final class ThicknessTypingViewModel: ObservableObject {
 
     @Published var questions: [TypingQuestion] = ThicknessQuestions.all
     @Published var currentQuestionId: Int = 0
-    @Published var result: ThicknessTypes? = nil
+    @Published var result: ThicknessTypes?
     @Published var showAlert = false
     @Published var alertMessage = ""
     @Published var isSavedSuccess = false
@@ -48,9 +48,9 @@ final class ThicknessTypingViewModel: ObservableObject {
             let answer = question.answers[selectedIndex]
 
             switch answer.result {
-            case "thin",   "THIN":   thinCount += 1
+            case "thin", "THIN": thinCount += 1
             case "medium", "MEDIUM": mediumCount += 1
-            case "bold",   "THICK":  boldCount += 1
+            case "bold", "THICK": boldCount += 1
             default: break
             }
         }

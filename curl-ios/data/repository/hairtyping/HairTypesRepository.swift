@@ -27,6 +27,5 @@ final class HairTypesRepositoryImpl: HairTypesRepository {
         let token = await AuthManager.shared.getAccessToken()
         let hairType: HairTypeResponse = try await apiService.get(path)
         return hairType
-        //userDefaultsService.hairColoring = hairType.isColored
     }
 }

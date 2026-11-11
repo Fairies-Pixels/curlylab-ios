@@ -31,10 +31,10 @@ struct ContentView: View {
                     HomeScreen(
                         router: HomeScreenRouterAdapter(
                             onComposition: { path.append(Route.composition) },
-                            onGuide:       { path.append(Route.guide) },
-                            onDictionary:  { path.append(Route.dictionary) },
-                            onHairTyping:  { path.append(Route.hairTyping) },
-                            onProducts:    { path.append(Route.products) }
+                            onGuide: { path.append(Route.guide) },
+                            onDictionary: { path.append(Route.dictionary) },
+                            onHairTyping: { path.append(Route.hairTyping) },
+                            onProducts: { path.append(Route.products) }
                         ),
                         onLogout: { path.append(Route.signIn) }
                     )
@@ -51,9 +51,9 @@ struct ContentView: View {
                 case .hairTyping:
                     HairTypingScreen(
                         onOpenPhotoAnalysis: { path.append(Route.hairAnalysis) },
-                        onOpenPorosityText:  { path.append(Route.porosityText) },
+                        onOpenPorosityText: { path.append(Route.porosityText) },
                         onOpenThicknessText: { path.append(Route.thicknessText) },
-                        onOpenColoredText:   { path.append(Route.coloredText) }
+                        onOpenColoredText: { path.append(Route.coloredText) }
                     )
 
                 case .products:

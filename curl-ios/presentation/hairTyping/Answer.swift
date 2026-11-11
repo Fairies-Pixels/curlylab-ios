@@ -10,7 +10,7 @@ enum PorosityTypes: String {
     case porous = "p"
     case semiPorous = "s"
     case nonPorous = "n"
-    
+
     var dbCode: String {
         switch self {
         case .porous: return "HIGH"
@@ -18,7 +18,7 @@ enum PorosityTypes: String {
         case .nonPorous: return "LOW"
         }
     }
-    
+
     var resultName: String {
         switch self {
         case .porous: return "пористые"
@@ -31,7 +31,7 @@ enum PorosityTypes: String {
 enum ColoredTypes: String {
     case colored = "c"
     case notColored = "n"
-    
+
     var resultName: String {
         switch self {
         case .colored: return "окрашенные"
@@ -40,12 +40,11 @@ enum ColoredTypes: String {
     }
 }
 
-
 enum ThicknessTypes: String, CaseIterable {
     case thin = "t"
     case medium = "m"
     case bold = "b"
-    
+
     var dbCode: String {
         switch self {
         case .thin: return "THIN"
@@ -53,7 +52,7 @@ enum ThicknessTypes: String, CaseIterable {
         case .bold: return "THICK"
         }
     }
-    
+
     var resultName: String {
         switch self {
         case .thin: return "Тонкие"
@@ -61,14 +60,14 @@ enum ThicknessTypes: String, CaseIterable {
         case .bold: return "Толстые"
         }
     }
-    
+
     static func getResultNameByDbCode(_ dbCode: String) -> String? {
         return Self.allCases
             .first { $0.dbCode == dbCode }?
             .resultName
             .capitalized
     }
-    
+
     static func getDbCodeByResultName(_ resultName: String) -> String? {
         return Self.allCases
             .first { $0.resultName == resultName }?

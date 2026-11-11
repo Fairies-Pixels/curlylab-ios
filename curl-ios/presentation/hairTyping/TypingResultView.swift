@@ -4,7 +4,7 @@ struct TypingResultView: View {
     let resultTitle: String
     let onSave: () -> Void
     let onSkip: () -> Void
-    
+
     var body: some View {
         VStack(spacing: 24) {
             Text("Ваш результат")
@@ -17,7 +17,6 @@ struct TypingResultView: View {
 
             Spacer()
 
-            
             Button("Сохранить результат", action: onSave)
                 .buttonStyle(PrimaryButtonStyle())
 

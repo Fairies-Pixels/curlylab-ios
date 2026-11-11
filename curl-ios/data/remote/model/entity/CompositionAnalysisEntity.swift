@@ -1,10 +1,3 @@
-//
-//  CompositionAnalysisEntity.swift
-//  curl-ios
-//
-//  Created by Nadineenik on 05.10.2026.
-//
-
 import Foundation
 import SwiftData
 

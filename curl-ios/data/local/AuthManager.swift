@@ -27,7 +27,7 @@ final class AuthManager: ObservableObject {
     private init(
         tokenStorage: TokenStorage = TokenStorage(),
         userDefaults: UserDefaults = .standard
-    ){
+    ) {
         self.tokenStorage = tokenStorage
         self.userDefaults = userDefaults
         self.isLoggedIn = userDefaults.bool(forKey: Keys.isLoggedIn)
@@ -46,7 +46,7 @@ final class AuthManager: ObservableObject {
         userId: String? = nil,
         username: String? = nil,
         email: String? = nil
-    ){
+    ) {
         userDefaults.set(isLoggedIn, forKey: Keys.isLoggedIn)
         if let userId { userDefaults.set(userId, forKey: Keys.userId)}
         if let email { userDefaults.set(email, forKey: Keys.email)}

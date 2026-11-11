@@ -3,17 +3,19 @@ import SwiftUI
 struct IsColoredTypingScreen: View {
     @StateObject private var viewModel = IsColoredTypingViewModel()
     @Environment(\.dismiss) private var dismiss
-    
+
     var body: some View {
         ZStack {
             Color(hex: "F8F4ED").ignoresSafeArea()
-            
+
             if let result = viewModel.result {
-                // Используем наш новый вынесенный компонент для экрана результата
+                let onSaveAction: () -> Void = { Task { await viewModel.saveResult() } }
+                let onSkipAction: () -> Void = { dismiss() }
+
                 TypingResultView(
                     resultTitle: result,
-                    onSave: { Task { await viewModel.saveResult() } },
-                    onSkip: { dismiss() }
+                    onSave: onSaveAction,
+                    onSkip: onSkipAction
                 )
             } else {
                 questionView
@@ -36,10 +38,9 @@ struct IsColoredTypingScreen: View {
             }
         }
     }
-    
+
     private var questionView: some View {
         VStack(spacing: 24) {
-            // Прогресс-бар
             HStack(spacing: 12) {
                 GeometryReader { geo in
                     ZStack(alignment: .leading) {
@@ -49,7 +50,7 @@ struct IsColoredTypingScreen: View {
                     }
                 }
                 .frame(height: 4)
-                
+
                 Text("\(viewModel.currentQuestionId + 1)/\(viewModel.questions.count)")
                     .font(.system(size: 14, weight: .medium))
                     .foregroundColor(Color(hex: "4A5B48"))
@@ -57,7 +58,6 @@ struct IsColoredTypingScreen: View {
             .padding(.horizontal, 24)
             .padding(.top, 16)
 
-            // Карточка вопроса и ответы
             if viewModel.currentQuestionId < viewModel.questions.count {
                 let question = viewModel.currentQuestion
 
@@ -70,7 +70,7 @@ struct IsColoredTypingScreen: View {
                             .background(Color(hex: "F8F4ED"))
                             .clipShape(Circle())
                             .overlay(Circle().stroke(Color(hex: "728C6A").opacity(0.3), lineWidth: 1))
-                        
+
                         Text(question.topic)
                             .font(.system(size: 18, weight: .medium))
                             .foregroundColor(Color(hex: "4A5B48"))
@@ -84,7 +84,7 @@ struct IsColoredTypingScreen: View {
                         ForEach(question.answers.indices, id: \.self) { index in
                             let answer = question.answers[index]
                             let isSelected = question.selectedIndex == index
-                            
+
                             Button {
                                 viewModel.selectAnswer(at: index)
                             } label: {
@@ -98,7 +98,7 @@ struct IsColoredTypingScreen: View {
                                     Text(answer.text)
                                         .font(.system(size: 15, weight: .regular))
                                         .foregroundColor(Color(hex: "4A5B48"))
-                                    
+
                                     Spacer()
                                 }
                                 .padding(20)
@@ -114,7 +114,6 @@ struct IsColoredTypingScreen: View {
 
                     Spacer()
 
-                    // Используем наш новый стиль кнопки вместо длинного форматирования
                     Button("Результат") {
                         viewModel.calculateResult()
                     }
@@ -127,7 +126,7 @@ struct IsColoredTypingScreen: View {
             }
         }
     }
-    
+
     private var progress: CGFloat {
         guard !viewModel.questions.isEmpty else { return 0 }
         return CGFloat(viewModel.currentQuestionId + 1) / CGFloat(viewModel.questions.count)

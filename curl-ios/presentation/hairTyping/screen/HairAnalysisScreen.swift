@@ -56,7 +56,7 @@ struct HairAnalysisScreen: View {
             .frame(maxWidth: .infinity)
         }
         .background(Color(hex: "F8F4ED").ignoresSafeArea())
-        .onChange(of: photoItem) { newItem in
+        .onChange(of: photoItem) { _, newItem in
             Task {
                 guard
                     let data = try? await newItem?.loadTransferable(type: Data.self),
@@ -73,7 +73,7 @@ struct HairAnalysisScreen: View {
                 .presentationDragIndicator(.visible)
                 .presentationBackground(Color(hex: "C17A5B"))
         }
-        .onChange(of: viewModel.saved) { newValue in
+        .onChange(of: viewModel.saved) { _, newValue in
             guard let newValue else { return }
             showSaveAlert = true
         }

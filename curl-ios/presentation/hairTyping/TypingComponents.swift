@@ -10,7 +10,7 @@ struct TypingProgressBar: View {
         
         ZStack(alignment: .leading) {
             Capsule()
-                .fill(Color.lightBeige)
+                .fill(Color.curlyOrangeNeg)
                 .frame(height: 20)
             
             Capsule()
@@ -20,7 +20,7 @@ struct TypingProgressBar: View {
                     Text("\(current + 1)/\(total)")
                         .font(.caption)
                         .bold()
-                        .foregroundStyle(Color.lightBeige)
+                        .foregroundStyle(Color.curlyOrangeNeg)
                 )
                 .animation(.easeInOut(duration: 0.5), value: progress)
         }

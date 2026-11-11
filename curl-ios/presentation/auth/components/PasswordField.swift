@@ -23,11 +23,10 @@ struct PasswordField: View {
                 Image(systemName: isVisible ? "eye" : "eye.slash")
                     .resizable()
                     .frame(width: 20, height: 20)
-                    .foregroundStyle(Color.darkGreen.opacity(0.6))
+                    .foregroundStyle(Color.curlyDarkGreen.opacity(0.6))
             }
         }
         .padding(12)
-        //.background(Color.white)
         .overlay(
             RoundedRectangle(cornerRadius: 8)
                 .stroke(Color.curlyDarkGreen, lineWidth: 1)

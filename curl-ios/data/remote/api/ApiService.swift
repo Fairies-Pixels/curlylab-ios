@@ -77,11 +77,11 @@ final class ApiService {
         )
 
         var body = Data()
-        body.append("--\(boundary)\r\n".data(using: .utf8)!)
-        body.append("Content-Disposition: form-data; name=\"\(fieldName)\"; filename=\"\(fileName)\"\r\n".data(using: .utf8)!)
-        body.append("Content-Type: \(mimeType)\r\n\r\n".data(using: .utf8)!)
+        body.append(Data("--\(boundary)\r\n".utf8))
+        body.append(Data("Content-Disposition: form-data; name=\"\(fieldName)\"; filename=\"\(fileName)\"\r\n".utf8))
+        body.append(Data("Content-Type: \(mimeType)\r\n\r\n".utf8))
         body.append(fileData)
-        body.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
+        body.append(Data("\r\n--\(boundary)--\r\n".utf8))
 
         request.httpBody = body
 
@@ -145,7 +145,13 @@ final class ApiService {
             }
 
             if T.self == EmptyResponse.self {
-                return EmptyResponse() as! T
+                guard let empty = EmptyResponse() as? T else {
+                    throw ApiError.decoding(
+                        NSError(domain: "ApiService", code: 0,
+                                userInfo: [NSLocalizedDescriptionKey: "Не удалось привести EmptyResponse к \(T.self)"])
+                    )
+                }
+                return empty
             }
 
             if data.isEmpty {
