@@ -1,10 +1,3 @@
-//
-//  IsColoredTypingViewModel.swift
-//  curl-ios
-//
-//  Created by Nabineenik on 19.10.2026.
-//
-
 import SwiftUI
 
 @MainActor
@@ -12,15 +5,7 @@ final class IsColoredTypingViewModel: ObservableObject {
     private let repository = HairTypesRepositoryImpl()
     private let profileService = UserDefaultsService.shared
     
-    @Published var questions: [Question] = [
-        Question(
-            topic: "У вас окрашенные волосы? :)",
-            answers: [
-                Answer(result: ColoredTypes.colored.rawValue, text: "Да"),
-                Answer(result: ColoredTypes.notColored.rawValue, text: "Нет")
-            ]
-        )
-    ]
+    @Published var questions: [Question] = IsColoredQuestions.all
     
     @Published var currentQuestionId: Int = 0
     @Published var result: String? = nil

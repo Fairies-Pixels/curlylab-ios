@@ -1,10 +1,3 @@
-//
-//  Answer.swift
-//  curl-ios
-//
-//  Created by Nadineenik on 19.10.2026.
-//
-
 import Foundation
 
 struct Answer: Identifiable {

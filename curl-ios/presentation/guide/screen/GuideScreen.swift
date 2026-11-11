@@ -1,10 +1,3 @@
-//
-//  GuideScreen.swift
-//  curl-ios
-//
-//  Created by Nadineenik on 12.10.2026. обновленно 19.10.2026
-//
-
 import SwiftUI
 
 struct GuideScreen: View {
@@ -14,6 +7,12 @@ struct GuideScreen: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 16) {
+                Text("Гайд")
+                    .font(.titleSerif)
+                    .foregroundStyle(Color(hex: "4A5B48"))
+                    .padding(.top, 16)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                
                 ForEach(viewModel.sections) { section in
                     GuideCard(
                         section: section,
@@ -25,7 +24,6 @@ struct GuideScreen: View {
             .padding(24)
         }
         .background(Color.curlySurface.ignoresSafeArea())
-        .navigationTitle("Гайд")
         .navigationBarTitleDisplayMode(.inline)
     }
 }

@@ -12,7 +12,11 @@ struct ThicknessTextTypingScreen: View {
             if viewModel.result == nil {
                 questionView
             } else {
-                resultView
+                TypingResultView(
+                    resultTitle: viewModel.result?.resultName ?? "",
+                    onSave: { Task { await viewModel.saveResult() } },
+                    onSkip: { onBackToHome() }
+                )
             }
         }
         .navigationTitle("Типизация волос")
@@ -111,32 +115,17 @@ struct ThicknessTextTypingScreen: View {
                     Spacer()
 
                     HStack(spacing: 16) {
-                        Button {
+                        Button("Назад") {
                             viewModel.previousQuestion()
-                        } label: {
-                            Text("Назад")
-                                .font(.system(size: 16, weight: .medium))
-                                .foregroundColor(Color(hex: "4A5B48"))
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 16)
-                                .background(Color.white)
-                                .cornerRadius(30)
-                                .overlay(RoundedRectangle(cornerRadius: 30).stroke(Color(hex: "4A5B48").opacity(0.2), lineWidth: 1))
                         }
+                        .buttonStyle(SecondaryButtonStyle())
                         .disabled(viewModel.currentQuestionId == 0)
                         .opacity(viewModel.currentQuestionId == 0 ? 0.5 : 1)
 
-                        Button {
+                        Button(viewModel.currentQuestionId + 1 == viewModel.questions.count ? "Результат" : "Далее") {
                             viewModel.nextQuestion()
-                        } label: {
-                            Text(viewModel.currentQuestionId + 1 == viewModel.questions.count ? "Результат" : "Далее")
-                                .font(.system(size: 16, weight: .medium))
-                                .foregroundColor(.white)
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 16)
-                                .background(Color(hex: "728C6A"))
-                                .cornerRadius(30)
                         }
+                        .buttonStyle(PrimaryButtonStyle())
                         .disabled(question.selectedIndex == nil)
                         .opacity(question.selectedIndex == nil ? 0.5 : 1)
                     }
@@ -145,41 +134,5 @@ struct ThicknessTextTypingScreen: View {
                 .padding(.bottom, 24)
             }
         }
-    }
-
-    private var resultView: some View {
-        VStack(spacing: 24) {
-            Text("Ваш результат")
-                .font(.system(size: 24, weight: .medium))
-                .foregroundColor(Color(hex: "4A5B48"))
-
-            Text(viewModel.result?.resultName ?? "")
-                .font(.system(size: 40, weight: .bold))
-                .foregroundColor(Color(hex: "728C6A"))
-
-            Spacer()
-
-            Button("Сохранить результат") {
-                Task { await viewModel.saveResult() }
-            }
-            .font(.system(size: 16, weight: .medium))
-            .foregroundColor(.white)
-            .frame(maxWidth: .infinity)
-            .padding(.vertical, 16)
-            .background(Color(hex: "728C6A"))
-            .cornerRadius(30)
-
-            Button("Не сохранять") {
-                onBackToHome()
-            }
-            .font(.system(size: 16, weight: .medium))
-            .foregroundColor(Color(hex: "4A5B48"))
-            .frame(maxWidth: .infinity)
-            .padding(.vertical, 16)
-            .background(Color.white)
-            .cornerRadius(30)
-            .overlay(RoundedRectangle(cornerRadius: 30).stroke(Color(hex: "4A5B48").opacity(0.2), lineWidth: 1))
-        }
-        .padding(24)
     }
 }
