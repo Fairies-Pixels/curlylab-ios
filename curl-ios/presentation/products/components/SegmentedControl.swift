@@ -23,10 +23,10 @@ struct SegmentedControl: View {
             ForEach(items.indices, id: \.self) { index in
                 Text(items[index])
                     .font(.system(size: 14, weight: .medium))
-                    .foregroundColor(selectedIndex == index ? .white : Color(hex: "4A5B48"))
+                    .foregroundColor(selectedIndex == index ? .white : Color(.curlyDarkGreen))
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 10)
-                    .background(selectedIndex == index ? Color(hex: "728C6A") : Color.clear)
+                    .background(selectedIndex == index ? Color(.curlyGreen) : Color.clear)
                     .cornerRadius(14)
                     .contentShape(Rectangle())
                     .onTapGesture {

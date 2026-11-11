@@ -15,17 +15,10 @@ struct HairAnalysisScreen: View {
             VStack(alignment: .leading, spacing: 24) {
                 Text("Определение пористости")
                     .font(.system(size: 28, weight: .regular, design: .serif))
-                    .foregroundColor(Color(hex: "4A5B48"))
+                    .foregroundColor(Color(.curlyDarkGreen))
                     .padding(.top, 16)
 
-                Text("Загрузи фото, на котором хорошо видно твои волосы.\nЖелательно — со спины или вид сбоку.\n\nНейросеть определит тип за пару секунд")
-                    .font(.system(size: 15, weight: .medium))
-                    .foregroundColor(Color(hex: "4A5B48"))
-                    .lineSpacing(6)
-                    .padding(20)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(Color(hex: "EDE9E1"))
-                    .cornerRadius(24)
+                descriptionText
 
                 if let selectedImage {
                     Image(uiImage: selectedImage)
@@ -46,7 +39,7 @@ struct HairAnalysisScreen: View {
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 16)
-                    .background(Color(hex: "728C6A"))
+                    .background(Color(.curlyGreen))
                     .cornerRadius(30)
                 }
 
@@ -55,26 +48,18 @@ struct HairAnalysisScreen: View {
             .padding(24)
             .frame(maxWidth: .infinity)
         }
-        .background(Color(hex: "F8F4ED").ignoresSafeArea())
+        .background(Color(.curlySurface).ignoresSafeArea())
         .onChange(of: photoItem) { _, newItem in
-            Task {
-                guard
-                    let data = try? await newItem?.loadTransferable(type: Data.self),
-                    let image = UIImage(data: data)
-                else { return }
-                selectedImage = image
-                showSheet = true
-                viewModel.analyze(imageData: data)
-            }
+            handlePhotoChange(newItem)
         }
         .sheet(isPresented: $showSheet) {
             resultSheet
                 .presentationDetents([.height(240), .medium])
                 .presentationDragIndicator(.visible)
-                .presentationBackground(Color(hex: "C17A5B"))
+                .presentationBackground(Color("curlyTerracotta"))
         }
         .onChange(of: viewModel.saved) { _, newValue in
-            guard let newValue else { return }
+            guard newValue != nil else { return }
             showSaveAlert = true
         }
         .alert("Сохранение", isPresented: $showSaveAlert) {
@@ -83,7 +68,38 @@ struct HairAnalysisScreen: View {
                 viewModel.clearSaved()
             }
         } message: {
-            Text(viewModel.saved == true ? "Успешно сохранено" : "Ошибка сохранения")
+            alertMessage
+        }
+    }
+
+    private var descriptionText: some View {
+        Text("Загрузи фото, на котором хорошо видно твои волосы.\nЖелательно — со спины или вид сбоку.\n\nНейросеть определит тип за пару секунд")
+            .font(.system(size: 15, weight: .medium))
+            .foregroundColor(Color(.curlyDarkGreen))
+            .lineSpacing(6)
+            .padding(20)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Color(.curlySurfaceMuted))
+            .cornerRadius(24)
+    }
+
+    private var alertMessage: Text {
+        if viewModel.saved == true {
+            return Text("Успешно сохранено")
+        } else {
+            return Text("Ошибка сохранения")
+        }
+    }
+
+    private func handlePhotoChange(_ newItem: PhotosPickerItem?) {
+        Task {
+            guard
+                let data = try? await newItem?.loadTransferable(type: Data.self),
+                let image = UIImage(data: data)
+            else { return }
+            selectedImage = image
+            showSheet = true
+            viewModel.analyze(imageData: data)
         }
     }
 
@@ -115,7 +131,7 @@ struct HairAnalysisScreen: View {
                         viewModel.saveResult()
                     }
                     .font(.system(size: 14, weight: .medium))
-                    .foregroundColor(Color(hex: "C17A5B"))
+                    .foregroundColor(Color("curlyTerracotta"))
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 14)
                     .background(Color.white)

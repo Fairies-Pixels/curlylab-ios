@@ -10,7 +10,7 @@ struct ProductCard: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack(alignment: .top, spacing: 16) {
                 ZStack {
-                    Color(hex: "F8F4ED")
+                    Color(.curlySurface)
                     AsyncImage(url: product.imageUrl) { phase in
                         switch phase {
                         case .success(let image):
@@ -28,21 +28,21 @@ struct ProductCard: View {
                     HStack(alignment: .top) {
                         Text(product.name)
                             .font(.system(size: 16, weight: .semibold))
-                            .foregroundColor(Color(hex: "4A5B48"))
+                            .foregroundColor(Color(.curlyDarkGreen))
                             .lineLimit(2)
                             .truncationMode(.tail)
                             .frame(maxWidth: .infinity, alignment: .leading)
 
                         Button(action: onFavoriteClick) {
                             Image(systemName: isFavorite ? "heart.fill" : "heart")
-                                .foregroundColor(isFavorite ? Color(hex: "D4739A") : Color(hex: "4A5B48").opacity(0.4))
+                                .foregroundColor(isFavorite ? Color( .curlyAccentPink) : Color(.curlyDarkGreen).opacity(0.4))
                                 .frame(width: 24, height: 24)
                         }
                     }
 
                     Text(product.description)
                         .font(.system(size: 14, weight: .regular))
-                        .foregroundColor(Color(hex: "4A5B48").opacity(0.7))
+                        .foregroundColor(Color(.curlyDarkGreen).opacity(0.7))
                         .lineSpacing(3)
                         .lineLimit(3)
                         .truncationMode(.tail)
@@ -55,11 +55,11 @@ struct ProductCard: View {
                     ForEach(product.tags, id: \.self) { tag in
                         Text(tag)
                             .font(.system(size: 12, weight: .medium))
-                            .foregroundColor(Color(hex: "728C6A"))
+                            .foregroundColor(Color(.curlyGreen))
                             .lineLimit(1)
                             .padding(.horizontal, 10)
                             .padding(.vertical, 5)
-                            .background(Color(hex: "728C6A").opacity(0.12))
+                            .background(Color(.curlyGreen).opacity(0.12))
                             .cornerRadius(10)
                             .frame(height: 24)
                     }

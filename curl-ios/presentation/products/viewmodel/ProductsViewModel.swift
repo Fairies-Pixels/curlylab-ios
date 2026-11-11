@@ -152,10 +152,10 @@ final class ProductsViewModel: ObservableObject {
                 switch apiError {
                 case .http(let code, let message):
                     print("HTTP \(code), body: \(message ?? "nil")")
-                case .network(let e):
-                    print("NETWORK:", e)
-                case .decoding(let e):
-                    print("DECODING:", e)
+                case .network(let networkError):
+                    print("NETWORK:", networkError)
+                case .decoding(let decodingError):
+                    print("DECODING:", decodingError)
                 case .invalidURL:
                     print("INVALID URL")
                 case .unknown:

@@ -305,6 +305,7 @@
 			children = (
 				EB39FFEC307CF2C900284C6E /* viewmodel */,
 				EB39FFE5307CF22900284C6E /* model */,
+				EB39FFEF307CF31200284C6E /* screen */,
 			);
 			path = dictionary;
 			sourceTree = "<group>";
@@ -321,7 +322,6 @@
 		EB39FFEC307CF2C900284C6E /* viewmodel */ = {
 			isa = PBXGroup;
 			children = (
-				EB39FFEF307CF31200284C6E /* screen */,
 				EB39FFED307CF2DF00284C6E /* DictionaryViewModel.swift */,
 			);
 			path = viewmodel;

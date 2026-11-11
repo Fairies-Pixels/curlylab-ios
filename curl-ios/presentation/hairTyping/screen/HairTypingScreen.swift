@@ -11,14 +11,14 @@ struct HairTypingScreen: View {
             VStack(alignment: .leading, spacing: 24) {
                 Text("Типизация волос")
                     .font(.system(size: 28, weight: .regular, design: .serif))
-                    .foregroundColor(Color(hex: "4A5B48"))
+                    .foregroundColor(Color(.curlyDarkGreen))
                     .padding(.top, 16)
                     .frame(maxWidth: .infinity, alignment: .center)
 
                 HStack(alignment: .top, spacing: 16) {
                     Image(systemName: "leaf.fill")
                         .font(.title)
-                        .foregroundColor(Color(hex: "728C6A"))
+                        .foregroundColor(Color(.curlyGreen))
                         .padding(12)
                         .background(Color.white)
                         .clipShape(Circle())
@@ -26,11 +26,11 @@ struct HairTypingScreen: View {
                     
                     Text("Пройдите тест и узнайте тип ваших волос для правильного ухода и подбора средств")
                         .font(.system(size: 15, weight: .medium))
-                        .foregroundColor(Color(hex: "4A5B48"))
+                        .foregroundColor(Color(.curlyDarkGreen))
                         .lineSpacing(4)
                 }
                 .padding(20)
-                .background(Color(hex: "F8F4ED"))
+                .background(Color(.curlySurface))
                 .cornerRadius(24)
 
                 VStack(spacing: 12) {
@@ -59,16 +59,16 @@ struct HairTypingScreen: View {
             }
             .padding(24)
         }
-        .background(Color(hex: "F8F4ED").ignoresSafeArea())
+        .background(Color(.curlySurface).ignoresSafeArea())
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Image(systemName: "line.3.horizontal")
-                    .foregroundColor(Color(hex: "4A5B48"))
+                    .foregroundColor(Color(.curlyDarkGreen))
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                 Image(systemName: "person.circle")
-                    .foregroundColor(Color(hex: "4A5B48"))
+                    .foregroundColor(Color(.curlyDarkGreen))
             }
         }
     }
