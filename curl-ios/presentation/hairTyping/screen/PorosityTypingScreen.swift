@@ -1,24 +1,19 @@
-//
-//  PorosityTypingScreen.swift
-//  curl-ios
-//
-//  Created by Nadineenik on 19.10.2026.
-//
-
 import SwiftUI
 
 struct PorosityTypingScreen: View {
     @StateObject private var viewModel = PorosityTypingViewModel()
     @Environment(\.dismiss) private var dismiss
     
-    private let userId = "current-user-id"
-    
     var body: some View {
         ZStack {
             Color(hex: "F8F4ED").ignoresSafeArea()
             
             if let result = viewModel.result {
-                resultView(result: result)
+                TypingResultView(
+                    resultTitle: result.resultName,
+                    onSave: { Task { await viewModel.saveResult() } },
+                    onSkip: { dismiss() }
+                )
             } else {
                 questionView
             }
@@ -43,7 +38,6 @@ struct PorosityTypingScreen: View {
     
     private var questionView: some View {
         VStack(spacing: 24) {
-            // Прогресс-бар
             HStack(spacing: 12) {
                 GeometryReader { geo in
                     ZStack(alignment: .leading) {
@@ -70,7 +64,6 @@ struct PorosityTypingScreen: View {
                 let question = viewModel.currentQuestion
 
                 VStack(alignment: .leading, spacing: 20) {
-                    // Карточка вопроса
                     HStack(alignment: .top, spacing: 12) {
                         Text("\(viewModel.currentQuestionId + 1)")
                             .font(.system(size: 16, weight: .bold))
@@ -90,7 +83,6 @@ struct PorosityTypingScreen: View {
                     .background(Color.white)
                     .cornerRadius(24)
 
-                    // Варианты ответов
                     VStack(spacing: 10) {
                         ForEach(question.answers.indices, id: \.self) { index in
                             let answer = question.answers[index]
@@ -126,34 +118,18 @@ struct PorosityTypingScreen: View {
 
                     Spacer()
 
-                    // Кнопки навигации
                     HStack(spacing: 16) {
-                        Button {
+                        Button("Назад") {
                             viewModel.previousQuestion()
-                        } label: {
-                            Text("Назад")
-                                .font(.system(size: 16, weight: .medium))
-                                .foregroundColor(Color(hex: "4A5B48"))
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 16)
-                                .background(Color.white)
-                                .cornerRadius(30)
-                                .overlay(RoundedRectangle(cornerRadius: 30).stroke(Color(hex: "4A5B48").opacity(0.2), lineWidth: 1))
                         }
+                        .buttonStyle(SecondaryButtonStyle())
                         .disabled(viewModel.currentQuestionId == 0)
                         .opacity(viewModel.currentQuestionId == 0 ? 0.5 : 1)
 
-                        Button {
+                        Button(viewModel.currentQuestionId + 1 == viewModel.questions.count ? "Результат" : "Далее") {
                             viewModel.nextQuestion()
-                        } label: {
-                            Text(viewModel.currentQuestionId + 1 == viewModel.questions.count ? "Результат" : "Далее")
-                                .font(.system(size: 16, weight: .medium))
-                                .foregroundColor(.white)
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 16)
-                                .background(Color(hex: "728C6A"))
-                                .cornerRadius(30)
                         }
+                        .buttonStyle(PrimaryButtonStyle())
                         .disabled(question.selectedIndex == nil)
                         .opacity(question.selectedIndex == nil ? 0.5 : 1)
                     }
@@ -162,42 +138,6 @@ struct PorosityTypingScreen: View {
                 .padding(.bottom, 24)
             }
         }
-    }
-    
-    private func resultView(result: PorosityTypes) -> some View {
-        VStack(spacing: 24) {
-            Text("Ваш результат")
-                .font(.system(size: 24, weight: .medium))
-                .foregroundColor(Color(hex: "4A5B48"))
-
-            Text(result.resultName.capitalized)
-                .font(.system(size: 40, weight: .bold))
-                .foregroundColor(Color(hex: "728C6A"))
-
-            Spacer()
-
-            Button("Сохранить результат") {
-                Task { await viewModel.saveResult() }
-            }
-            .font(.system(size: 16, weight: .medium))
-            .foregroundColor(.white)
-            .frame(maxWidth: .infinity)
-            .padding(.vertical, 16)
-            .background(Color(hex: "728C6A"))
-            .cornerRadius(30)
-
-            Button("Не сохранять") {
-                dismiss()
-            }
-            .font(.system(size: 16, weight: .medium))
-            .foregroundColor(Color(hex: "4A5B48"))
-            .frame(maxWidth: .infinity)
-            .padding(.vertical, 16)
-            .background(Color.white)
-            .cornerRadius(30)
-            .overlay(RoundedRectangle(cornerRadius: 30).stroke(Color(hex: "4A5B48").opacity(0.2), lineWidth: 1))
-        }
-        .padding(24)
     }
     
     private var progress: CGFloat {
