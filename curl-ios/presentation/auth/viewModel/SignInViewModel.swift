@@ -22,8 +22,8 @@ final class SignInViewModel: ObservableObject {
 
     @Published private(set) var isEmailLoading: Bool = false
     @Published private(set) var isGoogleLoading: Bool = false
-    @Published private(set) var errorMessage: String? = nil
-    @Published private(set) var passwordError: String? = nil
+    @Published private(set) var errorMessage: String?
+    @Published private(set) var passwordError: String?
 
     private let signInUseCase: SignInUseCase
     private let validatePasswordUseCase: ValidatePasswordUseCase
@@ -34,7 +34,7 @@ final class SignInViewModel: ObservableObject {
         self.validatePasswordUseCase = validatePasswordUseCase
     }
 
-    func updateEmail(_ value: String)    { email = value }
+    func updateEmail(_ value: String) { email = value }
     func updatePassword(_ value: String) { password = value }
 
     func clearError() {

@@ -19,7 +19,7 @@ final class HomeViewModel: ObservableObject {
     @Published var draftEmail: String = ""
     @Published var draftAvatar: String = ""
     
-    @Published private(set) var errorMessage: String? = nil
+    @Published private(set) var errorMessage: String?
 
     private let profileService: UserDefaultsService
     private let router: HomeRouter
@@ -57,9 +57,9 @@ final class HomeViewModel: ObservableObject {
             .store(in: &cancellables)
     }
 
-    func setHairPorosity(_ value: String)  { profileService.hairPorosity = value }
+    func setHairPorosity(_ value: String) { profileService.hairPorosity = value }
     func setHairThickness(_ value: String) { profileService.hairThickness = value }
-    func setHairColoring(_ value: String)  { profileService.hairColoring = value }
+    func setHairColoring(_ value: String) { profileService.hairColoring = value }
 
     func onAppear() {
         isLoading = true
@@ -138,18 +138,22 @@ final class HomeViewModel: ObservableObject {
     }
 
     func toggleSidebar() {
-        isSidebarOpen ? closeSidebar() : openSidebar()
+        if isSidebarOpen {
+            closeSidebar()
+        } else {
+            openSidebar()
+        }
     }
 
     func didTapComposition() { router.openComposition() }
-    func didTapGuide()       { router.openGuide() }
-    func didTapDictionary()  { router.openDictionary() }
-    func didTapHairTyping()  { router.openHairTyping() }
-    func didTapProducts()    { router.openProducts() }
+    func didTapGuide() { router.openGuide() }
+    func didTapDictionary() { router.openDictionary() }
+    func didTapHairTyping() { router.openHairTyping() }
+    func didTapProducts() { router.openProducts() }
 
     func didSelectSidebarComposition() { closeSidebar(); router.openComposition() }
-    func didSelectSidebarGuide()       { closeSidebar(); router.openGuide() }
-    func didSelectSidebarDictionary()  { closeSidebar(); router.openDictionary() }
-    func didSelectSidebarHairTyping()  { closeSidebar(); router.openHairTyping() }
-    func didSelectSidebarProducts()    { closeSidebar(); router.openProducts() }
+    func didSelectSidebarGuide() { closeSidebar(); router.openGuide() }
+    func didSelectSidebarDictionary() { closeSidebar(); router.openDictionary() }
+    func didSelectSidebarHairTyping() { closeSidebar(); router.openHairTyping() }
+    func didSelectSidebarProducts() { closeSidebar(); router.openProducts() }
 }

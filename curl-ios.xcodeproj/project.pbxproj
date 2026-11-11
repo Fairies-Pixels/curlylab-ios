@@ -24,7 +24,6 @@
 		3E48FFB33077D5B4008C7914 /* FeatureCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E48FFB23077D5B4008C7914 /* FeatureCard.swift */; };
 		3E48FFB53077D5CD008C7914 /* PasswordField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E48FFB43077D5CD008C7914 /* PasswordField.swift */; };
 		3E48FFB73077D617008C7914 /* OrDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E48FFB63077D617008C7914 /* OrDivider.swift */; };
-		3E48FFBC3077DB04008C7914 /* .gitignore in Sources */ = {isa = PBXBuildFile; fileRef = 3E48FFBB3077DB03008C7914 /* .gitignore */; };
 		D8B6DD35309C6E90005167ED /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B6DD34309C6E90005167ED /* AuthManager.swift */; };
 		EB39FFDC307CEF0100284C6E /* GuideParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB39FFDB307CEF0100284C6E /* GuideParser.swift */; };
 		EB39FFDF307CEF6100284C6E /* GuideViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB39FFDE307CEF6100284C6E /* GuideViewModel.swift */; };
@@ -700,6 +699,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		3CF5B7CA30A4CF0F006A7B34 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -752,7 +752,6 @@
 				EB4694EC306FE09F00510940 /* KeychainManager.swift in Sources */,
 				EBB2B5043073D33100BF34DB /* ProductEntity.swift in Sources */,
 				EB4694DA306FDB7D00510940 /* FavoriteProductEntity.swift in Sources */,
-				3E48FFBC3077DB04008C7914 /* .gitignore in Sources */,
 				EBB2B5153073D78900BF34DB /* HairType.swift in Sources */,
 				EBB2B4EF3073C72300BF34DB /* AnalysisResult.swift in Sources */,
 				EB39FFEE307CF2DF00284C6E /* DictionaryViewModel.swift in Sources */,

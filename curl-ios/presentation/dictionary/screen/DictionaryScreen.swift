@@ -28,7 +28,6 @@ struct DictionaryScreen: View {
             .padding(.horizontal, 24)
             .padding(.top, 16)
             .padding(.bottom, 8)
-            
            
             ScrollView {
                 LazyVStack(spacing: 12) {

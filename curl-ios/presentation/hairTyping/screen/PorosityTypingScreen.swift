@@ -22,10 +22,13 @@ struct PorosityTypingScreen: View {
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: { dismiss() }) {
-                    Image(systemName: "chevron.left")
-                        .foregroundColor(Color(.curlyDarkGreen))
-                }
+                Button(
+                    action: { dismiss() },
+                    label: {
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(Color(.curlyDarkGreen))
+                    }
+                )
             }
         }
         .alert(viewModel.alertMessage, isPresented: $viewModel.showAlert) {

@@ -16,9 +16,3 @@ struct OutlinedField: View {
             .clipShape(RoundedRectangle(cornerRadius: 8))
     }
 }
-
-
-
-
-
-

@@ -1,10 +1,3 @@
-//
-//  HairTypesRepository.swift
-//  curl-ios
-//
-//  Created by Nadinee on 05.11.2026.
-//
-
 import Foundation
 
 protocol HairTypesRepository {
@@ -24,7 +17,7 @@ final class HairTypesRepositoryImpl: HairTypesRepository {
     
     func getHairType(userId: String) async throws -> HairTypeResponse {
         let path = "/hairtypes/\(userId)"
-        let token = await AuthManager.shared.getAccessToken()
+        _ = await AuthManager.shared.getAccessToken()
         let hairType: HairTypeResponse = try await apiService.get(path)
         return hairType
     }

@@ -1,10 +1,6 @@
-//  Created by Nadineenik on 02.10.2026. update 09.10.2026
-//
-
 import Foundation
 
 final class TokenStorage {
-    // Ключи для Keychain
     private let accessTokenKey = "com.curlylab.accessToken"
     private let refreshTokenKey = "com.curlylab.refreshToken"
     

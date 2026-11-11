@@ -216,8 +216,6 @@ final class ProductsViewModel: ObservableObject {
         }
     }
 
-    // MARK: - Current user (для ReviewModalSheet)
-
     func getCurrentUserId() -> UUID? {
         userId
     }
@@ -225,8 +223,6 @@ final class ProductsViewModel: ObservableObject {
     func getCurrentUsername() -> String? {
         AuthManager.shared.getUsername() ?? "user"
     }
-
-    // MARK: - Filters / tabs
 
     func toggleTag(category: String, tag: String) {
         switch category {

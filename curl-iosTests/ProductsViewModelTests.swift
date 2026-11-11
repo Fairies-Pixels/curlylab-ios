@@ -18,11 +18,15 @@ final class ProductsViewModelTests: XCTestCase {
 
     private func makeSUT() -> ProductsViewModel {
         ProductsViewModel(
-            getProductsUseCase: GetProductsUseCase(repository: repository!),
-            getReviewsUseCase: GetReviewsUseCase(repository: repository!)
-        )
+                getProductsUseCase: GetProductsUseCase(repository: repository),
+                getUserFavoritesUseCase: GetUserFavoritesUseCase(repository: repository),
+                toggleFavoriteUseCase: ToggleFavoriteUseCase(repository: repository),
+                getReviewsUseCase: GetReviewsUseCase(repository: repository),
+                addReviewUseCase: AddReviewUseCase(repository: repository),
+                updateReviewUseCase: UpdateReviewUseCase(repository: repository),
+                deleteReviewUseCase: DeleteReviewUseCase(repository: repository)
+            )
     }
-
 
     func testInitLoadsProductsFromRepository() async {
         let expected = [
@@ -35,8 +39,8 @@ final class ProductsViewModelTests: XCTestCase {
         await waitForLoad(sut)
 
         XCTAssertEqual(sut.products.map(\.name), ["Шампунь", "Кондиционер"])
-        XCTAssertEqual(repository.fetchProductsCallCount, 1,
-                       "fetchProducts должен вызываться ровно один раз при инициализации")
+        XCTAssertEqual(repository.getProductsCallCount, 1,
+                       "getProducts должен вызываться ровно один раз при инициализации")
         XCTAssertFalse(sut.isLoading, "После загрузки isLoading должен стать false")
         XCTAssertNil(sut.error, "При успешной загрузке error должен быть nil")
     }

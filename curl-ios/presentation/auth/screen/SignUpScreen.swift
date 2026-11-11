@@ -23,7 +23,7 @@ struct SignUpScreen: View {
             VStack(spacing: 16) {
                 Image("CurlySignImg")
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
+                    .scaledToFit()
                     .frame(maxWidth: .infinity)
 
                 VStack(spacing: 24) {

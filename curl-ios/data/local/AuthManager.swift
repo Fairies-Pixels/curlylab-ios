@@ -1,10 +1,3 @@
-//
-//  AuthManager.swift
-//  curl-ios
-//
-//  Created by Nadineenik on 09.10.2026.
-//
-
 import Foundation
 import Combine
 
