@@ -53,7 +53,6 @@
 		EB4694E7306FDF8100510940 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4694E6306FDF8100510940 /* LoginRequest.swift */; };
 		EB4694E9306FE04500510940 /* LogoutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4694E8306FE04500510940 /* LogoutRequest.swift */; };
 		EB4694EC306FE09F00510940 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4694EB306FE09F00510940 /* KeychainManager.swift */; };
-		EBB2B4E93073C0F900BF34DB /* AnalysisRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2B4E83073C0F900BF34DB /* AnalysisRepository.swift */; };
 		EBB2B4EC3073C36800BF34DB /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2B4EB3073C36800BF34DB /* AuthResponse.swift */; };
 		EBB2B4EF3073C72300BF34DB /* AnalysisResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2B4EE3073C72300BF34DB /* AnalysisResult.swift */; };
 		EBB2B4F13073CCAC00BF34DB /* AnalysisIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2B4F03073CCAC00BF34DB /* AnalysisIssue.swift */; };
@@ -139,7 +138,6 @@
 		EB4694E6306FDF8100510940 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		EB4694E8306FE04500510940 /* LogoutRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutRequest.swift; sourceTree = "<group>"; };
 		EB4694EB306FE09F00510940 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
-		EBB2B4E83073C0F900BF34DB /* AnalysisRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisRepository.swift; sourceTree = "<group>"; };
 		EBB2B4EB3073C36800BF34DB /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		EBB2B4EE3073C72300BF34DB /* AnalysisResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisResult.swift; sourceTree = "<group>"; };
 		EBB2B4F03073CCAC00BF34DB /* AnalysisIssue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisIssue.swift; sourceTree = "<group>"; };
@@ -426,8 +424,8 @@
 			isa = PBXGroup;
 			children = (
 				EBB2B4E63073C0A500BF34DB /* response */,
-				EB4694E3306FDF1E00510940 /* Storage */,
-				EB4694D4306FD09800510940 /* Entity */,
+				EB4694E3306FDF1E00510940 /* storage */,
+				EB4694D4306FD09800510940 /* entity */,
 				EB4694CC306FCE4C00510940 /* request */,
 			);
 			path = model;
@@ -471,7 +469,7 @@
 			path = profile;
 			sourceTree = "<group>";
 		};
-		EB4694D4306FD09800510940 /* Entity */ = {
+		EB4694D4306FD09800510940 /* entity */ = {
 			isa = PBXGroup;
 			children = (
 				EB4694D5306FD0C500510940 /* HairTypeEntity.swift */,
@@ -483,15 +481,15 @@
 				EBB2B4F43073CDFC00BF34DB /* CompositionAnalysisEntity.swift */,
 				EBB2B5033073D33100BF34DB /* ProductEntity.swift */,
 			);
-			path = Entity;
+			path = entity;
 			sourceTree = "<group>";
 		};
-		EB4694E3306FDF1E00510940 /* Storage */ = {
+		EB4694E3306FDF1E00510940 /* storage */ = {
 			isa = PBXGroup;
 			children = (
 				EB4694E4306FDF3000510940 /* TokenStorage.swift */,
 			);
-			path = Storage;
+			path = storage;
 			sourceTree = "<group>";
 		};
 		EB4694EA306FE09100510940 /* local */ = {
@@ -511,17 +509,8 @@
 				EBB2B4F83073D0EA00BF34DB /* products */,
 				EBB2B4ED3073C6FA00BF34DB /* composition */,
 				EBB2B4EA3073C34700BF34DB /* auth */,
-				EBB2B4E73073C0BA00BF34DB /* analisysis */,
 			);
 			path = response;
-			sourceTree = "<group>";
-		};
-		EBB2B4E73073C0BA00BF34DB /* analisysis */ = {
-			isa = PBXGroup;
-			children = (
-				EBB2B4E83073C0F900BF34DB /* AnalysisRepository.swift */,
-			);
-			path = analisysis;
 			sourceTree = "<group>";
 		};
 		EBB2B4EA3073C34700BF34DB /* auth */ = {
@@ -714,7 +703,6 @@
 				EB4694D1306FCEBB00510940 /* UserRequest.swift in Sources */,
 				EBB2B4F53073CDFC00BF34DB /* CompositionAnalysisEntity.swift in Sources */,
 				3C5C94FA309CA87600E8720A /* SignUpViewModelFactory.swift in Sources */,
-				EBB2B4E93073C0F900BF34DB /* AnalysisRepository.swift in Sources */,
 				EB4694E5306FDF3000510940 /* TokenStorage.swift in Sources */,
 				EBB2B4FE3073D22F00BF34DB /* FavoriteEntity.swift in Sources */,
 				EBB2B50F3073D62100BF34DB /* LocalDateTimeParser.swift in Sources */,

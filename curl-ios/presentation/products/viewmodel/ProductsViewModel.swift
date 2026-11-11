@@ -14,20 +14,34 @@ final class ProductsViewModel: ObservableObject {
     @Published private(set) var coloringTag: String?
     @Published private(set) var thicknessTag: String?
 
-    private let getProductsUseCase: GetProductsUseCase
-    private let getReviewsUseCase: GetReviewsUseCase
+    @Published private(set) var userId: UUID?
 
-    private let currentUserId: UUID = UUID()
-    private let currentUsername: String = "user"
+    private let getProductsUseCase: GetProductsUseCase
+    private let getUserFavoritesUseCase: GetUserFavoritesUseCase
+    private let toggleFavoriteUseCase: ToggleFavoriteUseCase
+    private let getReviewsUseCase: GetReviewsUseCase
+    private let addReviewUseCase: AddReviewUseCase
+    private let updateReviewUseCase: UpdateReviewUseCase
+    private let deleteReviewUseCase: DeleteReviewUseCase
 
     init(
         getProductsUseCase: GetProductsUseCase,
-        getReviewsUseCase: GetReviewsUseCase
+        getUserFavoritesUseCase: GetUserFavoritesUseCase,
+        toggleFavoriteUseCase: ToggleFavoriteUseCase,
+        getReviewsUseCase: GetReviewsUseCase,
+        addReviewUseCase: AddReviewUseCase,
+        updateReviewUseCase: UpdateReviewUseCase,
+        deleteReviewUseCase: DeleteReviewUseCase
     ) {
         self.getProductsUseCase = getProductsUseCase
+        self.getUserFavoritesUseCase = getUserFavoritesUseCase
+        self.toggleFavoriteUseCase = toggleFavoriteUseCase
         self.getReviewsUseCase = getReviewsUseCase
+        self.addReviewUseCase = addReviewUseCase
+        self.updateReviewUseCase = updateReviewUseCase
+        self.deleteReviewUseCase = deleteReviewUseCase
 
-        Task { await loadProducts() }
+        loadUserId()
     }
 
     var filteredProducts: [Product] {
@@ -46,86 +60,173 @@ final class ProductsViewModel: ObservableObject {
         }
     }
 
+    private func loadUserId() {
+        Task {
+            do {
+                guard
+                    let raw = AuthManager.shared.getUserId(),
+                    let uuid = UUID(uuidString: raw)
+                else {
+                    self.error = "Пользователь не авторизован"
+                    return
+                }
+                self.userId = uuid
+                await loadProducts()
+                await loadFavorites(userId: uuid)
+            }
+        }
+    }
+
     private func loadProducts() async {
         isLoading = true
         defer { isLoading = false }
-
         do {
             products = try await getProductsUseCase.execute()
             error = nil
         } catch {
-            self.error = error.localizedDescription
+            self.error = "Ошибка загрузки товаров: \(error.localizedDescription)"
+        }
+    }
+
+    private func loadFavorites(userId: UUID) async {
+        do {
+            favorites = try await getUserFavoritesUseCase.execute(userId: userId)
+        } catch {
+            self.error = "Ошибка загрузки избранного: \(error.localizedDescription)"
         }
     }
 
     func loadReviews(_ productId: UUID) async {
         isLoading = true
         defer { isLoading = false }
-
         do {
-            reviews = try await getReviewsUseCase.execute(productId: productId)
+            let fetched = try await getReviewsUseCase.execute(productId: productId)
+            reviews = fetched.sorted { $0.createdAt > $1.createdAt }
             error = nil
         } catch {
-            self.error = error.localizedDescription
+            self.error = "Ошибка загрузки отзывов: \(error.localizedDescription)"
         }
     }
 
     func toggleFavorite(productId: UUID) async {
-        let isCurrentlyFavorite = favorites.contains { $0.productId == productId }
-        if isCurrentlyFavorite {
-            favorites = favorites.filter { $0.productId != productId }
-        } else {
-            let product = products.first { $0.id == productId }
-            favorites.append(
-                Favorite(
-                    userId: currentUserId,
-                    productId: productId,
-                    product: product
-                )
-            )
+        guard let userId else {
+            error = "Пользователь не авторизован"
+            return
+        }
+
+        do {
+            try await toggleFavoriteUseCase.execute(userId: userId, productId: productId)
+
+            if favorites.contains(where: { $0.productId == productId }) {
+                favorites = favorites.filter { $0.productId != productId }
+            } else {
+                favorites.append(Favorite(userId: userId, productId: productId, product: nil))
+            }
+            error = nil
+        } catch {
+            self.error = "Не удалось обновить избранное: \(error.localizedDescription)"
         }
     }
 
-    func getCurrentUserId() -> UUID? {
-        currentUserId
-    }
-
-    func getCurrentUsername() -> String? {
-        currentUsername
-    }
-
     func submitReview(productId: UUID, mark: Int, reviewText: String) async {
-        let newReview = Review(
-            id: UUID(),
-            productId: productId,
-            userId: currentUserId,
-            userName: currentUsername,
-            rating: mark,
-            comment: reviewText,
-            createdAt: Date()
-        )
-        reviews.insert(newReview, at: 0)
+        guard let userId else {
+            error = "Пользователь не авторизован"
+            return
+        }
+
+        isLoading = true
+        defer { isLoading = false }
+
+        do {
+            try await addReviewUseCase.execute(
+                userId: userId,
+                productId: productId,
+                mark: mark,
+                reviewText: reviewText
+            )
+            await loadReviews(productId)
+            error = nil
+        } catch {
+            print("submitReview error:", error)
+            if let apiError = error as? ApiError {
+                switch apiError {
+                case .http(let code, let message):
+                    print("HTTP \(code), body: \(message ?? "nil")")
+                case .network(let e):
+                    print("NETWORK:", e)
+                case .decoding(let e):
+                    print("DECODING:", e)
+                case .invalidURL:
+                    print("INVALID URL")
+                case .unknown:
+                    print("UNKNOWN")
+                }
+            }
+            self.error = "Ошибка при отправке отзыва: \((error as? ApiError)?.code ?? -1)"
+        }
     }
 
     func updateReview(productId: UUID, reviewId: UUID, mark: Int, reviewText: String) async {
-        guard let index = reviews.firstIndex(where: { $0.id == reviewId }) else { return }
-        let old = reviews[index]
+        guard let userId else {
+            error = "Пользователь не авторизован"
+            return
+        }
 
-        let updated = Review(
-            id: old.id,
-            productId: old.productId,
-            userId: old.userId,
-            userName: old.userName,
-            rating: mark,
-            comment: reviewText,
-            createdAt: old.createdAt
-        )
-        reviews[index] = updated
+        isLoading = true
+        defer { isLoading = false }
+
+        do {
+            try await updateReviewUseCase.execute(
+                userId: userId,
+                productId: productId,
+                reviewId: reviewId,
+                mark: mark,
+                reviewText: reviewText
+            )
+            await loadReviews(productId)
+            error = nil
+        } catch {
+            if let apiError = error as? ApiError {
+                switch apiError.code {
+                case 403:
+                    self.error = "Нельзя редактировать отзыв спустя 24 часа после создания"
+                case 404:
+                    self.error = "Отзыв не найден"
+                case 400:
+                    self.error = "Некорректные данные отзыва"
+                default:
+                    self.error = "Ошибка при обновлении отзыва: \(apiError.code)"
+                }
+            } else {
+                self.error = "Ошибка при обновлении отзыва: \(error.localizedDescription)"
+            }
+        }
     }
 
-    func deleteReview(_ productId: UUID, _ reviewId: UUID) async {
-        reviews.removeAll { $0.id == reviewId }
+    func deleteReview(productId: UUID, reviewId: UUID) async {
+        isLoading = true
+        defer { isLoading = false }
+
+        do {
+            try await deleteReviewUseCase.execute(productId: productId, reviewId: reviewId)
+            reviews = reviews.filter { $0.id != reviewId }
+            error = nil
+        } catch {
+            self.error = "Ошибка при удалении отзыва: \(error.localizedDescription)"
+        }
     }
+
+    // MARK: - Current user (для ReviewModalSheet)
+
+    func getCurrentUserId() -> UUID? {
+        userId
+    }
+
+    func getCurrentUsername() -> String? {
+        AuthManager.shared.getUsername() ?? "user"
+    }
+
+    // MARK: - Filters / tabs
 
     func toggleTag(category: String, tag: String) {
         switch category {
@@ -152,6 +253,17 @@ final class ProductsViewModel: ObservableObject {
 
     func clearError() {
         error = nil
+    }
+
+    func refreshData() {
+        if let userId {
+            Task {
+                await loadProducts()
+                await loadFavorites(userId: userId)
+            }
+        } else {
+            loadUserId()
+        }
     }
 }
 

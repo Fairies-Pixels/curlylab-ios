@@ -63,9 +63,9 @@ enum ThicknessTypes: String, CaseIterable {
     
     var resultName: String {
         switch self {
-        case .thin: return "тонкие"
-        case .medium: return "средние"
-        case .bold: return "толстые"
+        case .thin: return "Тонкие"
+        case .medium: return "Средние"
+        case .bold: return "Толстые"
         }
     }
     

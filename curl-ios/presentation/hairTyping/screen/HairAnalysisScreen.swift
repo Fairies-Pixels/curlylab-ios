@@ -4,14 +4,11 @@ import PhotosUI
 struct HairAnalysisScreen: View {
     let onSaveComplete: () -> Void
 
+    @StateObject private var viewModel = HairAnalysisViewModel()
     @State private var selectedImage: UIImage?
     @State private var photoItem: PhotosPickerItem?
     @State private var showSheet = false
-    @State private var isLoading = false
-    @State private var resultText: String?
-    @State private var errorText: String?
     @State private var showSaveAlert = false
-    @State private var saveError = false
 
     var body: some View {
         ScrollView {
@@ -61,11 +58,13 @@ struct HairAnalysisScreen: View {
         .background(Color(hex: "F8F4ED").ignoresSafeArea())
         .onChange(of: photoItem) { newItem in
             Task {
-                if let data = try? await newItem?.loadTransferable(type: Data.self),
-                   let image = UIImage(data: data) {
-                    selectedImage = image
-                    analyzeImage(data)
-                }
+                guard
+                    let data = try? await newItem?.loadTransferable(type: Data.self),
+                    let image = UIImage(data: data)
+                else { return }
+                selectedImage = image
+                showSheet = true
+                viewModel.analyze(imageData: data)
             }
         }
         .sheet(isPresented: $showSheet) {
@@ -74,25 +73,31 @@ struct HairAnalysisScreen: View {
                 .presentationDragIndicator(.visible)
                 .presentationBackground(Color(hex: "C17A5B"))
         }
+        .onChange(of: viewModel.saved) { newValue in
+            guard let newValue else { return }
+            showSaveAlert = true
+        }
         .alert("Сохранение", isPresented: $showSaveAlert) {
-            Button("OK") { onSaveComplete() }
+            Button("OK") {
+                if viewModel.saved == true { onSaveComplete() }
+                viewModel.clearSaved()
+            }
         } message: {
-            Text(saveError ? "Ошибка сохранения" : "Успешно сохранено")
+            Text(viewModel.saved == true ? "Успешно сохранено" : "Ошибка сохранения")
         }
     }
 
     private var resultSheet: some View {
         VStack(spacing: 20) {
-            if isLoading {
-                ProgressView()
-                    .tint(.white)
+            if viewModel.isLoading {
+                ProgressView().tint(.white)
                 Text("Ожидаем анализ…")
                     .font(.system(size: 16, weight: .medium))
                     .foregroundColor(.white)
-            } else if let errorText {
-                Text("Ошибка: \(errorText)")
+            } else if let error = viewModel.error {
+                Text("Ошибка: \(error)")
                     .foregroundColor(.white)
-            } else if let resultText {
+            } else if let resultText = viewModel.result {
                 Text("Тип волос: \(resultText.uppercased())")
                     .font(.system(size: 20, weight: .bold))
                     .foregroundColor(.white)
@@ -106,9 +111,8 @@ struct HairAnalysisScreen: View {
                         .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.white, lineWidth: 1))
 
                     Button("Сохранить") {
-                        saveError = false
                         showSheet = false
-                        showSaveAlert = true
+                        viewModel.saveResult()
                     }
                     .font(.system(size: 14, weight: .medium))
                     .foregroundColor(Color(hex: "C17A5B"))
@@ -121,17 +125,5 @@ struct HairAnalysisScreen: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(24)
-    }
-
-    private func analyzeImage(_ data: Data) {
-        isLoading = true
-        showSheet = true
-        errorText = nil
-        resultText = nil
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            isLoading = false
-            resultText = "Пористый"
-        }
     }
 }

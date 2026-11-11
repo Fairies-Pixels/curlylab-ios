@@ -30,9 +30,9 @@ final class UserDefaultsService: ObservableObject {
     }
     
     enum PorosityOptions {
-        static let low = "Низко-пористые"
-        static let medium = "Средне-пористые"
-        static let high = "Средне-пористые"
+        static let low = "Низкопористые"
+        static let medium = "Среднепористые"
+        static let high = "Высокопористые"
     }
     
     enum PorosityDbOptions {

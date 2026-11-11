@@ -7,7 +7,12 @@ enum ProductsViewModelFactory {
 
         return ProductsViewModel(
             getProductsUseCase: GetProductsUseCase(repository: repository),
-            getReviewsUseCase: GetReviewsUseCase(repository: repository)
+            getUserFavoritesUseCase: GetUserFavoritesUseCase(repository: repository),
+            toggleFavoriteUseCase: ToggleFavoriteUseCase(repository: repository),
+            getReviewsUseCase: GetReviewsUseCase(repository: repository),
+            addReviewUseCase: AddReviewUseCase(repository: repository),
+            updateReviewUseCase: UpdateReviewUseCase(repository: repository),
+            deleteReviewUseCase: DeleteReviewUseCase(repository: repository)
         )
     }
 }

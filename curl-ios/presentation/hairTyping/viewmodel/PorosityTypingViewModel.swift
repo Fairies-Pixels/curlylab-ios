@@ -1,10 +1,3 @@
-//
-//  PorosityTypingViewModel.swift
-//  curl-ios
-//
-//  Created by Nadineenik on 19.10.2026.
-//
-
 import SwiftUI
 
 @MainActor
@@ -27,7 +20,7 @@ final class PorosityTypingViewModel: ObservableObject {
             Answer(result: "\(PorosityTypes.porous.rawValue)\(PorosityTypes.semiPorous.rawValue)", text: "Да"),
             Answer(result: PorosityTypes.nonPorous.rawValue, text: "Нет")
         ]),
-        Question(topic: "Пушаться ли Ваши волосы?", answers: [
+        Question(topic: "Пушатся ли Ваши волосы?", answers: [
             Answer(result: "\(PorosityTypes.porous.rawValue)\(PorosityTypes.semiPorous.rawValue)", text: "Да"),
             Answer(result: PorosityTypes.nonPorous.rawValue, text: "Нет")
         ]),
