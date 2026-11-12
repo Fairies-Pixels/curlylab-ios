@@ -23,7 +23,7 @@ struct SignUpScreen: View {
             VStack(spacing: 16) {
                 Image("CurlySignImg")
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
+                    .scaledToFit()
                     .frame(maxWidth: .infinity)
 
                 VStack(spacing: 24) {
@@ -98,7 +98,7 @@ struct SignUpScreen: View {
                     HStack(spacing: 4) {
                         Text("Уже есть аккаунт?")
                             .font(.textSerif)
-                            .foregroundStyle(Color.darkGreen.opacity(0.7))
+                            .foregroundStyle(Color.curlyDarkGreen.opacity(0.7))
                         Button("Войти") {
                             onGoToSignIn()
                         }

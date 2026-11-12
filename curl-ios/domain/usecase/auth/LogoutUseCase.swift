@@ -8,6 +8,6 @@ struct LogoutUseCase {
     }
     
     func callAsFunction() async throws {
-        return try await authRepository.logout()
+        return await authRepository.logout()
     }
 }

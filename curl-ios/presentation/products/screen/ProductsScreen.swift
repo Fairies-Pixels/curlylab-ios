@@ -38,16 +38,16 @@ struct ProductsScreen: View {
             }
             .padding(24)
         }
-        .background(Color(hex: "F8F4ED").ignoresSafeArea())
+        .background(Color(.curlySurface).ignoresSafeArea())
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Image(systemName: "line.3.horizontal")
-                    .foregroundColor(Color(hex: "4A5B48"))
+                    .foregroundColor(Color(.curlyDarkGreen))
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                 Image(systemName: "person.circle")
-                    .foregroundColor(Color(hex: "4A5B48"))
+                    .foregroundColor(Color(.curlyDarkGreen))
             }
         }
         .sheet(item: $selectedProduct) { product in
@@ -64,7 +64,7 @@ struct ProductsScreen: View {
     private var header: some View {
         Text("База средств")
             .font(.system(size: 28, weight: .regular, design: .serif))
-            .foregroundColor(Color(hex: "4A5B48"))
+            .foregroundColor(Color(.curlyDarkGreen))
             .frame(maxWidth: .infinity, alignment: .center)
             .padding(.top, 16)
     }
@@ -73,7 +73,7 @@ struct ProductsScreen: View {
         HStack(alignment: .top, spacing: 16) {
             Image(systemName: "sparkles")
                 .font(.title)
-                .foregroundColor(Color(hex: "728C6A"))
+                .foregroundColor(Color(.curlyGreen))
                 .padding(12)
                 .background(Color.white)
                 .clipShape(Circle())
@@ -81,11 +81,11 @@ struct ProductsScreen: View {
 
             Text("Подберите средства под тип ваших волос или сохраните любимые в избранное")
                 .font(.system(size: 15, weight: .medium))
-                .foregroundColor(Color(hex: "4A5B48"))
+                .foregroundColor(Color(.curlyDarkGreen))
                 .lineSpacing(4)
         }
         .padding(20)
-        .background(Color(hex: "F8F4ED"))
+        .background(Color(.curlySurface))
         .cornerRadius(24)
     }
 
@@ -105,7 +105,7 @@ struct ProductsScreen: View {
             } label: {
                 Image(systemName: "line.3.horizontal.decrease.circle")
                     .font(.system(size: 22))
-                    .foregroundColor(Color(hex: "4A5B48"))
+                    .foregroundColor(Color(.curlyDarkGreen))
                     .frame(width: 48, height: 48)
                     .background(Color.white)
                     .clipShape(Circle())
@@ -133,7 +133,7 @@ struct ProductsScreen: View {
             if productsToShow.isEmpty {
                 Text("Пока нет средств по выбранным фильтрам")
                     .font(.system(size: 15, weight: .medium))
-                    .foregroundColor(Color(hex: "4A5B48").opacity(0.6))
+                    .foregroundColor(Color(.curlyDarkGreen).opacity(0.6))
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.vertical, 40)
             } else {

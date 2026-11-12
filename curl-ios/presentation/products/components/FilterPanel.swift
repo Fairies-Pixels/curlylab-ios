@@ -24,12 +24,12 @@ struct FilterPanel: View {
                 Button(action: onReset) {
                     Text("Сбросить")
                         .font(.system(size: 14, weight: .medium))
-                        .foregroundColor(Color(hex: "4A5B48"))
+                        .foregroundColor(Color(.curlyDarkGreen))
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 12)
                         .overlay(
                             RoundedRectangle(cornerRadius: 16)
-                                .stroke(Color(hex: "4A5B48").opacity(0.4), lineWidth: 1)
+                                .stroke(Color(.curlyDarkGreen).opacity(0.4), lineWidth: 1)
                         )
                 }
 
@@ -39,7 +39,7 @@ struct FilterPanel: View {
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 12)
-                        .background(Color(hex: "728C6A"))
+                        .background(Color(.curlyGreen))
                         .cornerRadius(16)
                 }
             }

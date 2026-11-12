@@ -12,19 +12,19 @@ struct ReviewItem: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(review.userName)
                         .font(.system(size: 15, weight: .semibold))
-                        .foregroundColor(Color(hex: "4A5B48"))
+                        .foregroundColor(Color(.curlyDarkGreen))
 
                     Text(review.createdAt.formatted(.dateTime.day(.twoDigits).month(.twoDigits).year()))
                         .font(.system(size: 12))
-                        .foregroundColor(Color(hex: "4A5B48").opacity(0.5))
+                        .foregroundColor(Color(.curlyDarkGreen).opacity(0.5))
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
 
                 HStack(spacing: 2) {
-                    ForEach(1...5, id: \.self) { i in
-                        Image(systemName: i <= review.rating ? "star.fill" : "star")
+                    ForEach(1...5, id: \.self) { starIndex in
+                        Image(systemName: starIndex <= review.rating ? "star.fill" : "star")
                             .font(.system(size: 14))
-                            .foregroundColor(i <= review.rating ? Color(hex: "D4739A") : Color(hex: "4A5B48").opacity(0.25))
+                            .foregroundColor(starIndex <= review.rating ? Color(.curlyAccentPink) : Color(.curlyDarkGreen).opacity(0.25))
                     }
                 }
 
@@ -44,7 +44,7 @@ struct ReviewItem: View {
                         }
                     } label: {
                         Image(systemName: "ellipsis")
-                            .foregroundColor(Color(hex: "4A5B48").opacity(0.5))
+                            .foregroundColor(Color(.curlyDarkGreen).opacity(0.5))
                             .frame(width: 24, height: 24)
                     }
                 }
@@ -52,7 +52,7 @@ struct ReviewItem: View {
 
             Text(review.comment)
                 .font(.system(size: 14))
-                .foregroundColor(Color(hex: "4A5B48").opacity(0.75))
+                .foregroundColor(Color(.curlyDarkGreen).opacity(0.75))
                 .lineSpacing(3)
                 .frame(maxWidth: .infinity, alignment: .leading)
         }

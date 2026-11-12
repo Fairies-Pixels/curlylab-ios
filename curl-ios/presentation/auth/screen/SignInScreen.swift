@@ -22,7 +22,7 @@ struct SignInScreen: View {
             VStack(spacing: 16) {
                 Image("CurlySignImg")
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
+                    .scaledToFit()
                     .frame(maxWidth: .infinity)
 
                 VStack(spacing: 24) {
@@ -82,14 +82,14 @@ struct SignInScreen: View {
                         .background(canSignIn ? Color.curlyDarkGreen : Color.curlyGreen)
                         .foregroundStyle(.white)
                         .clipShape(RoundedRectangle(cornerRadius: 8))
-                        //.disabled(!canSignIn || viewModel.isEmailLoading)
+                        .disabled(!canSignIn || viewModel.isEmailLoading)
                     }
                     .padding(24)
 
                     HStack(spacing: 4) {
                         Text("Еще нет аккаунта?")
                             .font(.textSerif)
-                            .foregroundStyle(Color.darkGreen.opacity(0.7))
+                            .foregroundStyle(Color.curlyDarkGreen.opacity(0.7))
                         Button("Зарегистрироваться") {
                             onGoToSignUp()
                         }

@@ -9,7 +9,7 @@ struct GuideScreen: View {
             VStack(spacing: 16) {
                 Text("Гайд")
                     .font(.titleSerif)
-                    .foregroundStyle(Color(hex: "4A5B48"))
+                    .foregroundStyle(Color(.curlyDarkGreen))
                     .padding(.top, 16)
                     .frame(maxWidth: .infinity, alignment: .center)
                 
@@ -38,14 +38,14 @@ private struct GuideCard: View {
             HStack(alignment: .center) {
                 Text(section.title)
                     .font(.system(size: 18, weight: .bold))
-                    .foregroundStyle(Color(hex: "4A5B48"))
+                    .foregroundStyle(Color(.curlyDarkGreen))
                     .multilineTextAlignment(.leading)
                 
                 Spacer()
                 
                 Image(systemName: "chevron.down")
                     .font(.system(size: 14, weight: .bold))
-                    .foregroundStyle(Color(hex: "728C6A"))
+                    .foregroundStyle(Color(.curlyGreen))
                     .rotationEffect(.degrees(isExpanded ? 180 : 0))
                     .animation(.easeInOut(duration: 0.25), value: isExpanded)
             }
@@ -53,7 +53,7 @@ private struct GuideCard: View {
             if isExpanded {
                 Text(section.content)
                     .font(.system(size: 15, weight: .regular))
-                    .foregroundStyle(Color(hex: "4A5B48").opacity(0.8))
+                    .foregroundStyle(Color(.curlyDarkGreen).opacity(0.8))
                     .lineSpacing(4)
                     .padding(.top, 12)
                     .transition(.opacity.combined(with: .move(edge: .top)))

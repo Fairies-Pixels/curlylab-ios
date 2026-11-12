@@ -49,14 +49,17 @@ struct SidebarView: View {
                 .overlay(Color(.curlySurface))
                 .padding(.vertical, 10)
             
-            Button(action: { viewModel.didTapSignOut(onSuccess: onLogout) }) {
-                Label("Выйти", systemImage: "rectangle.portrait.and.arrow.right")
-                    .font(.bodySerif)
-                    .foregroundStyle(Color(.curlySurface))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 10)
-            }
+            Button(
+                action: { viewModel.didTapSignOut(onSuccess: onLogout) },
+                label: {
+                    Label("Выйти", systemImage: "rectangle.portrait.and.arrow.right")
+                        .font(.bodySerif)
+                        .foregroundStyle(Color(.curlySurface))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 10)
+                }
+            )
             
             Spacer()
         }
@@ -113,7 +116,6 @@ struct SidebarView: View {
                 .frame(width: 130, height: 130)
                 .background(Color(.curlySurface))
                 .clipShape(Circle())
-            
             
             Text(viewModel.userName)
                 .font(.titleSerif)

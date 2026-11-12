@@ -126,27 +126,27 @@ final class UserDefaultsService: ObservableObject {
     
     func porosityFromDbCode(dbCode: String?) -> String {
         return switch dbCode {
-            case PorosityDbOptions.high: PorosityOptions.high
-            case PorosityDbOptions.medium: PorosityOptions.medium
-            case PorosityDbOptions.low: PorosityOptions.low
-            default: "Не определено"
+        case PorosityDbOptions.high: PorosityOptions.high
+        case PorosityDbOptions.medium: PorosityOptions.medium
+        case PorosityDbOptions.low: PorosityOptions.low
+        default: "Не определено"
         }
     }
-    
+
     func thicknessFromDbCode(dbCode: String?) -> String {
         return switch dbCode {
-            case ThicknessDbOptions.thin: ThicknessOptions.thin
-            case ThicknessDbOptions.thick: ThicknessOptions.thin
-            case ThicknessDbOptions.medium: ThicknessOptions.medium
-            default: "Не определено"
+        case ThicknessDbOptions.thin: ThicknessOptions.thin
+        case ThicknessDbOptions.thick: ThicknessOptions.thin
+        case ThicknessDbOptions.medium: ThicknessOptions.medium
+        default: "Не определено"
         }
     }
-    
+
     func coloredFromDbCode(dbCode: Bool?) -> String {
         return switch dbCode {
-            case true: ColoringOptions.colored
-            case false: ColoringOptions.notColored
-            default: "Не определено"
+        case true: ColoringOptions.colored
+        case false: ColoringOptions.notColored
+        default: "Не определено"
         }
     }
     

@@ -1,5 +1,6 @@
 import Foundation
 
+@MainActor
 final class UserRepositoryImpl: UserRepository {
     private let apiService = ApiService.shared
     private let authManager = AuthManager.shared

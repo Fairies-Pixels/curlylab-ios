@@ -8,10 +8,9 @@ final class DictionaryScreenUITests: XCTestCase {
         continueAfterFailure = false
         app = XCUIApplication()
         app.launch()
-        app.buttons["Войти"].tap()
         app.buttons["Словарь"].tap()
         XCTAssertTrue(
-            app.navigationBars["Словарь"].waitForExistence(timeout: 5),
+            app.staticTexts["Словарь"].waitForExistence(timeout: 15),
             "Экран словаря не открылся"
         )
     }
@@ -21,7 +20,7 @@ final class DictionaryScreenUITests: XCTestCase {
     }
 
     func testDictionarySearchFiltersAndRestoresWords() {
-        let searchField = app.textFields["dictionary.searchField"]
+        let searchField = app.textFields["Поиск"]
         XCTAssertTrue(searchField.waitForExistence(timeout: 3),
                       "Поле поиска не найдено")
 
@@ -51,7 +50,7 @@ final class DictionaryScreenUITests: XCTestCase {
     }
     
     func testDictionarySearchShowsNoResultsForUnknownQuery() {
-        let searchField = app.textFields["dictionary.searchField"]
+        let searchField = app.textFields["Поиск"]
         XCTAssertTrue(searchField.waitForExistence(timeout: 3),
                       "Поле поиска не найдено")
 

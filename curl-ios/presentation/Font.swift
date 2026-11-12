@@ -1,12 +1,12 @@
 import SwiftUI
 
-public extension Font {
+extension Font {
     static var captionSerif = Font.system(
         size: 12,
         weight: .medium,
         design: .serif
     )
-    
+
     static var textSerif = Font.system(
         size: 14,
         weight: .medium,
@@ -18,7 +18,7 @@ public extension Font {
         weight: .medium,
         design: .serif
     )
-    
+
     static var subTitleSerif = Font.system(
         size: 20,
         weight: .medium,
@@ -30,7 +30,7 @@ public extension Font {
         weight: .medium,
         design: .serif
     )
-    
+
     static var displaySerif = Font.system(
         size: 40,
         weight: .regular,

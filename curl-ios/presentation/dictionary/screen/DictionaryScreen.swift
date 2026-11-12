@@ -1,10 +1,3 @@
-//
-//  DictionaryScreen.swift
-//  curl-ios
-//
-//  Created by Nadineenik on 12.10.2026.
-//
-
 import SwiftUI
 
 struct DictionaryScreen: View {
@@ -15,18 +8,18 @@ struct DictionaryScreen: View {
             
             Text("Словарь")
                 .font(.titleSerif)
-                .foregroundStyle(Color(hex: "4A5B48"))
+                .foregroundStyle(Color(.curlyDarkGreen))
                 .padding(.horizontal, 24)
                 .padding(.top, 16)
                 .frame(maxWidth: .infinity, alignment: .center)
             
             HStack {
                 Image(systemName: "magnifyingglass")
-                    .foregroundColor(Color(hex: "4A5B48").opacity(0.5))
+                    .foregroundColor(Color(.curlyDarkGreen).opacity(0.5))
                 
                 TextField("Поиск", text: $viewModel.searchQuery)
                     .font(.system(size: 16))
-                    .foregroundColor(Color(hex: "4A5B48"))
+                    .foregroundColor(Color(.curlyDarkGreen))
             }
             .padding(16)
             .background(Color.white)
@@ -35,7 +28,6 @@ struct DictionaryScreen: View {
             .padding(.horizontal, 24)
             .padding(.top, 16)
             .padding(.bottom, 8)
-            
            
             ScrollView {
                 LazyVStack(spacing: 12) {
@@ -62,11 +54,11 @@ private struct WordItem: View {
         VStack(alignment: .leading, spacing: 8) {
             Text(word.name)
                 .font(.system(size: 18, weight: .bold)) 
-                .foregroundStyle(Color(hex: "4A5B48"))
+                .foregroundStyle(Color(.curlyDarkGreen))
             
             Text(word.description)
                 .font(.system(size: 15, weight: .regular))
-                .foregroundStyle(Color(hex: "4A5B48").opacity(0.8))
+                .foregroundStyle(Color(.curlyDarkGreen).opacity(0.8))
                 .lineSpacing(4)
         }
         .frame(maxWidth: .infinity, alignment: .leading)

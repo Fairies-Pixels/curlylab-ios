@@ -6,8 +6,8 @@ struct HomeScreenRouterAdapter: HomeRouter {
     let onProducts: () -> Void
 
     func openComposition() { onComposition() }
-    func openGuide()       { onGuide() }
-    func openDictionary()  { onDictionary() }
-    func openHairTyping()  { onHairTyping() }
-    func openProducts()    { onProducts() }
+    func openGuide() { onGuide() }
+    func openDictionary() { onDictionary() }
+    func openHairTyping() { onHairTyping() }
+    func openProducts() { onProducts() }
 }

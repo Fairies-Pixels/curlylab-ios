@@ -21,7 +21,7 @@ struct ReviewModalSheet: View {
             }
             .padding(24)
         }
-        .background(Color(hex: "F8F4ED").ignoresSafeArea())
+        .background(Color(.curlySurface).ignoresSafeArea())
         .task {
             userId = viewModel.getCurrentUserId()
             username = viewModel.getCurrentUsername()
@@ -32,7 +32,7 @@ struct ReviewModalSheet: View {
     private var productHeaderCard: some View {
         HStack(spacing: 16) {
             ZStack {
-                Color(hex: "F8F4ED")
+                Color(.curlySurface)
                 AsyncImage(url: product.imageUrl) { phase in
                     switch phase {
                     case .success(let image):
@@ -49,13 +49,13 @@ struct ReviewModalSheet: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(product.name)
                     .font(.system(size: 18, weight: .semibold, design: .serif))
-                    .foregroundColor(Color(hex: "4A5B48"))
+                    .foregroundColor(Color(.curlyDarkGreen))
                     .lineLimit(2)
                     .truncationMode(.tail)
 
                 Text("Отзывы о средстве")
                     .font(.system(size: 13, weight: .medium))
-                    .foregroundColor(Color(hex: "4A5B48").opacity(0.6))
+                    .foregroundColor(Color(.curlyDarkGreen).opacity(0.6))
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }
@@ -69,16 +69,16 @@ struct ReviewModalSheet: View {
         VStack(alignment: .leading, spacing: 16) {
             Text(editingReview != nil ? "Редактировать отзыв" : "Оставить отзыв")
                 .font(.system(size: 18, weight: .regular, design: .serif))
-                .foregroundColor(Color(hex: "4A5B48"))
+                .foregroundColor(Color(.curlyDarkGreen))
 
             HStack(spacing: 8) {
-                ForEach(1...5, id: \.self) { i in
+                ForEach(1...5, id: \.self) { starIndex in
                     Button {
-                        rating = i
+                        rating = starIndex
                     } label: {
-                        Image(systemName: i <= rating ? "star.fill" : "star")
+                        Image(systemName: starIndex <= rating ? "star.fill" : "star")
                             .font(.system(size: 24))
-                            .foregroundColor(i <= rating ? Color(hex: "D4739A") : Color(hex: "4A5B48").opacity(0.3))
+                            .foregroundColor(starIndex <= rating ? Color(.curlyAccentPink) : Color(.curlyDarkGreen).opacity(0.3))
                             .frame(width: 40, height: 40)
                     }
                 }
@@ -87,9 +87,9 @@ struct ReviewModalSheet: View {
             TextField("Ваш отзыв", text: $comment, axis: .vertical)
                 .lineLimit(1...3)
                 .font(.system(size: 15))
-                .foregroundColor(Color(hex: "4A5B48"))
+                .foregroundColor(Color(.curlyDarkGreen))
                 .padding(12)
-                .background(Color(hex: "F8F4ED"))
+                .background(Color(.curlySurface))
                 .cornerRadius(16)
 
             if editingReview != nil {
@@ -101,12 +101,12 @@ struct ReviewModalSheet: View {
                     } label: {
                         Text("Отменить")
                             .font(.system(size: 15, weight: .medium))
-                            .foregroundColor(Color(hex: "4A5B48"))
+                            .foregroundColor(Color(.curlyDarkGreen))
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 12)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 16)
-                                    .stroke(Color(hex: "4A5B48").opacity(0.4), lineWidth: 1)
+                                    .stroke(Color(.curlyDarkGreen).opacity(0.4), lineWidth: 1)
                             )
                     }
 
@@ -125,7 +125,7 @@ struct ReviewModalSheet: View {
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 12)
-                            .background(Color(hex: "D4739A"))
+                            .background(Color(.curlyAccentPink))
                             .cornerRadius(16)
                     }
                 }
@@ -162,7 +162,7 @@ struct ReviewModalSheet: View {
                 }
                 .frame(maxWidth: .infinity)
                 .frame(height: 48)
-                .background(Color(hex: "728C6A"))
+                .background(Color(.curlyGreen))
                 .foregroundColor(.white)
                 .cornerRadius(16)
             }
@@ -188,26 +188,26 @@ struct ReviewModalSheet: View {
             HStack {
                 Text("Все отзывы")
                     .font(.system(size: 18, weight: .regular, design: .serif))
-                    .foregroundColor(Color(hex: "4A5B48"))
+                    .foregroundColor(Color(.curlyDarkGreen))
 
                 Spacer()
 
                 Image(systemName: "star.fill")
                     .font(.system(size: 18))
-                    .foregroundColor(Color(hex: "728C6A").opacity(0.6))
+                    .foregroundColor(Color(.curlyGreen).opacity(0.6))
             }
             .padding(.horizontal, 4)
 
             if viewModel.isLoading {
                 ProgressView()
-                    .tint(Color(hex: "728C6A"))
+                    .tint(Color(.curlyGreen))
                     .frame(maxWidth: .infinity)
                     .padding()
 
             } else if viewModel.reviews.isEmpty {
                 Text("Пока нет отзывов")
                     .font(.system(size: 15, weight: .medium))
-                    .foregroundColor(Color(hex: "4A5B48").opacity(0.6))
+                    .foregroundColor(Color(.curlyDarkGreen).opacity(0.6))
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(20)
                     .background(Color.white)

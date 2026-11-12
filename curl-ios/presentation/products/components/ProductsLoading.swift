@@ -4,10 +4,10 @@ struct ProductsLoading: View {
     var body: some View {
         VStack(spacing: 16) {
             ProgressView()
-                .tint(Color(hex: "728C6A"))
+                .tint(Color(.curlyGreen))
             Text("Загрузка средств...")
                 .font(.system(size: 15, weight: .medium))
-                .foregroundColor(Color(hex: "4A5B48").opacity(0.6))
+                .foregroundColor(Color(.curlyDarkGreen).opacity(0.6))
         }
         .frame(maxWidth: .infinity)
     }

@@ -1,10 +1,3 @@
-//
-//  GuideParser.swift
-//  curl-ios
-//
-//  Created by Nadineenik on 12.10.2026.
-//
-
 import Foundation
 
 struct GuideSection: Identifiable, Hashable {

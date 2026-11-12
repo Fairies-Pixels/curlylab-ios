@@ -6,7 +6,7 @@ struct ErrorMessage: View {
     var body: some View {
         Text(message)
             .font(.system(size: 15, weight: .medium))
-            .foregroundColor(Color(hex: "B5534B"))
+            .foregroundColor(Color(.curlyError))
             .multilineTextAlignment(.center)
             .frame(maxWidth: .infinity)
             .padding(20)

@@ -10,8 +10,8 @@ final class SignUpViewModel: ObservableObject {
     @Published var confirmPassword: String = "" { didSet { errorMessage = nil } }
 
     @Published private(set) var isLoading: Bool = false
-    @Published private(set) var errorMessage: String? = nil
-
+    @Published private(set) var errorMessage: String?
+    
     private let signUpUseCase: SignUpUseCase
     private let validatePasswordUseCase: ValidatePasswordUseCase
 
@@ -21,9 +21,9 @@ final class SignUpViewModel: ObservableObject {
         self.validatePasswordUseCase = validatePasswordUseCase
     }
 
-    func updateEmail(_ value: String)        { email = value }
-    func updateUsername(_ value: String)     { username = value }
-    func updatePassword(_ value: String)     { password = value }
+    func updateEmail(_ value: String) { email = value }
+    func updateUsername(_ value: String) { username = value }
+    func updatePassword(_ value: String) { password = value }
     func updateConfirmPassword(_ value: String) { confirmPassword = value }
 
     func clearError() { errorMessage = nil }

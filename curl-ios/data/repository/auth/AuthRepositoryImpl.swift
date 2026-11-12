@@ -1,5 +1,6 @@
 import Foundation
 
+@MainActor
 final class AuthRepositoryImpl: AuthRepository {
     private let apiService = ApiService.shared
     private let authManager = AuthManager.shared
@@ -21,7 +22,7 @@ final class AuthRepositoryImpl: AuthRepository {
                 throw AuthError.invalidToken
             }
 
-            await authManager.saveAuthData(
+            authManager.saveAuthData(
                 isLoggedIn: true,
                 accessToken: authResponse.access,
                 refreshToken: authResponse.refresh,
@@ -56,7 +57,7 @@ final class AuthRepositoryImpl: AuthRepository {
             let user = try await userRepository.getUser(id: userId)
             let userHairType = try await hairTypeRepository.getHairType(userId: userId)
 
-            await authManager.saveAuthData(
+            authManager.saveAuthData(
                 isLoggedIn: true,
                 accessToken: authResponse.access,
                 refreshToken: authResponse.refresh,
@@ -79,15 +80,15 @@ final class AuthRepositoryImpl: AuthRepository {
     }
 
     func isUserLoggedIn() async -> Bool {
-        await authManager.isLoggedIn
+        authManager.isLoggedIn
     }
 
     func logout() async {
         do {
-            if let refreshToken = await authManager.getRefreshToken() {
+            if let refreshToken = authManager.getRefreshToken() {
                 let path = "/auth/logout"
                 let body = LogoutRequest(refreshToken: refreshToken)
-                let resp: AuthResponse = try await apiService.post(
+                let _: AuthResponse = try await apiService.post(
                     path,
                     body: body
                 )
@@ -95,15 +96,14 @@ final class AuthRepositoryImpl: AuthRepository {
         } catch {
             print("Logout error: \(error)")
         }
-        await authManager.clearAuthData()
+        authManager.clearAuthData()
         userDefaultsService.reset()
     }
 
     func getAccessToken() async -> String? {
-        await authManager.getAccessToken()
+        authManager.getAccessToken()
     }
-
     func getUserId() async -> String? {
-        await authManager.getUserId()
+        authManager.getUserId()
     }
 }

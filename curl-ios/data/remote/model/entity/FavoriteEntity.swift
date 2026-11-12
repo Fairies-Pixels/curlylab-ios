@@ -1,10 +1,3 @@
-//
-//  FavoriteEntity.swift
-//  curl-ios
-//
-//  Created by Nadineenik on 05.10.2026.
-//
-
 import Foundation
 import SwiftData
 
@@ -14,7 +7,6 @@ class FavoriteEntity {
     var userId: UUID
     var dateAdded: Date
     
-    // Связь с локальной сущностью продукта (если кэшируете продукты)
     var product: ProductEntity?
     
     init(userId: UUID, productId: UUID, dateAdded: Date = Date()) {

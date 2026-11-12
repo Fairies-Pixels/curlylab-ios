@@ -40,7 +40,7 @@ private struct FilterGroup: View {
         VStack(alignment: .leading, spacing: 8) {
             Text(title)
                 .font(.system(size: 14, weight: .semibold))
-                .foregroundColor(Color(hex: "4A5B48"))
+                .foregroundColor(Color(.curlyDarkGreen))
 
             HStack(spacing: 8) {
                 ForEach(options, id: \.self) { tag in
@@ -48,14 +48,14 @@ private struct FilterGroup: View {
 
                     Text(tag)
                         .font(.system(size: 13, weight: .medium))
-                        .foregroundColor(isSelected ? .white : Color(hex: "4A5B48"))
+                        .foregroundColor(isSelected ? .white : Color(.curlyDarkGreen))
                         .lineLimit(1)
                         .truncationMode(.tail)
                         .multilineTextAlignment(.center)
                         .frame(maxWidth: .infinity)
                         .padding(.horizontal, 12)
                         .padding(.vertical, 8)
-                        .background(isSelected ? Color(hex: "728C6A") : Color(hex: "F8F4ED"))
+                        .background(isSelected ? Color(.curlyGreen) : Color(.curlySurface))
                         .cornerRadius(12)
                         .contentShape(Rectangle())
                         .onTapGesture { onClick(tag) }
